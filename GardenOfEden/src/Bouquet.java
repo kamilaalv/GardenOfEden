@@ -42,7 +42,6 @@ public class Bouquet {
 		this.maxQuantity = maxQuantity;
 		this.card = card;
 		this.wrappingPaper = wrappingPaper;
-		Addons = addons;
 	}
 
 	public double getBouquetPrice() {
@@ -85,20 +84,10 @@ public class Bouquet {
 		this.wrappingPaper = wrappingPaper;
 	}
 
-	public ArrayList<String> getAddons() {
-		return Addons;
-	}
-
-	public void setAddons(ArrayList<String> addons) {
-		Addons = addons;
-	}
 	
 	public double calculateBouquetPrice() {
 		
-		double TotalPrice=0f;
-	
-		
-		
+		double TotalPrice = 0;
 		switch(wrappingPaper)
 		{
 			case "RED":
