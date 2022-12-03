@@ -1,28 +1,33 @@
 import java.util.Date;
-
+import java.util.Calendar;
 public class Flower extends Item{
 
 	
 	private String flowerType;
 	private String color;
-	
-	
+	private Date current;
+	private Date expiryDate;
 	public Flower()
 	{
 		this.flowerType=null;
 		this.color=null;
+		current= new Date();
+	        
+      
 	}
 	
 	public Flower(String flowerType, String color) {
 		super();
 		this.flowerType = flowerType;
 		this.color = color;
+
 	}
 	
 	public Flower(int itemId, String itemName, int itemQuantity, double itemPrice, String flowerType, String color) {
 		super(itemId, itemName, itemQuantity, itemPrice);
 		this.flowerType = flowerType;
 		this.color = color;
+
 	}
 	
 	
@@ -41,14 +46,15 @@ public class Flower extends Item{
 	public void setColor(String color) {
 		this.color = color;
 	}
-
-	@Override
-	public Item displayItemType()
-	{
-		return null;
+	
+	public Date getExpiryDate() {
+		return expiryDate;
 	}
 
-
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+         
 
 	@Override
 	public void calculateDiscount(int itemQuantity, double Price)
@@ -65,13 +71,58 @@ public class Flower extends Item{
 		}
 		
 		
-		
 	}
 	
 	@Override
-	public int calculateDaystoExpiry(Date current, Date Expiry)
+	public Date calculateDaystoExpiry()
 	{
-		return 0;
+		Calendar calender= Calendar.getInstance();
+		
+		switch(flowerType)
+		{
+		case "Rose":
+			
+			calender.add(Calendar.DAY_OF_MONTH,5); 
+			break;
+			
+		case "Tulip":
+			calender.add(Calendar.DAY_OF_MONTH,10);
+			break;			
+		case "Daffodil":
+			calender.add(Calendar.DAY_OF_MONTH,12); 
+			break;
+		case "Violet":
+			calender.add(Calendar.DAY_OF_MONTH,15); 
+			break;
+		case "Hyacinth":
+			calender.add(Calendar.DAY_OF_MONTH,20); 
+			break;
+		case "Lilac":
+			calender.add(Calendar.DAY_OF_MONTH,11); 
+			break;
+		case "Peony":
+			calender.add(Calendar.DAY_OF_MONTH,25);
+			break;
+		case "Daisy":
+			calender.add(Calendar.DAY_OF_MONTH,2);
+			break;
+		case "Baby's Breath":
+			calender.add(Calendar.DAY_OF_MONTH,3); 
+			break;
+		case "Freesia":
+			calender.add(Calendar.DAY_OF_MONTH,6); 
+			break;
+		case "Chrysanthemum":
+			calender.add(Calendar.DAY_OF_MONTH,6); 
+			break;
+		case "Gladiolus":
+			calender.add(Calendar.DAY_OF_MONTH,15); 
+			break;
+			
+		}
+		
+		return expiryDate=calender.getTime();
 	}
-         
+
+
 }
