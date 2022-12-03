@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class FlowerJewelry extends Item{
 
-	private String flowerJewelryType;
+	private String[] flowerJewelryType={"HeadWear","Earings","Necklace","Bracelet"};
 	private boolean Real;
 	
 	public FlowerJewelry() {
@@ -12,7 +12,6 @@ public class FlowerJewelry extends Item{
 
 	public FlowerJewelry(String flowerJewelryType, boolean fakeOrReal) {
 		super();
-		this.flowerJewelryType = flowerJewelryType;
 		this.Real = Real;
 	}
 	
@@ -22,11 +21,11 @@ public class FlowerJewelry extends Item{
 		this.Real = Real;
 	}
 
-	public String getFlowerJewelryType() {
+	public String[] getFlowerJewelryType() {
 		return flowerJewelryType;
 	}
 
-	public void setFlowerJewelryType(String flowerJewelryType) {
+	public void setFlowerJewelryType(String[] flowerJewelryType) {
 		this.flowerJewelryType = flowerJewelryType;
 	}
 
@@ -55,9 +54,9 @@ public class FlowerJewelry extends Item{
 	@Override
 	public void calculateDiscount(int itemQuantity, double Price) {
 		
-		//first we have to find whether the user has
-		//selecetd 3 items and if he has, we'll give the 4th item for free
-		//but for that we have to store user's choice of jewelry as well
+		//Necklace=$10, Headwear=$25, Earings=$10, Bracelet=$15
+		
+		
 		
 	}
 
