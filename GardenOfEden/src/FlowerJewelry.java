@@ -2,15 +2,21 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class FlowerJewelry extends Item {
-	private String[] flowerJewelryType={"HeadWear","Earings","Necklace","Bracelet"};
+	private String flowerJewelryType;
 	private boolean Real;
+	private static int FlowerJewelrysAdded=0;
+
 	
 	public FlowerJewelry() {
-		super();
+		flowerJewelryType=null;
+		Real=false;
+		FlowerJewelrysAdded++;
 	}
+	
 
 	public FlowerJewelry(String flowerJewelryType, boolean fakeOrReal) {
 		super();
+		this.flowerJewelryType=flowerJewelryType;
 		this.Real = Real;
 	}
 	
@@ -20,11 +26,11 @@ public class FlowerJewelry extends Item {
 		this.Real = Real;
 	}
 
-	public String[] getFlowerJewelryType() {
+	public String getFlowerJewelryType() {
 		return flowerJewelryType;
 	}
 
-	public void setFlowerJewelryType(String[] flowerJewelryType) {
+	public void setFlowerJewelryType(String flowerJewelryType) {
 		this.flowerJewelryType = flowerJewelryType;
 	}
 
@@ -33,7 +39,12 @@ public class FlowerJewelry extends Item {
 	}
 
 	public void setFakeOrReal(boolean fakeOrReal) {
-		this.Real = Real;
+		this.Real = fakeOrReal;
+	}
+	
+	public int getNumberofFlowerJewelryInCart()
+	{
+		return FlowerJewelrysAdded;
 	}
 	
 	public boolean fakeorReal() {
@@ -44,9 +55,9 @@ public class FlowerJewelry extends Item {
 		choice=input.next();
 		
 		if(choice.equalsIgnoreCase("r"))
-			return true;
+			return true;  //true for Real
 		else
-			return false;
+			return false;  //false for fake
 		
 	}
 
@@ -55,7 +66,7 @@ public class FlowerJewelry extends Item {
 		
 		//Necklace=$10, Headwear=$25, Earings=$10, Bracelet=$15
 		
-		
+		//giving discount on the 3rd Item
 		
 	}
 

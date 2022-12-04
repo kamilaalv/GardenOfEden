@@ -31,10 +31,19 @@ public class Bouquet {
 	private String wrappingPaper;
 	private ArrayList<String> Addons= new ArrayList<String>();
 	private double BouquetPrice;
+	private static int BouquetsCreated=0;
+	
+	
+	
 	public Bouquet() {
-		super();
+		maxQuantity=0;
+		card=null;
+		wrappingPaper=null;
+		BouquetPrice=0;
+		BouquetsCreated++;
 	}
-
+	
+	
 	public Bouquet(ArrayList<Flower> flowerQuantity, int maxQuantity, String card, String wrappingPaper,
 			ArrayList<String> addons) {
 		super();
@@ -85,6 +94,11 @@ public class Bouquet {
 	}
 
 	
+	public int getNumberofBouquetsInCart()
+
+	{
+		return BouquetsCreated;
+	}
 	public double calculateBouquetPrice() {
 		
 		double TotalPrice = 0;

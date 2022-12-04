@@ -7,12 +7,13 @@ public class Flower extends Item{
 	private String color;
 	private Date current;
 	private Date expiryDate;
+	private static int FlowersAdded=0;
 	public Flower()
 	{
 		this.flowerType=null;
 		this.color=null;
 		current= new Date();
-	        
+		FlowersAdded++;
       
 	}
 	
@@ -53,6 +54,11 @@ public class Flower extends Item{
 
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+	
+	public int getNumberOfFlowersIntheCart()
+	{
+		return FlowersAdded;
 	}
          
 
