@@ -95,7 +95,7 @@ public class ItemSystem {
 			FlowerJewelry flowerjwl = new FlowerJewelry();
 
 			System.out.print("(HeadWear,Earings,Necklace,Bracelet): ");
-			flowerjwl.setFlowerJewelryType(scan.next());
+			//flowerjwl.setFlowerJewelryType(scan.next());
 			// why is flower jewelry type an array?
 
 			System.out.print("(real/fake): ");

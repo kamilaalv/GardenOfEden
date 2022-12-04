@@ -1,8 +1,7 @@
 import java.util.Date;
 import java.util.Scanner;
 
-public class FlowerJewelry extends Item{
-
+public class FlowerJewelry extends Item {
 	private String[] flowerJewelryType={"HeadWear","Earings","Necklace","Bracelet"};
 	private boolean Real;
 	
@@ -66,5 +65,4 @@ public class FlowerJewelry extends Item{
 		return null;
 	}
 	
-
 }
