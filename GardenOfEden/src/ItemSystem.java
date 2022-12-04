@@ -6,15 +6,19 @@ public class ItemSystem {
 	// Static labels, main and output lines will be deleted once gui is created
 	
 	private static ArrayList<Item> items= new ArrayList<Item>();
+	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
 
 	public static boolean addItems() {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("\n(Flower/Bouquet/Jewelry): ");
 		String choice = scan.next();
 
+		// when add single flower button is clicked
 		if(choice.equalsIgnoreCase("flower")) {
 			Flower flower = new Flower();
 
+			// these inputs will be implemented with gui in the future
+			// no error-checking for now
 			System.out.print("(Rose/Lily): ");
 			flower.setFlowerType(scan.next());
 
@@ -29,8 +33,10 @@ public class ItemSystem {
 			return true;
 
 		} else if(choice.equalsIgnoreCase("bouquet")) {
+			// when make bouquet button is clicked
+
 			Bouquet bouquet = new Bouquet();
-			bouquet.setMaxQuantity(10);
+			bouquet.setMaxQuantity(20); // for now
 			int totquantity = 0;
 			int flowerquantity;
 			ArrayList<Flower> bqflowers = new ArrayList<>();
@@ -46,6 +52,7 @@ public class ItemSystem {
 					System.out.print("Quantity: ");
 					flowerquantity = scan.nextInt();
 
+					// checking if max flower quantity is reached
 					if(totquantity + flowerquantity > bouquet.getMaxQuantity()) {
 						System.out.print("Too many flowers!\nChange quantity?(yes/no): ");
 						choice = scan.next();
@@ -56,14 +63,17 @@ public class ItemSystem {
 
 				} while (choice.equalsIgnoreCase("yes"));
 
-				if(choice.equalsIgnoreCase("no")) {
-					return false;
+				// if user doesnt change the quantity by writing no
+				// they wont be able to choose the color
+				// and flowers wont be added to the bouquet
+				if(!choice.equalsIgnoreCase("no")) {
+					System.out.print("(Red/Purple): ");
+					flower.setColor(scan.next());
+					
+					bqflowers.add(flower);
 				}
 				
-				System.out.print("(Red/Purple): ");
-				flower.setColor(scan.next());
-
-				bqflowers.add(flower);
+	
 				System.out.println("Add more flowers(yes/no): ");
 				choice = scan.next();
 
@@ -77,8 +87,8 @@ public class ItemSystem {
 			bouquet.setWrappingPaper(scan.next());
 
 			// not asking for add-ons for now
-			// couldnt add bouquet to items because we made bouquet not an item
-			// items.add(bouquet);
+			
+			bouquets.add(bouquet);
 			return true;
 
 		} else if(choice.equalsIgnoreCase("jewelry")) {
@@ -100,20 +110,52 @@ public class ItemSystem {
 		return false;
 	}
 
-	public static boolean removeItems() {
+	public static boolean removeItem(int id) {
+		for (int i=0; i<items.size(); i++) {
+			if(items.get(i).getItemId() == id) {
+				items.remove(i);
+				return true;
+			}
+		}
 
 		return false;
 	}
 
-	public static boolean SearchItem() {
+	public static boolean SearchItem(int id) {
+		for (int i=0; i<items.size(); i++) 
+			if(items.get(i).getItemId() == id) 
+				return true;
 
 		return false;
 	}
 
-	// why do we need 2 remove methods?
-	public static boolean removeItem() {
+	// remove and search methods for bouquets doesnt work
+	// because there is no unique identifier like an id for bouquets
+	// maybe we can use index of the arraylist for these functions
+	// since we are gonna list them in the gui, using their indexes
+	public static boolean removeBouquet(int index) {
+		for (int i=0; i<bouquets.size(); i++) {
+			if(i == index) {
+				items.remove(i);
+				return true;
+			}
+		}
 
 		return false;
 	}
 
+	public static boolean SearchBouquet(int index) {
+		for (int i=0; i<bouquets.size(); i++) 
+			if(i == index) 
+				return true;
+
+		return false;
+	}
+
+	// calculate item price and discount methods are not implemented yet
+	// but i think those methods should return void
+	// because to return double, we would need the id of that item
+	// so i think these methods should just calculate every item's price in the arraylist
+	// we can use the getprice method to display the price in the gui
+	
 }
