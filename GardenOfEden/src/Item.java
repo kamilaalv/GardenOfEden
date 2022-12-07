@@ -18,7 +18,11 @@ public abstract class Item implements ItemInterface{
 		
 	}
 
-
+     public Item(double itemPrice)
+     {
+    	 super();
+    	 this.itemPrice=itemPrice;
+     }
 	public Item(int itemId, String itemName, int itemQuantity, double itemPrice) {
 		super();
 		this.itemId = itemId;

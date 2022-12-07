@@ -21,6 +21,7 @@ public class Flower extends Item{
 		super();
 		this.flowerType = flowerType;
 		this.color = color;
+		FlowersAdded++;
 
 	}
 	
@@ -28,6 +29,7 @@ public class Flower extends Item{
 		super(itemId, itemName, itemQuantity, itemPrice);
 		this.flowerType = flowerType;
 		this.color = color;
+		FlowersAdded++;
 
 	}
 	
@@ -81,7 +83,8 @@ public class Flower extends Item{
 
 	@Override
 	public boolean EligibleForDiscount() {
-		// TODO Auto-generated method stub
+
+
 		return false;
 	}
 	
