@@ -70,10 +70,12 @@ public class FlowerJewelry extends Item {
 		
 	}
 
+
 	@Override
-	public Date calculateDaystoExpiry() {
-		
-		return null;
+	public boolean EligibleForDiscount() {
+		// TODO Auto-generated method stub
+		return false;
 	}
+
 	
 }

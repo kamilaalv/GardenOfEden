@@ -78,57 +78,14 @@ public class Flower extends Item{
 		
 		
 	}
-	
+
 	@Override
-	public Date calculateDaystoExpiry()
-	{
-		Calendar calender= Calendar.getInstance();
-		
-		switch(flowerType)
-		{
-		case "Rose":
-			
-			calender.add(Calendar.DAY_OF_MONTH,5); 
-			break;
-			
-		case "Tulip":
-			calender.add(Calendar.DAY_OF_MONTH,10);
-			break;			
-		case "Daffodil":
-			calender.add(Calendar.DAY_OF_MONTH,12); 
-			break;
-		case "Violet":
-			calender.add(Calendar.DAY_OF_MONTH,15); 
-			break;
-		case "Hyacinth":
-			calender.add(Calendar.DAY_OF_MONTH,20); 
-			break;
-		case "Lilac":
-			calender.add(Calendar.DAY_OF_MONTH,11); 
-			break;
-		case "Peony":
-			calender.add(Calendar.DAY_OF_MONTH,25);
-			break;
-		case "Daisy":
-			calender.add(Calendar.DAY_OF_MONTH,2);
-			break;
-		case "Baby's Breath":
-			calender.add(Calendar.DAY_OF_MONTH,3); 
-			break;
-		case "Freesia":
-			calender.add(Calendar.DAY_OF_MONTH,6); 
-			break;
-		case "Chrysanthemum":
-			calender.add(Calendar.DAY_OF_MONTH,6); 
-			break;
-		case "Gladiolus":
-			calender.add(Calendar.DAY_OF_MONTH,15); 
-			break;
-			
-		}
-		
-		return expiryDate=calender.getTime();
+	public boolean EligibleForDiscount() {
+		// TODO Auto-generated method stub
+		return false;
 	}
+	
+
 
 
 }

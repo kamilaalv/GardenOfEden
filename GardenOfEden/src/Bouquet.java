@@ -2,27 +2,12 @@ import java.util.ArrayList;
 
 public class Bouquet {
 
-	public enum WRAPPINGPAPER  //enum for the color
-	{
-		RED("RED"),
-		BLUE("BLUE"),
-		PURPLE("PURPLE"),
-		GREEN("GREEN");
-		
-		private final String wrapcolor;
-		
-		private WRAPPINGPAPER(String wrapcolor)
-		{
-			this.wrapcolor=wrapcolor;
-		}
-	}
-	WRAPPINGPAPER wrappaper=null;
 
 	
-	private final double red=3f;
-	private final double blue=4f;
-	private final double green=5f;
-	private final double purple=6f;
+	private final double RED=3f;
+	private final double BLUE=4f;
+	private final double GREEN=5f;
+	private final double PURPLE=6f;
 
 	
 	private ArrayList<Flower> flowerQuantity= new ArrayList<>();
@@ -105,23 +90,20 @@ public class Bouquet {
 		switch(wrappingPaper)
 		{
 			case "RED":
-				wrappaper=wrappaper.RED;
-				setBouquetPrice(getBouquetPrice() + red );
+				
+				setBouquetPrice(getBouquetPrice() + RED );
 				break;
 				
 			case "GREEN":
-				wrappaper=wrappaper.GREEN;
-				setBouquetPrice(getBouquetPrice() + green );
+				setBouquetPrice(getBouquetPrice() + GREEN );
 				break;
 				
 			case "BLUE":
-				wrappaper=wrappaper.BLUE;
-				setBouquetPrice(getBouquetPrice() + blue );
+				setBouquetPrice(getBouquetPrice() + BLUE );
 				break;
 			
 			case "PURPLE":
-				wrappaper=wrappaper.PURPLE;
-				setBouquetPrice(getBouquetPrice() + purple );
+				setBouquetPrice(getBouquetPrice() + PURPLE );
 				break;
 				
 		}

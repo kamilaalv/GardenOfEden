@@ -77,7 +77,7 @@ public abstract class Item implements ItemInterface{
 		this.itemPrice = itemPrice;
 	}
 	
-	
+	public abstract void calculateDiscount(int itemQuantity, double Price);
 	public String toString()
 	{
 		return "\nItem ID: " + this.itemId +
