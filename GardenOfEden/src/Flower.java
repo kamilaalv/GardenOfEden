@@ -5,14 +5,11 @@ public class Flower extends Item{
 	
 	private String flowerType;
 	private String color;
-	private Date current;
-	private Date expiryDate;
 	private static int FlowersAdded=0;
 	public Flower()
 	{
 		this.flowerType=null;
 		this.color=null;
-		current= new Date();
 		FlowersAdded++;
       
 	}
@@ -49,14 +46,7 @@ public class Flower extends Item{
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	public Date getExpiryDate() {
-		return expiryDate;
-	}
 
-	public void setExpiryDate(Date expiryDate) {
-		this.expiryDate = expiryDate;
-	}
 	
 	public int getNumberOfFlowersIntheCart()
 	{
@@ -65,17 +55,17 @@ public class Flower extends Item{
          
 
 	@Override
-	public void calculateDiscount(int itemQuantity, double Price)
+	public void calculateDiscount(double OriginalPrice)
 	{
 		//Criteria: If more than 10 standalone flowers of the same type are ordered, give a discount of 20% on each flower
 		//The base price for now is $2/flower
-		double basePrice=Price;
-		if(itemQuantity>10)
+		
+		if(EligibleForDiscount())
 		{
-			this.setItemPrice(basePrice*.8);
+			this.setItemPrice(OriginalPrice*.8);
 		}else
 		{
-			this.setItemPrice(basePrice);
+			this.setItemPrice(OriginalPrice);
 		}
 		
 		
@@ -83,7 +73,14 @@ public class Flower extends Item{
 
 	@Override
 	public boolean EligibleForDiscount() {
-
+   
+		 if(FlowersAdded>=10)
+		 {
+			 FlowersAdded=0;//reset the discount!
+			 return true;
+		 }
+			 
+			 
 
 		return false;
 	}

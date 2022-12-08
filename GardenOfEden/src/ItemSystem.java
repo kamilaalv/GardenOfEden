@@ -9,109 +9,33 @@ public class ItemSystem {
 	
 	private static ArrayList<Item> items= new ArrayList<Item>();
 	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
-
-	public static boolean addItems() {
-		Scanner scan = new Scanner(System.in);
-		System.out.print("\n(Flower/Bouquet/Jewelry): ");
-		String choice = scan.next();
-
-		// when add single flower button is clicked
-		if(choice.equalsIgnoreCase("flower")) {
-			Flower flower = new Flower();
-
-			// these inputs will be implemented with gui in the future
-			// no error-checking for now
-			System.out.print("(Rose/Lily): ");
-			flower.setFlowerType(scan.next());
-			
-			//we will have to set the prices from the GUI as well
-
-			System.out.print("Quantity: ");
-			flower.setItemQuantity(scan.nextInt());
-			scan.skip("\\R");
-
-			System.out.print("(Red/Purple): ");
-			flower.setColor(scan.next());
-
-			items.add(flower);
-			return true;
-
-		} else if(choice.equalsIgnoreCase("bouquet")) {
-			// when make bouquet button is clicked
-
-			Bouquet bouquet = new Bouquet();
-			bouquet.setMaxQuantity(20); // for now
-			int totquantity = 0;
-			int flowerquantity;
-			ArrayList<Flower> bqflowers = new ArrayList<>();
-
-			do {
-				Flower flower = new Flower();
-
-				System.out.print("(Rose/Lily): ");
-				flower.setFlowerType(scan.next());
-				scan.skip("\\R");
-
-				do {
-					System.out.print("Quantity: ");
-					flowerquantity = scan.nextInt();
-
-					// checking if max flower quantity is reached
-					if(totquantity + flowerquantity > bouquet.getMaxQuantity()) {
-						System.out.print("Too many flowers!\nChange quantity?(yes/no): ");
-						choice = scan.next();
-					} else { 
-						flower.setItemQuantity(flowerquantity); 
-						totquantity += flowerquantity;
-					}
-
-				} while (choice.equalsIgnoreCase("yes"));
-
-				// if user doesnt change the quantity by writing no
-				// they wont be able to choose the color
-				// and flowers wont be added to the bouquet
-				if(!choice.equalsIgnoreCase("no")) {
-					System.out.print("(Red/Purple): ");
-					flower.setColor(scan.next());
-					
-					bqflowers.add(flower);
-				}
-				
+	private static ArrayList<Flower> fBouquets= new ArrayList<>();
 	
-				System.out.println("Add more flowers(yes/no): ");
-				choice = scan.next();
 
-			} while(choice.equalsIgnoreCase("yes"));
-			bouquet.setFlowerQuantity(bqflowers);
-
-			System.out.println("Writing on the card will be: ");
-			bouquet.setCard(scan.nextLine());
-
-			System.out.println("Wrapping paper color?(Red/Blue) ");
-			bouquet.setWrappingPaper(scan.next());
-
-			// not asking for add-ons for now
-			
-			bouquets.add(bouquet);
-			return true;
-
-		} else if(choice.equalsIgnoreCase("jewelry")) {
-			FlowerJewelry flowerjwl = new FlowerJewelry();
-
-			System.out.print("(HeadWear,Earings,Necklace,Bracelet): ");
-			flowerjwl.setFlowerJewelryType(scan.next());
-			// why is flower jewelry type an array?
-
-			System.out.print("(real/fake): ");
-			if(scan.next().equalsIgnoreCase("real")){
-				flowerjwl.setFakeOrReal(true);
-			} else { flowerjwl.setFakeOrReal(false); }
-
-			items.add(flowerjwl);
-			return true;
-		}
-
+	public static boolean addItems(int ItemId, String ItemName, int Quantity, double itemPrice) {
+		
 		return false;
+	}
+	
+	public static boolean createBouquet(int flowerQuantity, String flowerType, String color, String card, String wrappingPaper)
+	{
+		if(flowerQuantity>=20)
+		{
+			return false;
+		}else
+		{
+			for(int i=0; i<flowerQuantity; i++)
+			{
+			
+				Flower f= new Flower(flowerType, color);
+				fBouquets.add(f);
+				
+			}
+			
+			Bouquet b= new Bouquet(fBouquets, card, wrappingPaper);
+			return true;
+
+		}
 	}
 
 	public static boolean removeItem(int id) {
@@ -148,7 +72,7 @@ public class ItemSystem {
 		return false;
 	}
 
-	public static boolean SearchBouquet(int index) {
+	public static boolean SearchBouquet(int index) { //item IDs are indexes
 		for (int i=0; i<bouquets.size(); i++) 
 			if(i == index) 
 				return true;

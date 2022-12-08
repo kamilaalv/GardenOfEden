@@ -14,7 +14,6 @@ public class Bouquet {
 	private int maxQuantity;
 	private String card;
 	private String wrappingPaper;
-	private ArrayList<String> Addons= new ArrayList<String>();
 	private double BouquetPrice;
 	private static int BouquetsCreated=0;
 	
@@ -25,17 +24,16 @@ public class Bouquet {
 		card=null;
 		wrappingPaper=null;
 		BouquetPrice=0;
-		BouquetsCreated++;
+		BouquetsCreated++; //increments it
 	}
 	
 	
-	public Bouquet(ArrayList<Flower> flowerQuantity, int maxQuantity, String card, String wrappingPaper,
-			ArrayList<String> addons) {
+	public Bouquet(ArrayList<Flower> flowerQuantity, String card, String wrappingPaper) {
 		super();
 		this.flowerQuantity = flowerQuantity;
-		this.maxQuantity = maxQuantity;
 		this.card = card;
 		this.wrappingPaper = wrappingPaper;
+		
 	}
 
 	public double getBouquetPrice() {

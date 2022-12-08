@@ -65,42 +65,38 @@ public class FlowerJewelry extends Item {
 		return false;
 		
 	}
-	
-	public void DISCOUNT()
-	{
-	//Necklace=$10, Headwear=$25, Earings=$10, Bracelet=$15
+
+	@Override
+	public void calculateDiscount(double OriginalPrice) {
 		
-		//giving discount on the 3rd Item
+		//Necklace=$10, Headwear=$25, Earings=$10, Bracelet=$15
+		
+				//giving discount on the 3rd Item
 		if(EligibleForDiscount() && fakeorReal())  //if the flowers are real then give the discount && Eligibility
 		{
 			switch(flowerJewelryType)
 			{
 			case "Necklace":
-				 itemPrice=10 * .70; //30 percent discount
+				 itemPrice=OriginalPrice * .70; //30 percent discount
 				break;
 				
 			case "Headwear":
-				 itemPrice=25 * .60; //40 percent discount
+				 itemPrice=OriginalPrice * .60; //40 percent discount
 
 				break;
 			case "Earings":
-				 itemPrice=10 * .60; //40 percent discount
+				 itemPrice=OriginalPrice * .60; //40 percent discount
 
 				break;
 				
 			case "Bracelet":
-				 itemPrice=15 * .80; //20 percent discount
+				 itemPrice=OriginalPrice * .80; //20 percent discount
 
 				break;
 			}
 		}
-	}
-
-	@Override
-	public void calculateDiscount(int itemQuantity, double Price) {
-		
 	
-		  return ;
+		
 	}
 
 
