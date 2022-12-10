@@ -1,8 +1,10 @@
+package SystemClasses;
 import java.util.ArrayList;
+import HasaClass.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-
+import InheritanceClasses.*;
 public class ItemSystem {
 	// Im making every method static to test them in main
 	// Static labels, main and output lines will be deleted once gui is created

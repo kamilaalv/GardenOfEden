@@ -1,3 +1,4 @@
+package InheritanceClasses;
 import java.util.Date;
 
 public abstract class Item implements ItemInterface{
