@@ -6,7 +6,6 @@ public abstract class Item implements ItemInterface{
 	protected int itemId;
 	protected String itemName;
 	protected String itemImage;
-	protected int itemQuantity;
 	protected double itemPrice;
 	
 	
@@ -14,7 +13,6 @@ public abstract class Item implements ItemInterface{
 	{
 		this.itemId=0;
 		this.itemName=null;
-		this.itemQuantity=0;
 		this.itemPrice=0.0f;
 		
 	}
@@ -24,11 +22,10 @@ public abstract class Item implements ItemInterface{
     	 super();
     	 this.itemPrice=itemPrice;
      }
-	public Item(int itemId, String itemName, int itemQuantity, double itemPrice) {
+	public Item(int itemId, String itemName, double itemPrice) {
 		super();
 		this.itemId = itemId;
 		this.itemName = itemName;
-		this.itemQuantity = itemQuantity;
 		this.itemPrice = itemPrice;
 	}
 
@@ -63,16 +60,6 @@ public abstract class Item implements ItemInterface{
 	}
 
 
-	public int getItemQuantity() {
-		return itemQuantity;
-	}
-
-
-	public void setItemQuantity(int itemQuantity) {
-		this.itemQuantity = itemQuantity;
-	}
-
-
 	public double getItemPrice() {
 		return itemPrice;
 	}
@@ -89,7 +76,6 @@ public abstract class Item implements ItemInterface{
 	{
 		return "\nItem ID: " + this.itemId +
 				"\nItem Name: " + this.itemName +
-				"\nItem Quantity: " + this.itemQuantity +
 				"\nItem Price: " + this.itemPrice;
 	}
 	

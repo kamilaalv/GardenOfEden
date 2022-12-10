@@ -23,8 +23,8 @@ public class FlowerJewelry extends Item {
 
 	}
 	
-	public FlowerJewelry(int itemId, String itemName, int itemQuantity, double itemPrice, String flowerjewelryType, boolean Real) {
-		super(itemId, itemName, itemQuantity, itemPrice);
+	public FlowerJewelry(int itemId, String itemName,  double itemPrice, String flowerjewelryType, boolean Real) {
+		super(itemId, itemName, itemPrice);
 		this.flowerJewelryType = flowerjewelryType;
 		this.Real = Real;
 		FlowerJewelrysAdded++;
@@ -113,5 +113,10 @@ public class FlowerJewelry extends Item {
 		return false;
 	}
 
+	public String toString()
+	{
+		return super.toString() + "\nFlower Jewelry Type:" + this.flowerJewelryType +
+				"\nReal/Fake: " + this.Real;
+	}
 	
 }

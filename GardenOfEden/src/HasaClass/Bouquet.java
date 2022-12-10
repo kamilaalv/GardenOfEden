@@ -122,4 +122,13 @@ public class Bouquet {
 		
 	}
 	
+	public String toString()
+	{
+		return "\nQuantity of Flowers:" + flowerQuantity.size() +
+				"\nCard: " + this.card +
+				"\nWrapping Paper: " + this.wrappingPaper +
+	             "\nBouquet Price: " + this.BouquetPrice;
+	             
+	}
+	
 }

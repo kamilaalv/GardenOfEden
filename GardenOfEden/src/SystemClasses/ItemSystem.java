@@ -11,16 +11,64 @@ public class ItemSystem {
 	
 	private static ArrayList<Item> items= new ArrayList<Item>();
 	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
-	private static ArrayList<Flower> fBouquets= new ArrayList<>();
+	private static ArrayList<Flower> fBouquets= new ArrayList<>();  //array of flowers needed for bouquets only
 	
+	
+	//this implementation is based with the GUI interface in mind, not the console one.
 
-	public static boolean addItems(int ItemId, String ItemName, int Quantity, double itemPrice) {
+	public static boolean addFlowerJewelry(int ItemId, String ItemName, int Quantity, double itemPrice, String FlowerJewelryType, boolean RealFake) {
 		
-		return false;
+		
+		for(int i=0; i<items.size(); i++)
+		{
+			if(items.get(i) instanceof FlowerJewelry)
+			if(ItemId==((FlowerJewelry)items.get(i)).getItemId())
+			{
+				return false;
+			}
+		}
+		
+		for(int j=0; j<Quantity; j++)  //can order in bulk
+		{
+			FlowerJewelry f= new FlowerJewelry(ItemId, ItemName, itemPrice, FlowerJewelryType, RealFake);
+			items.add(f);
+
+		}
+		
+		
+		
+		 return true;
+	
 	}
+	//Why do we need two add Methods? Because of the difference in input parameters. Either we will have to override the method with different parameters or simply use another one
+	public static boolean addFlowers(int ItemId, String itemName, int Quantity, double itemPrice, String FlowerType, String color)
+	{
+		
+		for(int i=0; i<items.size(); i++)
+		{
+			if(items.get(i) instanceof Flower)
+			if(ItemId==((Flower)items.get(i)).getItemId())
+			{
+				return false;
+			}
+		}
+		
+		for(int j=0; j<Quantity; j++)  //can order in bulk
+		{
+			Flower f= new Flower(ItemId, itemName, itemPrice, FlowerType, color);
+			items.add(f);
+
+		}
+		
+		
+		
+		return true;
+	}
+	
 	
 	public static boolean createBouquet(int flowerQuantity, String flowerType, String color, String card, String wrappingPaper)
 	{
+		//this place is for creating bouquet (addItems cannot implement Bouquet)->Has-A
 		if(flowerQuantity>=20)
 		{
 			return false;
@@ -51,7 +99,7 @@ public class ItemSystem {
 		return false;
 	}
 
-	public static boolean SearchItem(int id) {
+	public static boolean searchItem(int id) {
 		for (int i=0; i<items.size(); i++) 
 			if(items.get(i).getItemId() == id) 
 				return true;
@@ -74,7 +122,7 @@ public class ItemSystem {
 		return false;
 	}
 
-	public static boolean SearchBouquet(int index) { //item IDs are indexes
+	public static boolean searchBouquet(int index) { //item IDs are indexes
 		for (int i=0; i<bouquets.size(); i++) 
 			if(i == index) 
 				return true;
@@ -82,7 +130,7 @@ public class ItemSystem {
 		return false;
 	}
 
-	public static double OverallItemPrice()
+	public static double calculateOverallItemPrice()
 	{
 		double PriceoftheCart=0f;
 

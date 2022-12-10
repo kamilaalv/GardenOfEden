@@ -23,8 +23,8 @@ public class Flower extends Item{
 
 	}
 	
-	public Flower(int itemId, String itemName, int itemQuantity, double itemPrice, String flowerType, String color) {
-		super(itemId, itemName, itemQuantity, itemPrice);
+	public Flower(int itemId, String itemName, double itemPrice, String flowerType, String color) {
+		super(itemId, itemName, itemPrice);
 		this.flowerType = flowerType;
 		this.color = color;
 		FlowersAdded++;
@@ -84,6 +84,12 @@ public class Flower extends Item{
 			 
 
 		return false;
+	}
+	
+	public String toString()
+	{
+		return super.toString() + "\nFlower Type:" + this.flowerType +
+				"\nColor: " + this.color ;
 	}
 	
 
