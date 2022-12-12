@@ -56,6 +56,7 @@ public class FlowerJewelry extends Item {
 		return FlowerJewelrysAdded;
 	}
 	
+	//why do we need this method?????
 	public boolean fakeorReal() {
 		
 		if(getFakeOrReal())

@@ -2,6 +2,9 @@ package ManagementClasses;
 import java.sql.*;
 
 public class DbTest {
+	//not finished just testing db connection
+	//db is local for now
+	//will try to make it accessible for everyone
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {

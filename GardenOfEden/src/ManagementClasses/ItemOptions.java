@@ -4,19 +4,25 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+//if anyone needs prices, types of items, colors do not write them manually take from this class
+//its purpose is to reduce complexity in other classes
+//if it is hard to traverse over something ask
+
+//made everything final
+//will add images later with your help
 public class ItemOptions {
-    public static ArrayList<String> flowerImages = new ArrayList<String>();
-    public static ArrayList<String> flowerJewelryImages = new ArrayList<String>();
-    public static ArrayList<String> flowerTypes = new ArrayList<String>(Arrays.asList("Rose", "Tulip", "Daffodil", "Violet", "Hyacinth", "Lilac", "Peony", "Daisy", "Lily", "Baby's Breath", "Freesia", "Chrysanthemum", "Gladiolus"));
-    public static ArrayList<String> flowerColors = new ArrayList<String>(Arrays.asList("Red", "Pink", "White", "Yellow", "Purple", "Light Blue", "Blue", "Orange"));
-    public static ArrayList<String> flowerJewelryTypes = new ArrayList<String>(Arrays.asList("Earings", "Bracelet", "Necklace", "Headband"));
-    public static ArrayList<String> bouquetWrapColor = new ArrayList<String>(Arrays.asList("White", "Beige", "Transparent", "Baby Pink", "Lilac", "Light Blue"));
-    public static ArrayList<String> addons= new ArrayList<String>(Arrays.asList("Crystals", "Feathers", "Chocolate", "Strawberries"));
+    public static final ArrayList<String> flowerImages = new ArrayList<String>();
+    public static final ArrayList<String> flowerJewelryImages = new ArrayList<String>();
+    public static final ArrayList<String> flowerTypes = new ArrayList<String>(Arrays.asList("Rose", "Tulip", "Daffodil", "Violet", "Hyacinth", "Lilac", "Peony", "Daisy", "Lily", "Baby's Breath", "Freesia", "Chrysanthemum", "Gladiolus"));
+    public static final ArrayList<String> flowerColors = new ArrayList<String>(Arrays.asList("Red", "Pink", "White", "Yellow", "Purple", "Light Blue", "Blue", "Orange"));
+    public static final ArrayList<String> flowerJewelryTypes = new ArrayList<String>(Arrays.asList("Earings", "Bracelet", "Necklace", "Headwear"));
+    public static final ArrayList<String> bouquetWrapColor = new ArrayList<String>(Arrays.asList("White", "Beige", "Transparent", "Baby Pink", "Lilac", "Light Blue"));
+    public static final ArrayList<String> addons= new ArrayList<String>(Arrays.asList("Crystals", "Feathers", "Chocolate", "Strawberries"));
     
 
     //prices are in $
     //i came up with them randomly
-    public static Map<String, Double> prices = new HashMap<String, Double>() {{
+    public static final Map<String, Double> flowerPrices = new HashMap<String, Double>() {{
         put("Rose", 1.5);
         put("Tulip", 3.0);
         put("Daffodil", 1.8);
@@ -33,7 +39,7 @@ public class ItemOptions {
     }};
 
     //integers are days given flower stays fresh
-    public static Map<String, Integer> expirationDates = new HashMap<String, Integer>() {{
+    public static final Map<String, Integer> expirationDates = new HashMap<String, Integer>() {{
         put("Rose", 7);
         put("Tulip", 12);
         put("Daffodil", 10);
@@ -49,9 +55,17 @@ public class ItemOptions {
         put("Gladiolus", 9);
     }};
 
-    // Hex Codes for colors in case we would need them
+    public static final Map<String, Double> jewelryPrice = new HashMap<String, Double>() {{
+        put("Earings", 10.0);
+        put("Bracelet", 15.0);
+        put("Necklaces", 10.0);
+        put("Headwear", 25.0);
+    }};
+
+
+    // Hex Codes for colors in case we would need them in the gui
     //if not delete this hashMap
-    public static Map<String, String> colorHexCodes = new HashMap<String, String>() {{
+    public static final Map<String, String> colorHexCodes = new HashMap<String, String>() {{
         put("Red", "FF0000");
         put("Pink", "#FF69B4");
         put("White", "#FFFFFF");
