@@ -2,14 +2,6 @@ package HasaClass;
 import java.util.ArrayList;
 import InheritanceClasses.*;
 public class Bouquet {
-
-
-	
-	private final double RED=3f;
-	private final double BLUE=4f;
-	private final double GREEN=5f;
-	private final double PURPLE=6f;
-
 	
 	private ArrayList<Flower> flowerQuantity= new ArrayList<>();
 	private int maxQuantity;
@@ -86,26 +78,6 @@ public class Bouquet {
 	public double calculateBouquetPrice() {
 		
 		double TotalPrice = 0;
-		switch(wrappingPaper)
-		{
-			case "RED":
-				
-				setBouquetPrice(getBouquetPrice() + RED );
-				break;
-				
-			case "GREEN":
-				setBouquetPrice(getBouquetPrice() + GREEN );
-				break;
-				
-			case "BLUE":
-				setBouquetPrice(getBouquetPrice() + BLUE );
-				break;
-			
-			case "PURPLE":
-				setBouquetPrice(getBouquetPrice() + PURPLE );
-				break;
-				
-		}
 		
 		if(flowerQuantity.size()==0)
 		{
