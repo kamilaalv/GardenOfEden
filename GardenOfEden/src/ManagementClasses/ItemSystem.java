@@ -55,7 +55,7 @@ public class ItemSystem {
 		
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
-			Flower f= new Flower(ItemId, itemName, itemPrice, FlowerType, color);
+			Flower f= new Flower(ItemId, itemName, FlowerType, color);
 			items.add(f);
 
 		}

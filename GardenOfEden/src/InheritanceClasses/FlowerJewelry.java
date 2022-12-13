@@ -1,6 +1,7 @@
 package InheritanceClasses;
 import java.util.Date;
 import java.util.Scanner;
+import ManagementClasses.ItemOptions;
 
 public class FlowerJewelry extends Item {
 	private String flowerJewelryType;
@@ -24,7 +25,7 @@ public class FlowerJewelry extends Item {
 	}
 	
 	public FlowerJewelry(int itemId, String itemName,  double itemPrice, String flowerjewelryType, boolean Real) {
-		super(itemId, itemName, itemPrice);
+		super(itemId, itemName, ItemOptions.jewelryPrice.get(flowerjewelryType));
 		this.flowerJewelryType = flowerjewelryType;
 		this.Real = Real;
 		FlowerJewelrysAdded++;

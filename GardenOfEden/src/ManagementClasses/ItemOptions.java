@@ -38,6 +38,13 @@ public class ItemOptions {
         put("Gladiolus", 2.5);
     }};
 
+    public static final Map<String, Double> jewelryPrice = new HashMap<String, Double>() {{
+        put("Earings", 10.0);
+        put("Bracelet", 15.0);
+        put("Necklaces", 10.0);
+        put("Headwear", 25.0);
+    }};
+
     //integers are days given flower stays fresh
     public static final Map<String, Integer> expirationDates = new HashMap<String, Integer>() {{
         put("Rose", 7);
@@ -55,12 +62,7 @@ public class ItemOptions {
         put("Gladiolus", 9);
     }};
 
-    public static final Map<String, Double> jewelryPrice = new HashMap<String, Double>() {{
-        put("Earings", 10.0);
-        put("Bracelet", 15.0);
-        put("Necklaces", 10.0);
-        put("Headwear", 25.0);
-    }};
+    
 
 
     // Hex Codes for colors in case we would need them in the gui

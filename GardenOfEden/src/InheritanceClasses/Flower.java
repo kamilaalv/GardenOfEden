@@ -1,6 +1,7 @@
 package InheritanceClasses;
 import java.util.Date;
 import java.util.Calendar;
+import ManagementClasses.ItemOptions;
 public class Flower extends Item{
 
 	
@@ -23,8 +24,8 @@ public class Flower extends Item{
 
 	}
 	
-	public Flower(int itemId, String itemName, double itemPrice, String flowerType, String color) {
-		super(itemId, itemName, itemPrice);
+	public Flower(int itemId, String itemName, String flowerType, String color) {
+		super(itemId, itemName, ItemOptions.flowerPrices.get(flowerType));
 		this.flowerType = flowerType;
 		this.color = color;
 		FlowersAdded++;
@@ -53,7 +54,6 @@ public class Flower extends Item{
 	{
 		return FlowersAdded;
 	}
-         
 
 	@Override
 	public void calculateDiscount(double OriginalPrice)
