@@ -118,6 +118,11 @@ public class Bouquet {
 			dummyID++;
 		}
 		
+		if(dummyID==UPPER_BOUND_ID)
+		{
+			dummyID=LOWER_BOUND_ID;
+		}
+		
 		
 	}
 	

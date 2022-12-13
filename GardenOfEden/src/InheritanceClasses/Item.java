@@ -22,9 +22,8 @@ public abstract class Item implements ItemInterface{
     	 this();
     	 this.itemPrice=itemPrice;
      }
-	public Item(int itemId, String itemName, double itemPrice) {
+	public Item(String itemName, double itemPrice) {
 		this(itemPrice); //for constructor chaining
-		this.itemId = itemId;
 		this.itemName = itemName;
 		this.itemPrice = itemPrice;
 	}

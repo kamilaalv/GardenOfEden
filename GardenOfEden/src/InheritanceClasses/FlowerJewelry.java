@@ -29,8 +29,8 @@ public class FlowerJewelry extends Item {
 
 	}
 	
-	public FlowerJewelry(int itemId, String itemName,  double itemPrice, String flowerjewelryType, boolean Real) {
-		super(itemId, itemName, ItemOptions.jewelryPrice.get(flowerjewelryType));
+	public FlowerJewelry(String itemName,  double itemPrice, String flowerjewelryType, boolean Real) {
+		super(itemName, ItemOptions.jewelryPrice.get(flowerjewelryType));
 		this.flowerJewelryType = flowerjewelryType;
 		this.Real = Real;
 		FlowerJewelrysAdded++;
@@ -125,6 +125,11 @@ public class FlowerJewelry extends Item {
 		{
 			this.itemId=dummyID;
 			dummyID++;
+		}
+		
+		if(dummyID==UPPER_BOUND_ID)
+		{
+			dummyID=LOWER_BOUND_ID;
 		}
 		
 		

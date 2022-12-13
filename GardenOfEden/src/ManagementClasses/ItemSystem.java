@@ -32,7 +32,7 @@ public class ItemSystem {
 		
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
-			FlowerJewelry f= new FlowerJewelry(ItemId, ItemName, itemPrice, FlowerJewelryType, RealFake);
+			FlowerJewelry f= new FlowerJewelry(ItemName, itemPrice, FlowerJewelryType, RealFake);
 			items.add(f);
 
 		}
@@ -57,7 +57,7 @@ public class ItemSystem {
 		
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
-			Flower f= new Flower(ItemId, itemName, FlowerType, color);
+			Flower f= new Flower(itemName, FlowerType, color);
 			items.add(f);
 
 		}
