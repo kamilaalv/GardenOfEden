@@ -44,7 +44,7 @@ public class FlowerJewelry extends Item {
 		this.flowerJewelryType = flowerJewelryType;
 	}
 
-	public boolean getFakeOrReal() {
+	public boolean isReal() {
 		return Real;
 	}
 
@@ -57,25 +57,13 @@ public class FlowerJewelry extends Item {
 		return FlowerJewelrysAdded;
 	}
 	
-	//why do we need this method?????
-	public boolean fakeorReal() {
-		
-		if(getFakeOrReal())
-		{
-			return true;
-		}
-		
-		return false;
-		
-	}
-
 	@Override
 	public void calculateDiscount(double OriginalPrice) {
 		
 		//Necklace=$10, Headwear=$25, Earings=$10, Bracelet=$15
 		
 				//giving discount on the 3rd Item
-		if(EligibleForDiscount() && fakeorReal())  //if the flowers are real then give the discount && Eligibility
+		if(EligibleForDiscount() && isReal())  //if the flowers are real then give the discount && Eligibility
 		{
 			switch(flowerJewelryType)
 			{
