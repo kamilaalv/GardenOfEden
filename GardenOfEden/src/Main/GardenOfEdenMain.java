@@ -1,4 +1,4 @@
-package MainAndSys;
+package Main;
 
 public class GardenOfEdenMain {
 
