@@ -8,11 +8,14 @@ public class Flower extends Item{
 	private String flowerType;
 	private String color;
 	private static int FlowersAdded=0;
+	private final int MAX_ID_RANGE=400;
 	public Flower()
 	{
+		super();
 		this.flowerType=null;
 		this.color=null;
 		FlowersAdded++;
+		GenerateID();
       
 	}
 	
@@ -21,6 +24,7 @@ public class Flower extends Item{
 		this.flowerType = flowerType;
 		this.color = color;
 		FlowersAdded++;
+		GenerateID();
 
 	}
 	
@@ -29,6 +33,8 @@ public class Flower extends Item{
 		this.flowerType = flowerType;
 		this.color = color;
 		FlowersAdded++;
+		GenerateID();
+
 
 	}
 	
@@ -90,6 +96,18 @@ public class Flower extends Item{
 	{
 		return super.toString() + "\nFlower Type:" + this.flowerType +
 				"\nColor: " + this.color ;
+	}
+
+	@Override
+	public void GenerateID() {
+		// TODO Auto-generated method stub
+		if(FlowersAdded<MAX_ID_RANGE)
+		{
+			this.itemId=FlowersAdded;
+		}
+		
+		//since we have a static variable for keeping track of flowers, and its getting incremented, we can use it for setting unique IDS as it starts from zero 
+		
 	}
 	
 

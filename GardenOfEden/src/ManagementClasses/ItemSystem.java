@@ -16,6 +16,14 @@ public class ItemSystem {
 	
 	//this implementation is based with the GUI interface in mind, not the console one.
 
+	
+
+	
+	public static void setBouquetID()
+	{
+		
+	}
+	
 	public static boolean addFlowerJewelry(int ItemId, String ItemName, int Quantity, double itemPrice, String FlowerJewelryType, boolean RealFake) {
 		
 		

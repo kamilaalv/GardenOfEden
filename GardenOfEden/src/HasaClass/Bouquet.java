@@ -5,10 +5,14 @@ public class Bouquet {
 	
 	private ArrayList<Flower> flowerQuantity= new ArrayList<>();
 	private int maxQuantity;
+	private int BouquetID;
 	private String card;
 	private String wrappingPaper;
 	private double BouquetPrice;
 	private static int BouquetsCreated=0;
+    private final int  LOWER_BOUND_ID=800;
+    private final int UPPER_BOUND_ID=900;
+	private int dummyID=800;
 	
 	
 	
@@ -18,6 +22,7 @@ public class Bouquet {
 		wrappingPaper=null;
 		BouquetPrice=0;
 		BouquetsCreated++; //increments it
+		GenerateID();
 	}
 	
 	
@@ -26,6 +31,7 @@ public class Bouquet {
 		this.flowerQuantity = flowerQuantity;
 		this.card = card;
 		this.wrappingPaper = wrappingPaper;
+		GenerateID();
 		
 	}
 
@@ -47,6 +53,15 @@ public class Bouquet {
 
 	public int getMaxQuantity() {
 		return maxQuantity;
+	}
+	
+	public int getBouquetID() {
+		return BouquetID;
+	}
+
+
+	public void setBouquetID(int bouquetID) {
+		BouquetID = bouquetID;
 	}
 
 	public void setMaxQuantity(int maxQuantity) {
@@ -94,6 +109,18 @@ public class Bouquet {
 		
 	}
 	
+	public void GenerateID() {
+		// TODO Auto-generated method stub
+	   
+		if(dummyID>=LOWER_BOUND_ID && dummyID<UPPER_BOUND_ID)
+		{
+			this.BouquetID=dummyID;
+			dummyID++;
+		}
+		
+		
+	}
+	
 	public String toString()
 	{
 		return "\nQuantity of Flowers:" + flowerQuantity.size() +
@@ -102,5 +129,8 @@ public class Bouquet {
 	             "\nBouquet Price: " + this.BouquetPrice;
 	             
 	}
+
+
+
 	
 }

@@ -19,11 +19,11 @@ public abstract class Item implements ItemInterface{
 
      public Item(double itemPrice)
      {
-    	 super();
+    	 this();
     	 this.itemPrice=itemPrice;
      }
 	public Item(int itemId, String itemName, double itemPrice) {
-		super();
+		this(itemPrice); //for constructor chaining
 		this.itemId = itemId;
 		this.itemName = itemName;
 		this.itemPrice = itemPrice;

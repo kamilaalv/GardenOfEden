@@ -7,12 +7,15 @@ public class FlowerJewelry extends Item {
 	private String flowerJewelryType;
 	private boolean Real;
 	private static int FlowerJewelrysAdded=0;
-
-	
+    private final int  LOWER_BOUND_ID=400;
+    private final int UPPER_BOUND_ID=800;
+	private int dummyID=400;
 	public FlowerJewelry() {
+		super();
 		flowerJewelryType=null;
 		Real=false;
 		FlowerJewelrysAdded++;
+		GenerateID();
 	}
 	
 
@@ -21,6 +24,8 @@ public class FlowerJewelry extends Item {
 		this.flowerJewelryType=flowerJewelryType;
 		this.Real = fakeOrReal;
 		FlowerJewelrysAdded++;
+		GenerateID();
+
 
 	}
 	
@@ -29,6 +34,8 @@ public class FlowerJewelry extends Item {
 		this.flowerJewelryType = flowerjewelryType;
 		this.Real = Real;
 		FlowerJewelrysAdded++;
+		GenerateID();
+
 
 	}
 
@@ -107,6 +114,20 @@ public class FlowerJewelry extends Item {
 	{
 		return super.toString() + "\nFlower Jewelry Type:" + this.flowerJewelryType +
 				"\nReal/Fake: " + this.Real;
+	}
+
+
+	@Override
+	public void GenerateID() {
+		// TODO Auto-generated method stub
+	   
+		if(dummyID>=LOWER_BOUND_ID && dummyID<UPPER_BOUND_ID)
+		{
+			this.itemId=dummyID;
+			dummyID++;
+		}
+		
+		
 	}
 	
 }
