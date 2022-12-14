@@ -9,7 +9,7 @@ public class FlowerJewelry extends Item {
 	private static int FlowerJewelrysAdded=0;
     private final int  LOWER_BOUND_ID=400;
     private final int UPPER_BOUND_ID=800;
-	private int dummyID=400;
+	private static int dummyID=400;
 	public FlowerJewelry() {
 		super();
 		flowerJewelryType=null;
@@ -19,17 +19,17 @@ public class FlowerJewelry extends Item {
 	}
 	
 
-	public FlowerJewelry(double itemPrice, String flowerJewelryType, boolean fakeOrReal) {
-		super(itemPrice);
+	public FlowerJewelry( String flowerJewelryType, boolean Real) {
+		super(ItemOptions.jewelryPrice.get(flowerJewelryType));
 		this.flowerJewelryType=flowerJewelryType;
-		this.Real = fakeOrReal;
+		this.Real = Real;
 		FlowerJewelrysAdded++;
 		GenerateID();
 
 
 	}
 	
-	public FlowerJewelry(String itemName,  double itemPrice, String flowerjewelryType, boolean Real) {
+	public FlowerJewelry(String itemName, String flowerjewelryType, boolean Real) {
 		super(itemName, ItemOptions.jewelryPrice.get(flowerjewelryType));
 		this.flowerJewelryType = flowerjewelryType;
 		this.Real = Real;

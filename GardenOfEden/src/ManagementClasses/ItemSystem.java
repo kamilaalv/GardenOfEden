@@ -18,7 +18,7 @@ public class ItemSystem {
 
 	
 	
-	public static boolean addFlowerJewelry(int ItemId, String ItemName, int Quantity, double itemPrice, String FlowerJewelryType, boolean RealFake) {
+	public static boolean addFlowerJewelry(int ItemId, String ItemName, int Quantity, String FlowerJewelryType, boolean RealFake) {
 		
 		
 		for(int i=0; i<items.size(); i++)
@@ -32,7 +32,7 @@ public class ItemSystem {
 		
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
-			FlowerJewelry f= new FlowerJewelry(ItemName, itemPrice, FlowerJewelryType, RealFake);
+			FlowerJewelry f= new FlowerJewelry(ItemName, FlowerJewelryType, RealFake);
 			items.add(f);
 
 		}
@@ -43,7 +43,7 @@ public class ItemSystem {
 	
 	}
 	//Why do we need two add Methods? Because of the difference in input parameters. Either we will have to override the method with different parameters or simply use another one
-	public static boolean addFlowers(int ItemId, String itemName, int Quantity, double itemPrice, String FlowerType, String color)
+	public static boolean addFlowers(int ItemId, String itemName, int Quantity, String FlowerType, String color)
 	{
 		
 		for(int i=0; i<items.size(); i++)

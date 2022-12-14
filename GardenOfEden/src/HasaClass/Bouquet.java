@@ -12,7 +12,7 @@ public class Bouquet {
 	private static int BouquetsCreated=0;
     private final int  LOWER_BOUND_ID=800;
     private final int UPPER_BOUND_ID=900;
-	private int dummyID=800;
+	private static int dummyID=800;
 	
 	
 	

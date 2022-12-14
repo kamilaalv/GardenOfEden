@@ -9,7 +9,7 @@ public class Flower extends Item{
 	private String color;
 	private static int FlowersAdded=0;
 	private final int MAX_ID_RANGE=400;
-	private int dummyID=1;
+	private static int dummyID=1;
 	public Flower()
 	{
 		super();
