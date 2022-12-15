@@ -85,6 +85,7 @@ public class ItemSystem {
 			}
 			
 			Bouquet b= new Bouquet(fBouquets, card, wrappingPaper);
+			bouquets.add(b);
 			return true;
 
 		}

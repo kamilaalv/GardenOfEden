@@ -20,7 +20,7 @@ public class FlowerJewelry extends Item {
 	
 
 	public FlowerJewelry( String flowerJewelryType, boolean Real) {
-		super(ItemOptions.jewelryPrice.get(flowerJewelryType));
+		super(ItemOptions.JEWELRY_PRICE.get(flowerJewelryType));
 		this.flowerJewelryType=flowerJewelryType;
 		this.Real = Real;
 		FlowerJewelrysAdded++;
@@ -30,7 +30,7 @@ public class FlowerJewelry extends Item {
 	}
 	
 	public FlowerJewelry(String itemName, String flowerjewelryType, boolean Real) {
-		super(itemName, ItemOptions.jewelryPrice.get(flowerjewelryType));
+		super(itemName, ItemOptions.JEWELRY_PRICE.get(flowerjewelryType));
 		this.flowerJewelryType = flowerjewelryType;
 		this.Real = Real;
 		FlowerJewelrysAdded++;

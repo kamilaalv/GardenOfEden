@@ -30,7 +30,7 @@ public class Flower extends Item{
 	}
 	
 	public Flower(String itemName, String flowerType, String color) {
-		super(itemName, ItemOptions.flowerPrices.get(flowerType));
+		super(itemName, ItemOptions.FLOWER_PRICES.get(flowerType));
 		this.flowerType = flowerType;
 		this.color = color;
 		FlowersAdded++;
