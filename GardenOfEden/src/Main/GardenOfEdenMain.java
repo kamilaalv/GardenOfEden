@@ -1,5 +1,10 @@
 package Main;
 
+import java.util.ArrayList;
+
+import HasaClass.Bouquet;
+import InheritanceClasses.Flower;
+
 public class GardenOfEdenMain {
 
 	public static void main(String[] args) {
@@ -22,15 +27,26 @@ public class GardenOfEdenMain {
 
 		System.out.println(j3.getItemPrice());
 		System.out.println(j3.getFlowerJewelryAdded());
+		
+	
 
 	
 **/
 		
-	
+		Flower f= new Flower("Rose", "Red", 20);
+		Flower f1= new Flower("Lily", "Red", 10);
 
-
+		System.out.println(f.getItemPrice());
 		
 	
+        ArrayList<Flower> FLowerTypes= new ArrayList<>();
+        FLowerTypes.add(f);
+        FLowerTypes.add(f1);
+        
+        Bouquet b= new Bouquet(FLowerTypes, "Meow", "Meow");
+        b.calculateBouquetPrice();
+        System.out.println(b.toString());
+
 
 	}
 

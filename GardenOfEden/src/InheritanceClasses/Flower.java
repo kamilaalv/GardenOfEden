@@ -11,6 +11,7 @@ public class Flower extends Item{
 	private static int FlowersAdded=0;
 	private final int MAX_ID_RANGE=400;
 	private static int dummyID=1;
+	private final int MAX_FLOWER_QUANTITY=20;
 	
 
 	public Flower()
@@ -29,13 +30,14 @@ public class Flower extends Item{
 		this.flowerType = flowerType;
 		this.color = color;
 		this.quantity = quantity;
+		this.itemPrice= ItemOptions.FLOWER_PRICES.get(flowerType) * quantity;
 		FlowersAdded++;
 		GenerateID();
 
 	}
 	
 	public Flower(String itemName, String flowerType, String color, int quantity) {
-		super(itemName, ItemOptions.FLOWER_PRICES.get(flowerType));
+		super(itemName, ItemOptions.FLOWER_PRICES.get(flowerType) * quantity);
 		this.flowerType = flowerType;
 		this.color = color;
 		this.quantity = quantity;
@@ -74,6 +76,12 @@ public class Flower extends Item{
 	{
 		return FlowersAdded;
 	}
+	
+	public int getMaxQuantity()
+	{
+		return MAX_FLOWER_QUANTITY;
+	}
+
 
 	@Override
 	public void calculateDiscount(double OriginalPrice)

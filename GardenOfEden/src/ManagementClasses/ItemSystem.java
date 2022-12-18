@@ -9,7 +9,6 @@ public class ItemSystem {
 	
 	private static ArrayList<Item> items= new ArrayList<Item>();
 	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
-	// private static ArrayList<Flower> fBouquets= new ArrayList<>();  //array of flowers needed for bouquets only
 	
 	
 	//this implementation is based with the GUI interface in mind, not the console one.
@@ -44,37 +43,41 @@ public class ItemSystem {
 	public static boolean addFlowers(int ItemId, String itemName, int Quantity, String FlowerType, String color)
 	{
 		
-		/* for(int i=0; i<items.size(); i++)
-		{
-			if(items.get(i) instanceof Flower)
-			if(ItemId==((Flower)items.get(i)).getItemId())
-			{
-				return false;
-			}
-		} 
-		
-		for(int j=0; j<Quantity; j++)  //can order in bulk
-		{
-			Flower f= new Flower(itemName, FlowerType, color);
-			items.add(f);
 
-		} */
 
 		for(int i=0; i<items.size(); i++) {
 			if(items.get(i) instanceof Flower) {
 				if(items.get(i).getItemId() == ItemId) {
 					
-					((Flower)items.get(i)).setFlowerQuantity(Quantity + ((Flower)items.get(i)).getFlowerQuantity()); // why it doesnt work??
+	                if(Quantity + ((Flower)items.get(i)).getFlowerQuantity()> ((Flower) items.get(i)).getMaxQuantity())
+	                {
+	                	return false;
+	                }else
+	                {
+	                	((Flower)items.get(i)).setFlowerQuantity(Quantity + ((Flower)items.get(i)).getFlowerQuantity()); // why it doesnt work??
 
-					return true;
+						return true;
+	                }
+					
 				}
 			}
 		}
 
-		Flower f = new Flower(itemName, FlowerType, color, Quantity);
+
+		 Flower f = new Flower(itemName, FlowerType, color, Quantity);
+		 if(Quantity> f.getMaxQuantity())
+		 {
+			 return false;
+		 }
+		 
+		 
 		items.add(f);
+		
+	
 
 		return true;
+		
+		
 
 		// method always returns true, we need to put a limit to how much flowers can customer buy
 		// bouquets have maxquantity, maybe we need it for flowers too
@@ -84,7 +87,7 @@ public class ItemSystem {
 	public static boolean createBouquet(ArrayList<Flower> flowers, String card, String wrappingPaper) {
 
 		//this place is for creating bouquet (addItems cannot implement Bouquet)->Has-A
-		Bouquet b = new Bouquet();;
+		Bouquet b = new Bouquet();
 		int numOfFlowers = 0;
 
 		for(int i=0; i<flowers.size(); i++) {
@@ -99,26 +102,7 @@ public class ItemSystem {
 		bouquets.add(b);
 		return true;
 		
-		/*
-		if(flowerQuantity>=20)
-		{
-			return false;
-		}else
-		{
-			for(int i=0; i<flowerQuantity; i++)
-			{
-			
-				Flower f= new Flower(flowerType, color);
-				fBouquets.add(f);
-				
-			}
-			
-			Bouquet b= new Bouquet(fBouquets, card, wrappingPaper);
-			bouquets.add(b);
-			return true;
 
-		}
-		*/
 	}
 
 	public static Item removeItem(int id) {
@@ -147,9 +131,9 @@ public class ItemSystem {
 	// because there is no unique identifier like an id for bouquets
 	// maybe we can use index of the arraylist for these functions
 	// since we are gonna list them in the gui, using their indexes
-	public static Bouquet removeBouquet(int index) {  
+	public static Bouquet removeBouquet(int ID) {  
 		for (int i=0; i<bouquets.size(); i++) {
-			if(i == index) {
+			if(bouquets.get(i).getBouquetID() == ID) {
 				Bouquet temp = bouquets.get(i);
 				bouquets.remove(i);
 				return temp;
@@ -159,11 +143,12 @@ public class ItemSystem {
 		return null;
 	}
 
-	public static Bouquet searchBouquet(int index) { //item IDs are indexes
-		for (int i=0; i<bouquets.size(); i++) 
-			if(i == index) 
+	public static Bouquet searchBouquet(int ID) { //item IDs are indexes
+		for (int i=0; i<bouquets.size(); i++) {
+			if(items.get(i).getItemId() == ID) {
 				return bouquets.get(i);
-
+			}
+		}
 		return null;
 	}
 
@@ -171,9 +156,13 @@ public class ItemSystem {
 	{
 		double PriceoftheCart=0f;
 
+		 
           for(Item item: items)
           {
+        	
         	  PriceoftheCart+=item.getItemPrice();
+
+        	  
           }
 		
           for(Bouquet bq: bouquets)

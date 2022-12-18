@@ -101,10 +101,13 @@ public class Bouquet {
 		
 		for(int i=0; i<flowerQuantity.size(); i++)
 		{
-			TotalPrice+= flowerQuantity.get(i).getItemPrice() * flowerQuantity.get(i).getFlowerQuantity();
+			TotalPrice+= flowerQuantity.get(i).getItemPrice();
 		}
 		
-		setBouquetPrice(TotalPrice);
+		//price for 1 wrapping paper:3
+		
+		
+		setBouquetPrice(TotalPrice + 3);
 		return getBouquetPrice();
 		
 	}
@@ -126,9 +129,20 @@ public class Bouquet {
 		
 	}
 	
+	public int CalculateFlowerQuantity()  //Will we need this method?
+	{
+		int quantity=0;
+		for(Flower f: flowerQuantity)
+		{
+			quantity+= f.getFlowerQuantity();
+		}
+		
+		return quantity;
+	}
+	
 	public String toString()
 	{
-		return "\nQuantity of Flowers:" + flowerQuantity.size() +
+		return "\nQuantity of Flowers:" + CalculateFlowerQuantity() +
 				"\nCard: " + this.card +
 				"\nWrapping Paper: " + this.wrappingPaper +
 	             "\nBouquet Price: " + this.BouquetPrice;
