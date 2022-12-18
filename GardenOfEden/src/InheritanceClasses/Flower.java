@@ -89,13 +89,15 @@ public class Flower extends Item{
 		//Criteria: If more than 10 standalone flowers of the same type are ordered, give a discount of 20% on each flower
 		//The base price for now is $2/flower
 		
-		if(EligibleForDiscount())
-		{
-			this.setItemPrice(OriginalPrice* .8 * quantity);
-		}else
-		{
-			this.setItemPrice(OriginalPrice * quantity);
-		}
+			if(EligibleForDiscount())
+			{
+				this.setItemPrice(OriginalPrice* .8 * quantity);
+			}else
+			{
+				this.setItemPrice(OriginalPrice * quantity);
+			}
+		
+	
 		
 		
 	}
@@ -105,7 +107,7 @@ public class Flower extends Item{
    
 		 if(this.quantity>=10)
 		 {
-			 // FlowersAdded=0; //reset the discount!
+			 
 			 return true;
 		 }
 		return false;
