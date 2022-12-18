@@ -96,9 +96,7 @@ public class Flower extends Item{
 			{
 				this.setItemPrice(OriginalPrice * quantity);
 			}
-		
 	
-		
 		
 	}
 
