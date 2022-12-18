@@ -41,7 +41,7 @@ public class ItemSystem {
 	}
 	
 	public static boolean addFlowers(int ItemId, String itemName, int Quantity, String FlowerType, String color)
-	{
+	{ //will we get id from the user
 		
 
 
