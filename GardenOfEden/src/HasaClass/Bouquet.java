@@ -101,7 +101,7 @@ public class Bouquet {
 		
 		for(int i=0; i<flowerQuantity.size(); i++)
 		{
-			TotalPrice+= flowerQuantity.get(i).getItemPrice();
+			TotalPrice+= flowerQuantity.get(i).getItemPrice() * flowerQuantity.get(i).getFlowerQuantity();
 		}
 		
 		setBouquetPrice(TotalPrice);

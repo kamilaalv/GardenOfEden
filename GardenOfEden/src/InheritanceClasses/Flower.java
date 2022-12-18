@@ -7,32 +7,38 @@ public class Flower extends Item{
 	
 	private String flowerType;
 	private String color;
+	private int quantity;
 	private static int FlowersAdded=0;
 	private final int MAX_ID_RANGE=400;
 	private static int dummyID=1;
+	
+
 	public Flower()
 	{
 		super();
 		this.flowerType=null;
 		this.color=null;
+		this.quantity=0;
 		FlowersAdded++;
 		GenerateID();
       
 	}
 	
-	public Flower(String flowerType, String color) {
+	public Flower(String flowerType, String color, int quantity) {
 		super();
 		this.flowerType = flowerType;
 		this.color = color;
+		this.quantity = quantity;
 		FlowersAdded++;
 		GenerateID();
 
 	}
 	
-	public Flower(String itemName, String flowerType, String color) {
+	public Flower(String itemName, String flowerType, String color, int quantity) {
 		super(itemName, ItemOptions.FLOWER_PRICES.get(flowerType));
 		this.flowerType = flowerType;
 		this.color = color;
+		this.quantity = quantity;
 		FlowersAdded++;
 		GenerateID();
 
@@ -56,7 +62,14 @@ public class Flower extends Item{
 		this.color = color;
 	}
 
-	
+	public int getFlowerQuantity() {
+		return quantity;
+	}
+
+	public void setFlowerQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public int getNumberOfFlowersIntheCart()
 	{
 		return FlowersAdded;
@@ -70,10 +83,10 @@ public class Flower extends Item{
 		
 		if(EligibleForDiscount())
 		{
-			this.setItemPrice(OriginalPrice*.8);
+			this.setItemPrice(OriginalPrice* .8 * quantity);
 		}else
 		{
-			this.setItemPrice(OriginalPrice);
+			this.setItemPrice(OriginalPrice * quantity);
 		}
 		
 		
@@ -82,21 +95,18 @@ public class Flower extends Item{
 	@Override
 	public boolean EligibleForDiscount() {
    
-		 if(FlowersAdded>=10)
+		 if(this.quantity>=10)
 		 {
-			 FlowersAdded=0;//reset the discount!
+			 // FlowersAdded=0; //reset the discount!
 			 return true;
 		 }
-			 
-			 
-
 		return false;
 	}
 	
 	public String toString()
 	{
 		return super.toString() + "\nFlower Type:" + this.flowerType +
-				"\nColor: " + this.color ;
+				"\nColor: " + this.color + "\nQuantity: " + quantity;
 	}
 
 	@Override
