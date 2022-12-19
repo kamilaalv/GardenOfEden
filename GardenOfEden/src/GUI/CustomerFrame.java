@@ -57,7 +57,7 @@ public class CustomerFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\icons8-sakura-48.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\icons8-sakura-48.png"));
 		lblNewLabel.setBounds(23, 23, 49, 48);
 		contentPane.add(lblNewLabel);
 		
@@ -67,7 +67,7 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\icons8-hibiscus-48.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\icons8-hibiscus-48.png"));
 		lblNewLabel_2.setBounds(206, 105, 64, 59);
 		contentPane.add(lblNewLabel_2);
 		
@@ -78,7 +78,7 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(flowerbtn);
 		
 		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\icons8-flower-64.png"));
+		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\icons8-flower-64.png"));
 		lblNewLabel_4.setBounds(195, 168, 64, 74);
 		contentPane.add(lblNewLabel_4);
 		
@@ -88,7 +88,7 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(jewelrybtn);
 		
 		lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\icons8-bouquet-48.png"));
+		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\icons8-bouquet-48.png"));
 		lblNewLabel_3.setBounds(205, 253, 46, 48);
 		contentPane.add(lblNewLabel_3);
 		
@@ -98,7 +98,7 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(bouquetbtn);
 		
 		lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\icons8-sakura-48.png"));
+		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\icons8-sakura-48.png"));
 		lblNewLabel_5.setBounds(23, 330, 64, 35);
 		contentPane.add(lblNewLabel_5);
 		
@@ -108,7 +108,7 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\icons8-favorite-cart-30.png"));
+		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\icons8-favorite-cart-30.png"));
 		lblNewLabel_7.setBounds(479, 377, 30, 35);
 		contentPane.add(lblNewLabel_7);
 		
