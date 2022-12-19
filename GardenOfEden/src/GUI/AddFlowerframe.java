@@ -62,6 +62,7 @@ public class AddFlowerframe extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 684, 438);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -74,8 +75,6 @@ public class AddFlowerframe extends JFrame {
 		lblNewLabel_1.setBounds(117, 21, 400, 39);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel_1.setOpaque(true);
-        lblNewLabel_1.setBackground(Color.white);
-	     lblNewLabel_1.setBorder(border);
 		contentPane.add(lblNewLabel_1);
 		
 		
@@ -85,7 +84,6 @@ public class AddFlowerframe extends JFrame {
 		lblNewLabel_2.setFont((new Font("Arial", Font.PLAIN, 16)));
 		lblNewLabel_2.setOpaque(true);
         lblNewLabel_2.setBackground(Color.white);
-        lblNewLabel_2.setBorder(border);
 		contentPane.add(lblNewLabel_2);
 		
 		JComboBox comboBox = new JComboBox();
@@ -133,7 +131,6 @@ public class AddFlowerframe extends JFrame {
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblNewLabel_3.setOpaque(true);
         lblNewLabel_3.setBackground(Color.white);
-        lblNewLabel_3.setBorder(border);
 		contentPane.add(lblNewLabel_3);
 		
 		JComboBox comboBox_1 = new JComboBox();
@@ -150,7 +147,6 @@ public class AddFlowerframe extends JFrame {
 		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblNewLabel_4.setOpaque(true);
         lblNewLabel_4.setBackground(Color.white);
-        lblNewLabel_4.setBorder(border);
 		contentPane.add(lblNewLabel_4);
 		
 		
@@ -161,7 +157,6 @@ public class AddFlowerframe extends JFrame {
 		counter.setFont(new Font("Arial", Font.BOLD, 16));
 		counter.setOpaque(true);
 		counter.setBackground(Color.white);
-	     counter.setBorder(border);
 		contentPane.add(counter);
 		
 		
@@ -188,16 +183,14 @@ public class AddFlowerframe extends JFrame {
 		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblNewLabel_5.setOpaque(true);
         lblNewLabel_5.setBackground(Color.white);
-        lblNewLabel_5.setBorder(border);
 		contentPane.add(lblNewLabel_5);
 		
 		JLabel tprice = new JLabel("New label");
 		tprice.setHorizontalAlignment(SwingConstants.CENTER);
-		tprice.setBounds(201, 289, 84, 29);
+		tprice.setBounds(201, 289, 111, 29);
 		tprice.setFont(new Font("Arial", Font.PLAIN, 16));
 		tprice.setOpaque(true);
        	tprice.setBackground(Color.white);
-       	tprice.setBorder(border);
 		contentPane.add(tprice);
 		
 		JButton addbtn = new JButton("Add to Cart");
@@ -226,14 +219,12 @@ public class AddFlowerframe extends JFrame {
 		flowerpic.setBounds(400, 93, 209, 172);
 		flowerpic.setOpaque(true);
         flowerpic.setBackground(Color.white);
-        flowerpic.setBorder(border);
 		contentPane.add(flowerpic);
 		
-		
-		JLabel display = new JLabel("New label");
-		display.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\bg.jpg"));
-		display.setBounds(-12, -11, 736, 446);
-		contentPane.add(display);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\bg2.jpg"));
+		lblNewLabel.setBounds(0, 0, 668, 399);
+		contentPane.add(lblNewLabel);
 		
 		
 		
