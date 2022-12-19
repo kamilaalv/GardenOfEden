@@ -194,14 +194,14 @@ public class AddFlowerframe extends JFrame {
 		contentPane.add(tprice);
 		
 		JButton addbtn = new JButton("Add to Cart");
-		addbtn.setBounds(363, 292, 131, 23);
+		addbtn.setBounds(363, 292, 134, 23);
 		addbtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		addbtn.setOpaque(true);
 		addbtn.setBackground(Color.white);
 		contentPane.add(addbtn);
 		
 		JButton returnbtn = new JButton("Go back");
-		returnbtn.setBounds(517, 289, 113, 23);
+		returnbtn.setBounds(517, 292, 134, 23);
 		returnbtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		returnbtn.setOpaque(true);
 		returnbtn.setBackground(Color.white);
