@@ -25,18 +25,18 @@ public class AddFlowerframe extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel flowerpic;
-	ImageIcon rose = new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\roses.jpg");
-	ImageIcon tulip=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\tulip.jpg");
-	ImageIcon Daffodil=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Daffodil.jpg");
-	ImageIcon Hyacinth=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Hyacinth.jpg");
-    ImageIcon Lilac=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Lilac.jpg");
-    ImageIcon Peony=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Peony.jpg");
-    ImageIcon Daisy=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Daisy.jpg");
-    ImageIcon Lily=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Lily.jpg");
-    ImageIcon Baby_Breath=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Baby_Breath.jpg");
-    ImageIcon Freesia=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Freesia.jpg");
-    ImageIcon Chrysanthemum=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Chrysanthemum.jpg");
-    ImageIcon Gladiolus=new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\Gladiolus.jpg");
+	ImageIcon rose = new ImageIcon("src\\GUI\\imanicons\\roses.jpg");
+	ImageIcon tulip=new ImageIcon("src\\GUI\\imanicons\\tulip.jpg");
+	ImageIcon Daffodil=new ImageIcon("src\\GUI\\imanicons\\Daffodil.jpg");
+	ImageIcon Hyacinth=new ImageIcon("src\\GUI\\imanicons\\Hyacinth.jpg");
+    ImageIcon Lilac=new ImageIcon("src\\GUI\\imanicons\\Lilac.jpg");
+    ImageIcon Peony=new ImageIcon("src\\GUI\\imanicons\\Peony.jpg");
+    ImageIcon Daisy=new ImageIcon("src\\GUI\\imanicons\\Daisy.jpg");
+    ImageIcon Lily=new ImageIcon("src\\GUI\\imanicons\\Lily.jpg");
+    ImageIcon Baby_Breath=new ImageIcon("src\\GUI\\imanicons\\Baby_Breath.jpg");
+    ImageIcon Freesia=new ImageIcon("src\\GUI\\imanicons\\Freesia.jpg");
+    ImageIcon Chrysanthemum=new ImageIcon("src\\GUI\\imanicons\\Chrysanthemum.jpg");
+    ImageIcon Gladiolus=new ImageIcon("src\\GUI\\imanicons\\Gladiolus.jpg");
     Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
     /**
 	 * Launch the application.
@@ -222,7 +222,7 @@ public class AddFlowerframe extends JFrame {
 		contentPane.add(flowerpic);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hp\\OneDrive\\Desktop\\221 project\\GardenOfEden\\GardenOfEden\\src\\GUI\\imanicons\\bg2.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(AddFlowerframe.class.getResource("/GUI/imanicons/bg2.jpg")));
 		lblNewLabel.setBounds(0, 0, 668, 399);
 		contentPane.add(lblNewLabel);
 		
