@@ -60,7 +60,7 @@ public class Login extends JFrame {
 		JLabel lblNewLabel = new JLabel("ɢᴀʀᴅᴇɴ ᴏғ ᴇᴅᴇɴ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 80));
 		lblNewLabel.setIcon(null);
-		lblNewLabel.setBounds(135, 28, 573, 112);
+		lblNewLabel.setBounds(141, 26, 573, 112);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ Gᴀʀᴅᴇɴ ᴏғ Eᴅᴇɴ");
