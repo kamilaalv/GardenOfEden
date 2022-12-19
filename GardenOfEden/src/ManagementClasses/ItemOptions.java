@@ -11,23 +11,35 @@ import java.util.Map;
 //made everything final
 //will add images later with your help
 public class ItemOptions {
-    public static final ArrayList<String> FLOWER_IMAGES = new ArrayList<String>();
     public static final ArrayList<String> FLOWER_JEWELRY_IMAGES = new ArrayList<String>();
-    public static final ArrayList<String> FLOWER_TYPES = new ArrayList<String>(Arrays.asList("Rose", "Tulip", "Daffodil", "Violet", "Hyacinth", "Lilac", "Peony", "Daisy", "Lily", "Baby's Breath", "Freesia", "Chrysanthemum", "Gladiolus"));
+    public static final ArrayList<String> FLOWER_TYPES = new ArrayList<String>(Arrays.asList("Rose", "Tulip", "Daffodil", "Hyacinth", "Lilac", "Peony", "Daisy", "Lily", "Baby's Breath", "Freesia", "Chrysanthemum", "Gladiolus"));
     public static final ArrayList<String> FLOWER_COLORS = new ArrayList<String>(Arrays.asList("Red", "Pink", "White", "Yellow", "Purple", "Light Blue", "Blue", "Orange"));
     public static final ArrayList<String> FLOWER_JEWELRY_TYPES = new ArrayList<String>(Arrays.asList("Earings", "Bracelet", "Necklace", "Headwear"));
     public static final ArrayList<String> BOUQUET_WRAP_COLOR = new ArrayList<String>(Arrays.asList("White", "Beige", "Transparent", "Baby Pink", "Lilac", "Light Blue"));
-    public static final ArrayList<String> ADDON_TYPES= new ArrayList<String>(Arrays.asList("Crystals", "Feathers", "Chocolate", "Strawberries"));
-    public static final ArrayList<String> ADDON_IMAGES= new ArrayList<String>();
-    
 
+    public static final Map<String, String> FLOWER_IMAGES = new HashMap<String, String>() {{
+        put("Rose", "roses.jpg");
+        put("Tulip", "tulip.jpg");
+        put("Daffodil", "Daffodil.jpg");
+        put("Hyacinth", "Hyacinth.jpg");
+        put("Lilac", "Lilac.jpg");
+        put("Peony", "Peony.jpg");
+        put("Daisy", "Daisy.jpg");
+        put("Lily", "Lily.jpg");
+        put("Baby's Breath", "Baby_Breath.jpg");
+        put("Freesia", "Freesia.jpg");
+        put("Chrysanthemum", "Chrysanthemum.jpg");
+        put("Gladiolus", "Gladiolus.jpg");
+    }};
+    
+    String k[] = ItemOptions.FLOWER_TYPES.toArray(new String[ItemOptions.FLOWER_TYPES.size()]);
+    
     //prices are in $
     //i came up with them randomly
     public static final Map<String, Double> FLOWER_PRICES = new HashMap<String, Double>() {{
         put("Rose", 1.5);
         put("Tulip", 3.0);
         put("Daffodil", 1.8);
-        put("Violet", 1.5);
         put("Hyacinth", 4.0);
         put("Lilac", 3.5);
         put("Peony", 3.5);
@@ -51,7 +63,6 @@ public class ItemOptions {
         put("Rose", 7);
         put("Tulip", 12);
         put("Daffodil", 10);
-        put("Violet", 4);
         put("Hyacinth", 9);
         put("Lilac", 4);
         put("Peony", 5);

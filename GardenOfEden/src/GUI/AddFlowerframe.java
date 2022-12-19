@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import ManagementClasses.ItemOptions;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -25,18 +28,6 @@ public class AddFlowerframe extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel flowerpic;
-	ImageIcon rose = new ImageIcon("src\\GUI\\imanicons\\roses.jpg");
-	ImageIcon tulip=new ImageIcon("src\\GUI\\imanicons\\tulip.jpg");
-	ImageIcon Daffodil=new ImageIcon("src\\GUI\\imanicons\\Daffodil.jpg");
-	ImageIcon Hyacinth=new ImageIcon("src\\GUI\\imanicons\\Hyacinth.jpg");
-    ImageIcon Lilac=new ImageIcon("src\\GUI\\imanicons\\Lilac.jpg");
-    ImageIcon Peony=new ImageIcon("src\\GUI\\imanicons\\Peony.jpg");
-    ImageIcon Daisy=new ImageIcon("src\\GUI\\imanicons\\Daisy.jpg");
-    ImageIcon Lily=new ImageIcon("src\\GUI\\imanicons\\Lily.jpg");
-    ImageIcon Baby_Breath=new ImageIcon("src\\GUI\\imanicons\\Baby_Breath.jpg");
-    ImageIcon Freesia=new ImageIcon("src\\GUI\\imanicons\\Freesia.jpg");
-    ImageIcon Chrysanthemum=new ImageIcon("src\\GUI\\imanicons\\Chrysanthemum.jpg");
-    ImageIcon Gladiolus=new ImageIcon("src\\GUI\\imanicons\\Gladiolus.jpg");
     Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
     /**
 	 * Launch the application.
@@ -89,39 +80,14 @@ public class AddFlowerframe extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBox.getSelectedItem().equals("Rose"))
-					flowerpic.setIcon(rose);
-				else if(comboBox.getSelectedItem().equals("Tulip"))
-					flowerpic.setIcon(tulip);
-				else if(comboBox.getSelectedItem().equals("Daffodil"))
-					flowerpic.setIcon(Daffodil);
-				else if(comboBox.getSelectedItem().equals("Hyacinth"))
-					flowerpic.setIcon(Hyacinth);
-				else if(comboBox.getSelectedItem().equals("Lilac"))
-					flowerpic.setIcon(Lilac);
-				else if(comboBox.getSelectedItem().equals("Peony"))
-					flowerpic.setIcon(Peony);
-				else if(comboBox.getSelectedItem().equals("Daisy"))
-					flowerpic.setIcon(Daisy);
-				else if(comboBox.getSelectedItem().equals("Lily"))
-					flowerpic.setIcon(Lily);
-				else if(comboBox.getSelectedItem().equals("Baby's Breath"))
-					flowerpic.setIcon(Baby_Breath);
-				else if(comboBox.getSelectedItem().equals("Freesia"))
-					flowerpic.setIcon(Freesia);
-				else if(comboBox.getSelectedItem().equals("Chrysanthemum"))
-					flowerpic.setIcon(Chrysanthemum);
-				else
-					flowerpic.setIcon(Gladiolus);
-				
-				
-					
-				
+				String key = comboBox.getSelectedItem().toString();
+				ImageIcon img = new ImageIcon("src\\GUI\\imanicons\\"+ItemOptions.FLOWER_IMAGES.get(key));
+				flowerpic.setIcon(img);	
 			}
 		});
 		comboBox.setBackground(new Color(255, 255, 255));
 		comboBox.setFont(comboBox.getFont().deriveFont(12f));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rose", "Tulip", "Daffodil", "Hyacinth", "Lilac", "Peony", "Daisy", "Lily", "Baby's Breath", "Freesia", "Chrysanthemum", "Gladiolus"}));
+		comboBox.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_TYPES.toArray(new String[ItemOptions.FLOWER_TYPES.size()])));
 		comboBox.setBounds(152, 95, 160, 22);
 		contentPane.add(comboBox);
 		
@@ -135,7 +101,7 @@ public class AddFlowerframe extends JFrame {
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBackground(new Color(255, 255, 255));
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"White", "Beige", "Transparent", "Baby Pink", "Lilac", "Light Blue"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_COLORS.toArray(new String[ItemOptions.FLOWER_COLORS.size()])));
 		comboBox_1.setBounds(152, 151, 160, 22);
 		contentPane.add(comboBox_1);
 		
@@ -216,6 +182,7 @@ public class AddFlowerframe extends JFrame {
 		contentPane.add(lblNewLabel_6);
 		
 		flowerpic = new JLabel("");
+		flowerpic.setIcon(new ImageIcon(AddFlowerframe.class.getResource("/GUI/imanicons/roses.jpg")));
 		flowerpic.setBounds(400, 93, 209, 172);
 		flowerpic.setOpaque(true);
         flowerpic.setBackground(Color.white);
