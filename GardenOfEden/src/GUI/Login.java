@@ -60,26 +60,26 @@ public class Login extends JFrame {
 		JLabel lblNewLabel = new JLabel("ɢᴀʀᴅᴇɴ ᴏғ ᴇᴅᴇɴ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 80));
 		lblNewLabel.setIcon(null);
-		lblNewLabel.setBounds(136, 57, 573, 112);
+		lblNewLabel.setBounds(135, 28, 573, 112);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ Gᴀʀᴅᴇɴ ᴏғ Eᴅᴇɴ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblNewLabel_1.setBounds(229, 277, 356, 73);
+		lblNewLabel_1.setBounds(235, 306, 356, 73);
 		panel.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Cᴏɴᴛɪɴᴜᴇ ᴀs Cᴜsᴛᴏᴍᴇʀ");
 		btnNewButton.setBackground(new Color(232, 57, 132));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnNewButton.setBounds(229, 361, 356, 52);
+		btnNewButton.setBounds(235, 390, 356, 52);
 		panel.add(btnNewButton);
 		
 		JButton btnLsM = new JButton("Lᴏɢɪɴ ᴀs Mᴀɴᴀɢᴇʀ");
 		btnLsM.setForeground(Color.WHITE);
 		btnLsM.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnLsM.setBackground(new Color(15, 215, 135));
-		btnLsM.setBounds(229, 424, 356, 52);
+		btnLsM.setBounds(235, 453, 356, 52);
 		panel.add(btnLsM);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
