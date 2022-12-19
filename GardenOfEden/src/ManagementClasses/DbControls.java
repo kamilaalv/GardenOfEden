@@ -1,27 +1,65 @@
 package ManagementClasses;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
-public class DbTest {
-	//not finished just testing db connection
-	//db is local for now
-	//will try to make it accessible for everyone
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+public class DbControls {
+	
+	private static Connection myConn; //myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+	
+	public static boolean displayInventory(){
 		try {
-			//1. get connection
-			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/flowershop", "221", "1111");
-			//2. create a statement
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
 			Statement myStmt = myConn.createStatement();
-			
-			ResultSet myRs = myStmt.executeQuery("select * from flowershop.inventory");
-			//4. process the result set
+			ResultSet myRs = myStmt.executeQuery("select * from eden.inventory");
 			while(myRs.next()) {
-				System.out.println(myRs.getString("Name") + " "+ myRs.getString("Quantity"));
+				System.out.println(myRs.getString("Name") + " "+ myRs.getString("Quantity") + " " + myRs.getString("DateBought"));
 			}
-		}catch(Exception exc) {
-			exc.printStackTrace();
+		} catch (SQLException e) {
+			return false;
 		}
+		return true;
 		
 	}
+	
+	public static boolean setDateBoughtToNow() {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			final SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			 
+			Statement stmt = myConn.createStatement();
+			String query = "update eden.inventory set DateBought = '" + f.format(timestamp)+"'";
+			stmt.executeUpdate(query); 
+		}catch(Exception exc) {
+			return false;
+		}
+		return true;
+
+	}
+	
+	public static boolean deleteExpired() {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+			
+		}catch(Exception exc) {
+			return false;
+		}
+		return true;
+
+	}
+	
+	//for testing
+	public static void main(String[] args) {
+		/*displayInventory();
+		System.out.println(" ");
+		setDateBoughtToNow();
+		displayInventory();
+		*/
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		final SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+	}
+	
+	//everything works
 }
 
