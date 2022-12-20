@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import InheritanceClasses.Flower;
 import ManagementClasses.ItemOptions;
+import ManagementClasses.ItemSystem;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -28,8 +30,10 @@ public class AddFlowerframe extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel flowerpic;
+	private JLabel display;
     Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
     CustomerFrame cf;
+    
     /**
 	 * Launch the application.
 	 */
@@ -121,6 +125,18 @@ public class AddFlowerframe extends JFrame {
 		
 		
 		JButton incrementbtn = new JButton("+");
+		incrementbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(Integer.parseInt(counter.getText())<20) {
+					int count=Integer.parseInt(counter.getText())+1;
+					counter.setText(count+"");
+				}else
+					display.setText("Can not add more flowers, max limit has reached!");
+					
+				
+			}
+		});
 		incrementbtn.setFont(new Font("Arial Black", Font.BOLD, 16));
 		incrementbtn.setBounds(73, 247, 46, 22);
 		incrementbtn.setOpaque(true);
@@ -129,6 +145,14 @@ public class AddFlowerframe extends JFrame {
 		
 		
 		JButton decrementbtn = new JButton("-");
+		decrementbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Integer.parseInt(counter.getText())>0) {
+					int count=Integer.parseInt(counter.getText())-1;
+					counter.setText(count+"");
+				}
+			}
+		});
 		decrementbtn.setFont(new Font("Arial Black", Font.BOLD, 16));
 		decrementbtn.setBounds(211, 247, 46, 22);
 		decrementbtn.setOpaque(true);
@@ -171,13 +195,13 @@ public class AddFlowerframe extends JFrame {
 		returnbtn.setBackground(Color.white);
 		contentPane.add(returnbtn);
 		
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setBounds(189, 359, 257, 14);
-		lblNewLabel_6.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblNewLabel_6.setOpaque(true);
-        lblNewLabel_6.setBackground(Color.white);
-		contentPane.add(lblNewLabel_6);
+		display = new JLabel("New label");
+		display.setHorizontalAlignment(SwingConstants.CENTER);
+		display.setBounds(35, 359, 598, 29);
+		display.setFont(new Font("Arial", Font.PLAIN, 16));
+		display.setOpaque(true);
+        display.setBackground(Color.white);
+		contentPane.add(display);
 		
 		flowerpic = new JLabel("");
 		flowerpic.setIcon(new ImageIcon(AddFlowerframe.class.getResource("/GUI/imanicons/roses.jpg")));
