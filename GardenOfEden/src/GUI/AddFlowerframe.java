@@ -128,13 +128,8 @@ public class AddFlowerframe extends JFrame {
 		incrementbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(Integer.parseInt(counter.getText())<20) {
-					int count=Integer.parseInt(counter.getText())+1;
-					counter.setText(count+"");
-				}else
-					display.setText("Can not add more flowers, max limit has reached!");
-					
-				
+				int count=Integer.parseInt(counter.getText())+1;
+				counter.setText(count+"");
 			}
 		});
 		incrementbtn.setFont(new Font("Arial Black", Font.BOLD, 16));
