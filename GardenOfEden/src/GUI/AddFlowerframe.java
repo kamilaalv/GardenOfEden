@@ -29,26 +29,18 @@ public class AddFlowerframe extends JFrame {
 	private JPanel contentPane;
 	private JLabel flowerpic;
     Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
+    CustomerFrame cf;
     /**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddFlowerframe frame = new AddFlowerframe();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
+	 * @param customerFrame 
 	 */
-	public AddFlowerframe() {
+	public AddFlowerframe(CustomerFrame frame) {
+		cf =frame;
 		setResizable(false);
 		setTitle("AddFlowerFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -168,6 +160,11 @@ public class AddFlowerframe extends JFrame {
 		contentPane.add(addbtn);
 		
 		JButton returnbtn = new JButton("Go back");
+		returnbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cf.setVisible(true);
+			}
+		});
 		returnbtn.setBounds(517, 292, 134, 23);
 		returnbtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		returnbtn.setOpaque(true);

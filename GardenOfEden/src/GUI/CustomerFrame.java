@@ -10,6 +10,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CustomerFrame extends JFrame {
 
@@ -26,6 +28,7 @@ public class CustomerFrame extends JFrame {
 	private JLabel lblNewLabel_7;
 	private JButton cartbtn;
 	private Login L=null;
+	AddFlowerframe af= new AddFlowerframe(this);
 
 	/**
 	 * Launch the application.
@@ -76,6 +79,13 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton flowerbtn = new JButton("Flowers");
+		flowerbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				af.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
 		flowerbtn.setBackground(new Color(232, 57, 132));
 		flowerbtn.setForeground(new Color(255, 255, 255));
 		flowerbtn.setBounds(269, 116, 152, 35);
