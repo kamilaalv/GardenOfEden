@@ -46,7 +46,7 @@ public class Login extends JFrame {
 		setResizable(false);
 		setTitle("Garden Of Eden Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 868, 617);
+		setBounds(100, 100, 869, 619);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

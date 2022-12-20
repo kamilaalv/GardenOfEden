@@ -48,6 +48,7 @@ public class CustomerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public CustomerFrame(Login f) {
+		setResizable(false);
 		L=f;
 		setTitle("Customer Frame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
