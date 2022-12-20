@@ -14,10 +14,13 @@ import java.awt.Panel;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
+	CustomerFrame CF= new CustomerFrame(this);
 
 	/**
 	 * Launch the application.
@@ -69,6 +72,13 @@ public class Login extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Cᴏɴᴛɪɴᴜᴇ ᴀs Cᴜsᴛᴏᴍᴇʀ");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				CF.setVisible(true);
+				
+			}
+		});
 		btnNewButton.setBackground(new Color(232, 57, 132));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));

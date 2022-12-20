@@ -25,11 +25,12 @@ public class CustomerFrame extends JFrame {
 	private JLabel lblNewLabel_6;
 	private JLabel lblNewLabel_7;
 	private JButton cartbtn;
+	private Login L=null;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/**public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -41,11 +42,13 @@ public class CustomerFrame extends JFrame {
 			}
 		});
 	}
+	**/
 
 	/**
 	 * Create the frame.
 	 */
-	public CustomerFrame() {
+	public CustomerFrame(Login f) {
+		L=f;
 		setTitle("Customer Frame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 734, 461);
@@ -72,7 +75,8 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton flowerbtn = new JButton("Flowers");
-		flowerbtn.setForeground(new Color(0, 0, 0));
+		flowerbtn.setBackground(new Color(232, 57, 132));
+		flowerbtn.setForeground(new Color(255, 255, 255));
 		flowerbtn.setBounds(269, 116, 152, 35);
 		flowerbtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		contentPane.add(flowerbtn);
@@ -83,6 +87,8 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		jewelrybtn = new JButton("Flower Jewelry");
+		jewelrybtn.setForeground(new Color(255, 255, 255));
+		jewelrybtn.setBackground(new Color(15, 215, 135));
 		jewelrybtn.setBounds(269, 186, 152, 35);
 		jewelrybtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		contentPane.add(jewelrybtn);
@@ -93,6 +99,8 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		bouquetbtn = new JButton("Flower Bouquet");
+		bouquetbtn.setForeground(new Color(255, 255, 255));
+		bouquetbtn.setBackground(new Color(238, 169, 6));
 		bouquetbtn.setBounds(269, 253, 152, 36);
 		bouquetbtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		contentPane.add(bouquetbtn);
