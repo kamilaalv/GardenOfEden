@@ -179,7 +179,10 @@ public class AddFlowerframe extends JFrame {
 				int num=Integer.parseInt(counter.getText());
 
 
+
 				double price= ItemSystem.addFlowers(num, type, color);
+
+
 
 				
 				if(price>0)
