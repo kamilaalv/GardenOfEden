@@ -8,30 +8,34 @@ import java.util.Map;
 
 public class DbControls {
 	
-	private static Connection myConn; //myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+	private static Connection myConn; //myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 	private static final SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public static boolean displayInventory(){
-		try {
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
-			Statement myStmt = myConn.createStatement();
-			ResultSet myRs = myStmt.executeQuery("select * from eden.inventory");
-			while(myRs.next()) {
-				System.out.println(myRs.getString("Name") + " "+ myRs.getString("Quantity") + " " + myRs.getString("DateBought"));
+		
+			try {
+				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+				Statement myStmt = myConn.createStatement();
+				ResultSet myRs = myStmt.executeQuery("select * from eden.inventory");
+				while(myRs.next()) {
+					System.out.println(myRs.getString("Name") + " "+ myRs.getString("Quantity") + " " + myRs.getString("DateBought"));
+				}
+				myConn.close();
+				return true;
+			} catch (SQLException e) {
+				return false;
+				//e.printStackTrace();
 			}
-			myConn.close();
-			return true;
+		
 			
-		} catch (SQLException e) {
-			return false;
-		}
+		
 	}
 	
 	//flowers were bought the day the inventory table was created by default
 	//this function is to avoid flower expiration before the execution of the program
 	public static boolean setDateBoughtToNow() { 
 		try {
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			Statement stmt = myConn.createStatement();
 			String query = "update eden.inventory set DateBought = '" + f.format(timestamp)+"'";
@@ -48,7 +52,7 @@ public class DbControls {
 	public static Map<Integer, Timestamp> getDatesBoughtByType(String type){
 		try {
 			Map<Integer, Timestamp> dates = new HashMap<Integer,Timestamp>();
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			Statement myStmt = myConn.createStatement();
 			if(type == "Baby's Breath")
 				type = "Baby\\'s Breath";
@@ -66,10 +70,10 @@ public class DbControls {
 	}
 	
 	//returns total quantity by type for flowers
-	public static int findTotalQuantity(String type) {
+	public static int getQuantityFlower(String type) {
 		try {
 			int q = 0;
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			Statement myStmt = myConn.createStatement();
 			ResultSet myRs = myStmt.executeQuery("select Quantity from eden.inventory where Name = '" + type + "'");
 			while(myRs.next()) {
@@ -77,6 +81,19 @@ public class DbControls {
 			}
 			myConn.close();
 			return q;
+		} catch (SQLException e) {
+			return 0;
+		}
+		
+	}
+	
+	public static int getQuantityJew(String type) {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery("select Quantity from eden.jewelry_inventory where Name = '" + type + "'");
+			myConn.close();
+			return Integer.parseInt(myRs.getString("Quantity"));
 		} catch (SQLException e) {
 			return 0;
 		}
@@ -95,7 +112,7 @@ public class DbControls {
 	
 	public static boolean deleteExpired() {
 		try {
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			Statement stmt = myConn.createStatement();
 			String flowerName;
 			for(String type : ItemOptions.FLOWER_TYPES) {
@@ -132,8 +149,8 @@ public class DbControls {
 	
 	
 	//for testing
-	public static void main(String[] args) {
-		deleteExpired();
+	public static void main(String[] args){
+		displayInventory();
 	}
 	
 }

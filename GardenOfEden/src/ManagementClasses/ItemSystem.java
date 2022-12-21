@@ -29,6 +29,12 @@ public class ItemSystem {
 		
 		//method will return false if user wants to order more than the quantity in inventory. (db part, Ill add it later)
 		
+		//uncomment this after installing mysql
+		/*if(Quantity > DbControls.getQuantityJew(FlowerJewelryType)) {
+			//display message in gui quantity exceded
+			return false;
+		}*/
+		
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
 			FlowerJewelry f= new FlowerJewelry(/*ItemName,*/ FlowerJewelryType, RealFake);
