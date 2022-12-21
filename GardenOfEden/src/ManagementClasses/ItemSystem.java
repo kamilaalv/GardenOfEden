@@ -68,8 +68,9 @@ public class ItemSystem {
 			 return -1;
 		 }
 		 
+	
 		double price= f.calculateDiscount(f.getItemPrice());
-		 
+		 System.out.println(f.getItemPrice());
 		items.add(f);
 		return price;
 	}

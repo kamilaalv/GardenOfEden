@@ -89,10 +89,10 @@ public class Flower extends Item{
 		
 			if(EligibleForDiscount())
 			{
-				this.setItemPrice(OriginalPrice* .8 * quantity);
+				this.setItemPrice(OriginalPrice* .8);
 			}else
 			{
-				this.setItemPrice(OriginalPrice * quantity);
+				this.setItemPrice(OriginalPrice);
 			}
 	
 			return this.itemPrice;
