@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class DbControls {
 	
-	private static Connection myConn; //myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+	private static Connection myConn; //myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
 	private static final SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public static boolean displayInventory(){
@@ -28,7 +28,7 @@ public class DbControls {
 	
 	public static boolean setDateBoughtToNow() {
 		try {
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			Statement stmt = myConn.createStatement();
 			String query = "update eden.inventory set DateBought = '" + f.format(timestamp)+"'";

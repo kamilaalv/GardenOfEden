@@ -63,7 +63,7 @@ public class FlowerJewelry extends Item {
 	}
 	
 	@Override
-	public void calculateDiscount(double OriginalPrice) {
+	public double calculateDiscount(double OriginalPrice) {
 		
 		//Necklace=$10, Headwear=$25, Earings=$10, Bracelet=$15
 		
@@ -92,6 +92,7 @@ public class FlowerJewelry extends Item {
 			}
 		}
 	
+		return this.itemPrice;
 		
 	}
 

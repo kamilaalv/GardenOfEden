@@ -50,7 +50,6 @@ public class GardenOfEdenMain {
         b.calculateBouquetPrice();
         System.out.println(b.toString());
 */
-
 	}
 
 }

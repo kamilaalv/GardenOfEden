@@ -82,7 +82,7 @@ public class Flower extends Item{
 
 
 	@Override
-	public void calculateDiscount(double OriginalPrice)
+	public double calculateDiscount(double OriginalPrice)
 	{
 		//Criteria: If more than 10 standalone flowers of the same type are ordered, give a discount of 20% on each flower
 		//The base price for now is $2/flower
@@ -95,6 +95,7 @@ public class Flower extends Item{
 				this.setItemPrice(OriginalPrice * quantity);
 			}
 	
+			return this.itemPrice;
 		
 	}
 
