@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import HasaClass.Bouquet;
 import InheritanceClasses.Flower;
+import ManagementClasses.DbControls;
 
 public class GardenOfEdenMain {
 
@@ -33,7 +34,7 @@ public class GardenOfEdenMain {
 	
 **/
 		
-		Flower f= new Flower("Rose", "Red", 20);
+	/**	Flower f= new Flower("Rose", "Red", 20);
 		Flower f1= new Flower("Lily", "Red", 10);
 
 		System.out.println(f.getItemPrice());
@@ -46,6 +47,10 @@ public class GardenOfEdenMain {
         Bouquet b= new Bouquet(FLowerTypes, "Meow", "Meow");
         b.calculateBouquetPrice();
         System.out.println(b.toString());
+        
+        **/
+		
+		System.out.println(DbControls.displayInventory());
 
 
 	}
