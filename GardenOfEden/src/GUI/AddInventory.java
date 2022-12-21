@@ -148,7 +148,7 @@ public class AddInventory extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("Price:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_3.setBounds(411, 554, 45, 13);
+		lblNewLabel_3.setBounds(449, 567, 45, 13);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel ErrorMsg = new JLabel("");
@@ -158,5 +158,15 @@ public class AddInventory extends JFrame {
 		JButton btnNewButton_4 = new JButton("Home");
 		btnNewButton_4.setBounds(733, 15, 82, 21);
 		contentPane.add(btnNewButton_4);
+		
+		JButton btnNewButton_3_1 = new JButton("BUY");
+		btnNewButton_3_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton_3_1.setBounds(568, 263, 114, 44);
+		contentPane.add(btnNewButton_3_1);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Price:");
+		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_3_1.setBounds(449, 294, 45, 13);
+		contentPane.add(lblNewLabel_3_1);
 	}
 }

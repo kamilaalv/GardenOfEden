@@ -24,14 +24,14 @@ INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('112', 'Gl
 
 CREATE TABLE `eden`.`jewelry_inventory` (
   `JName` VARCHAR(20) NOT NULL,
-  `Quanttity` VARCHAR(45) NOT NULL,
+  `Quantity` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`JName`),
   UNIQUE INDEX `Name_UNIQUE` (`JName` ASC));
 
-INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quanttity`) VALUES ('Earings', '30');
-INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quanttity`) VALUES ('Bracelet', '30');
-INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quanttity`) VALUES ('Necklace', '35');
-INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quanttity`) VALUES ('Headwear', '35');
+INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quantity`) VALUES ('Earings', '30');
+INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quantity`) VALUES ('Bracelet', '30');
+INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quantity`) VALUES ('Necklace', '35');
+INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quantity`) VALUES ('Headwear', '35');
 
 CREATE TABLE `eden`.`users` (
   `Uname` VARCHAR(20) NOT NULL,

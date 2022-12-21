@@ -128,11 +128,11 @@ public class CartFrame extends JFrame {
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
 		
-		/*JLabel lblNewLabel_4 = new JLabel("");
+		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(CartFrame.class.getResource("/GUI/kamilaIcons/bg0.jpg")));
 		lblNewLabel_4.setBounds(-459, 17, 1157, 585);
 		contentPane.add(lblNewLabel_4);
-		*/
+		
 		
 	}
 }
