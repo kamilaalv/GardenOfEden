@@ -55,7 +55,7 @@ public abstract class Item implements ItemInterface{
 		this.itemPrice = itemPrice;
 	}
 	
-	public abstract void calculateDiscount(double OriginalPrice);
+	public abstract double calculateDiscount(double OriginalPrice);
 	
 	
 	public String toString()

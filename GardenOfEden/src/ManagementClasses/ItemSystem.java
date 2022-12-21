@@ -45,7 +45,7 @@ public class ItemSystem {
 	
 	}
 	
-	public static boolean addFlowers(/*int ItemId, String itemName,*/int Quantity, String FlowerType, String color)
+	public static double addFlowers(/*int ItemId, String itemName,*/int Quantity, String FlowerType, String color)
 	{ 
 		for(int i=0; i<items.size(); i++) {
 			if(items.get(i) instanceof Flower) {
@@ -53,11 +53,11 @@ public class ItemSystem {
 				if(((Flower)items.get(i)).getFlowerType().equalsIgnoreCase(FlowerType))	{ //if flower type already is in cart
 	                if(Quantity + ((Flower)items.get(i)).getFlowerQuantity()> ((Flower) items.get(i)).getMaxQuantity())
 	                {
-	                	return false;
+	                    return -1;
 	                }else 
 	                {
 	                	((Flower)items.get(i)).setFlowerQuantity(Quantity + ((Flower)items.get(i)).getFlowerQuantity()); // why it doesnt work??
-						return true;
+						return items.get(i).getItemPrice();
 	                }
 				}	
 			}
@@ -65,12 +65,13 @@ public class ItemSystem {
 		 Flower f = new Flower(/*itemName,*/ FlowerType, color, Quantity);
 		 if(Quantity> f.getMaxQuantity())
 		 {
-			 return false;
+			 return -1;
 		 }
 		 
+		double price= f.calculateDiscount(f.getItemPrice());
 		 
 		items.add(f);
-		return true;
+		return price;
 	}
 	
 	//int flowerQuantity, String flowerType, String color (before i changed it to ArrayList<Flower> flowerQuantity)

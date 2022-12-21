@@ -55,9 +55,9 @@ public class GardenOfEdenMain {
         
         **/
 		
-		DbControls.displayInventory();
+	
 
->>>>>>> eaac59fd7c93cfd54e28dab0aa08ba003ebe8ffa
+
 
 	}
 
