@@ -136,7 +136,7 @@ public class DbControls {
 	}
 
 	
-	//
+	
 	//for testing
 	public static void main(String[] args){
 		displayInventory();
