@@ -2,6 +2,8 @@ package ManagementClasses;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DbControls {
 	
@@ -9,7 +11,6 @@ public class DbControls {
 	private static final SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public static boolean displayInventory(){
-		
 			try {
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 				Statement myStmt = myConn.createStatement();
@@ -23,16 +24,6 @@ public class DbControls {
 				return false;
 				//e.printStackTrace();
 			}
-<<<<<<< HEAD
-		
-			
-=======
-		} catch (SQLException e) {
-			return false;
-		}
-		return true;
->>>>>>> eaac59fd7c93cfd54e28dab0aa08ba003ebe8ffa
-		
 	}
 	
 	public static boolean setDateBoughtToNow() {
@@ -49,7 +40,6 @@ public class DbControls {
 
 	}
 	
-<<<<<<< HEAD
 	public static Map<Integer, Timestamp> getDatesBoughtByType(String type){
 		try {
 			Map<Integer, Timestamp> dates = new HashMap<Integer,Timestamp>();
@@ -137,33 +127,7 @@ public class DbControls {
 						  }
 					  }  
 				}
-=======
-	public static boolean deleteExpired() {
-		try {
-			//not finished
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "");
-			String name = "";
-			int days;
-			for(String flower : ItemOptions.FLOWER_TYPES) {
-				name = flower;
-				days = ItemOptions.EXPIRATION_DATES.get(name);
->>>>>>> eaac59fd7c93cfd54e28dab0aa08ba003ebe8ffa
-				
-				//add days to timestamp
-					Timestamp date = new Timestamp(System.currentTimeMillis()); //should be taken from db for each record //maybe write that in a separate method
-						//String getDateBought = "select DateBought from eden.inventory where name = '" + name + "'"; //maybe would delete where name part
-						//prepare the result set
-						
-					Calendar cal = Calendar.getInstance();
-					cal.setTime(date);
-					cal.add(Calendar.DATE, days);
-					Timestamp newT = new Timestamp(cal.getTime().getTime());
-			    
-			    Statement stmt = myConn.createStatement();
-				String queryDelete = "delete from eden.inventory where DateBought > '" + f.format(newT) + "'" + " and Name = '"+ name + "'";
-				//execute query
 			}
-			
 		}catch(Exception exc) {
 			return false;
 		}
@@ -172,32 +136,10 @@ public class DbControls {
 	}
 	
 	//for testing
-<<<<<<< HEAD
 	public static void main(String[] args){
 		displayInventory();
-=======
-	public static void main(String[] args) {
-		/*displayInventory();
-		System.out.println(" ");
-		setDateBoughtToNow();
-		displayInventory();
-		*/
-		
-		
-		//add days to timestamp
-		Timestamp date = new Timestamp(System.currentTimeMillis());
-		Calendar cal = Calendar.getInstance();
-	    cal.setTime(date);
-	    cal.add(Calendar.DATE, 10);
-	    Timestamp newT = new Timestamp(cal.getTime().getTime());
-	    
-	    System.out.println(f.format(newT));
-	    
-	  
-		
->>>>>>> eaac59fd7c93cfd54e28dab0aa08ba003ebe8ffa
+
 	}
-	
 	//everything works
 }
 

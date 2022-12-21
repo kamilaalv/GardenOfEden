@@ -49,15 +49,7 @@ public class GardenOfEdenMain {
         Bouquet b= new Bouquet(FLowerTypes, "Meow", "Meow");
         b.calculateBouquetPrice();
         System.out.println(b.toString());
-<<<<<<< HEAD
-      
-=======
-        
-        **/
-		
-		DbControls.displayInventory();
-
->>>>>>> eaac59fd7c93cfd54e28dab0aa08ba003ebe8ffa
+*/
 
 	}
 
