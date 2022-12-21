@@ -33,5 +33,13 @@ INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quanttity`) VALUES ('Bracelet'
 INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quanttity`) VALUES ('Necklace', '35');
 INSERT INTO `eden`.`jewelry_inventory` (`JName`, `Quanttity`) VALUES ('Headwear', '35');
 
+CREATE TABLE `eden`.`users` (
+  `Uname` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `money` DOUBLE NOT NULL DEFAULT 0,
+  PRIMARY KEY (`Uname`),
+  UNIQUE INDEX `Uname_UNIQUE` (`Uname` ASC));
+
+INSERT INTO `eden`.`users` (`Uname`, `password`, `money`) VALUES ('admin', 'password', '1000');
 
 COMMIT;
