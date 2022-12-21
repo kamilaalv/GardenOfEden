@@ -19,6 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CreateBouquet extends JFrame {
 
@@ -100,29 +102,29 @@ public class CreateBouquet extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("ᴀᴅᴅ ғʟᴏᴡᴇʀ ᴛᴏ ᴛʜᴇ ʙᴏᴜǫᴇᴜᴛ");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(473, 69, 235, 45);
+		lblNewLabel_3.setBounds(473, 22, 235, 45);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("ғʟᴏᴡᴇʀ ᴛʏᴘᴇ:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_4.setBounds(423, 151, 127, 35);
+		lblNewLabel_4.setBounds(370, 104, 127, 35);
 		panel.add(lblNewLabel_4);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(new Color(204, 255, 153));
-		comboBox.setBounds(559, 151, 179, 35);
+		comboBox.setBounds(559, 104, 179, 35);
 		comboBox.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_TYPES.toArray(new String[ItemOptions.FLOWER_TYPES.size()])));
 		panel.add(comboBox);
 		
 		JLabel lblNewLabel_5 = new JLabel("ғʟᴏᴡᴇʀ ᴄᴏʟᴏʀ:");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_5.setBounds(423, 210, 127, 35);
+		lblNewLabel_5.setBounds(370, 163, 127, 35);
 		panel.add(lblNewLabel_5);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBackground(new Color(204, 204, 255));
 		comboBox_1.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_COLORS.toArray(new String[ItemOptions.FLOWER_COLORS.size()])));
-		comboBox_1.setBounds(559, 210, 179, 35);
+		comboBox_1.setBounds(559, 163, 179, 35);
 		panel.add(comboBox_1);
 		
 		JLabel lblNewLabel_6 = new JLabel("ғʟᴏᴡᴇʀ ǫᴜᴀɴᴛɪᴛʏ:");
@@ -193,5 +195,17 @@ public class CreateBouquet extends JFrame {
 		lblNewLabel_9.setIcon(new ImageIcon(CreateBouquet.class.getResource("/GUI/Bilalimages/Bouquet2.png")));
 		lblNewLabel_9.setBounds(394, 595, 400, 182);
 		panel.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("ʙᴏᴜǫᴜᴇᴛ ᴡʀᴀᴘ ᴄᴏʟᴏʀ:");
+		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_10.setBounds(370, 223, 173, 28);
+		panel.add(lblNewLabel_10);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBackground(new Color(255, 255, 204));
+		comboBox_2.setModel(new DefaultComboBoxModel(ItemOptions.BOUQUET_WRAP_COLOR.toArray(new String[ItemOptions.BOUQUET_WRAP_COLOR.size()])));
+
+		comboBox_2.setBounds(559, 216, 179, 35);
+		panel.add(comboBox_2);
 	}
 }
