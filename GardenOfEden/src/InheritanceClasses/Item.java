@@ -5,7 +5,6 @@ public abstract class Item implements ItemInterface{
 
 	protected int itemId;
 	//protected String itemName;
-	protected String itemImage;//do we need item Image?
 	protected double itemPrice;
 	
 	
@@ -46,17 +45,6 @@ public abstract class Item implements ItemInterface{
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}*/
-
-
-	public String getItemImage() {
-		return itemImage;
-	}
-
-
-	public void setItemImage(String itemImage) {
-		this.itemImage = itemImage;
-	}
-
 
 	public double getItemPrice() {
 		return itemPrice;
