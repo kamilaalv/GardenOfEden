@@ -9,6 +9,7 @@ public class ItemSystem {
 	
 	private static ArrayList<Item> items= new ArrayList<Item>();
 	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
+	private static ArrayList<Flower> flowers= new ArrayList(); //please dont remove it. Otherwise Bouquet method is not working at all
 	
 	
 	//this implementation is based with the GUI interface in mind, not the console one.
@@ -76,23 +77,40 @@ public class ItemSystem {
 	}
 	
 	//int flowerQuantity, String flowerType, String color (before i changed it to ArrayList<Flower> flowerQuantity)
-	public static boolean createBouquet(ArrayList<Flower> flowers, String card, String wrappingPaper) {
+	public static double createBouquet(int Quantity, String FlowerType, String color, String card, String wrappingPaper) {
 
 		//this place is for creating bouquet (addItems cannot implement Bouquet)->Has-A
+	
+		Flower f= new Flower(FlowerType, color, Quantity);
 		Bouquet b = new Bouquet();
-		int numOfFlowers = 0;
+		if(Quantity> f.getMaxQuantity())
+		{
+			return -1;
+		}else
+		{
+			flowers.add(f);
+			
+			int numOfFlowers = 0;
 
-		for(int i=0; i<flowers.size(); i++) {
-			numOfFlowers += flowers.get(i).getFlowerQuantity();
+			for(int i=0; i<flowers.size(); i++) {
+				numOfFlowers += flowers.get(i).getFlowerQuantity();
+			}
+			
+			if(numOfFlowers>= b.getMaxQuantity())
+			{
+				return -1;
+			}
+
+		
+			b = new Bouquet(flowers, card, wrappingPaper);
+			bouquets.add(b);
 		}
-
-		if(numOfFlowers >= b.getMaxQuantity()) {
-			return false;
-		}
-
-		b = new Bouquet(flowers, card, wrappingPaper);
-		bouquets.add(b);
-		return true;
+		
+		flowers.removeAll(flowers);
+	
+		double price=b.calculateBouquetPrice();
+		
+		return price;
 		
 
 	}

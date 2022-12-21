@@ -161,6 +161,12 @@ public class CreateBouquet extends JFrame {
 		panel.add(Price);
 		
 		JButton AddB = new JButton("ᴀᴅᴅ ᴛᴏ ʙᴏᴜǫᴜᴇᴛ");
+		AddB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		AddB.setForeground(Color.WHITE);
 		AddB.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		AddB.setBackground(new Color(255, 102, 51));
