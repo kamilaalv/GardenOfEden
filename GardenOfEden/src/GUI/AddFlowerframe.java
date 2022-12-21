@@ -177,11 +177,15 @@ public class AddFlowerframe extends JFrame {
 				String type=(String) typecb.getSelectedItem();
 				String color=(String) colorcb.getSelectedItem();
 				int num=Integer.parseInt(counter.getText());
-				boolean rest= ItemSystem.addFlowers(num, type, color);
+
+
+				double price= ItemSystem.addFlowers(num, type, color);
+
 				
-				if(rest)
+				if(price>0)
 				{
 					display.setText("Your item has been successfully added to the cart!");
+					tprice.setText(price+"");
 					
 				}
 				else {
