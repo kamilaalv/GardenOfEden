@@ -15,56 +15,48 @@ public class ItemSystem {
 
 	
 	
-	public static boolean addFlowerJewelry(int ItemId, String ItemName, int Quantity, String FlowerJewelryType, boolean RealFake) {
+	public static boolean addFlowerJewelry(/*int ItemId, String ItemName,*/ int Quantity, String FlowerJewelryType, boolean RealFake) {
 		
 		
-		for(int i=0; i<items.size(); i++)
+		/*for(int i=0; i<items.size(); i++)
 		{
 			if(items.get(i) instanceof FlowerJewelry)
 			if(ItemId==((FlowerJewelry)items.get(i)).getItemId())
 			{
 				return false;
 			}
-		}
+		}*/  //no need for this part
+		
+		//method will return false if user wants to order more than the quantity in inventory. (db part, Ill add it later)
 		
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
-			FlowerJewelry f= new FlowerJewelry(ItemName, FlowerJewelryType, RealFake);
+			FlowerJewelry f= new FlowerJewelry(/*ItemName,*/ FlowerJewelryType, RealFake);
 			items.add(f);
 
 		}
-		
-		
-		
 		 return true;
 	
 	}
 	
-	public static boolean addFlowers(int ItemId, String itemName, int Quantity, String FlowerType, String color)
-	{ //will we get id from the user
-		
-
-
+	public static boolean addFlowers(/*int ItemId, String itemName,*/int Quantity, String FlowerType, String color)
+	{ 
 		for(int i=0; i<items.size(); i++) {
 			if(items.get(i) instanceof Flower) {
-				if(items.get(i).getItemId() == ItemId) {
-					
+				//if(items.get(i).getItemId() == ItemId) {
+				if(((Flower)items.get(i)).getFlowerType().equalsIgnoreCase(FlowerType))	{ //if flower type already is in cart
 	                if(Quantity + ((Flower)items.get(i)).getFlowerQuantity()> ((Flower) items.get(i)).getMaxQuantity())
 	                {
 	                	return false;
-	                }else
+	                }else 
 	                {
 	                	((Flower)items.get(i)).setFlowerQuantity(Quantity + ((Flower)items.get(i)).getFlowerQuantity()); // why it doesnt work??
-
 						return true;
 	                }
-					
-				}
+				}	
 			}
 		}
-
-
-		 Flower f = new Flower(itemName, FlowerType, color, Quantity);
+		 Flower f = new Flower(/*itemName,*/ FlowerType, color, Quantity);
 		 if(Quantity> f.getMaxQuantity())
 		 {
 			 return false;
@@ -72,15 +64,7 @@ public class ItemSystem {
 		 
 		 
 		items.add(f);
-		
-	
-
 		return true;
-		
-		
-
-		// method always returns true, we need to put a limit to how much flowers can customer buy
-		// bouquets have maxquantity, maybe we need it for flowers too
 	}
 	
 	//int flowerQuantity, String flowerType, String color (before i changed it to ArrayList<Flower> flowerQuantity)
