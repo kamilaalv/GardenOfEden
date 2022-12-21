@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ManagementClasses.ItemOptions;
+import ManagementClasses.ItemSystem;
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -21,11 +22,13 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class CreateBouquet extends JFrame {
 
 	private JPanel contentPane;
-
+    private static int count=0;
+    private JTextField textField;
 	/**
 	 * Launch the application.
 	 */
@@ -107,62 +110,96 @@ public class CreateBouquet extends JFrame {
 		
 		JLabel lblNewLabel_4 = new JLabel("ғʟᴏᴡᴇʀ ᴛʏᴘᴇ:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_4.setBounds(370, 104, 127, 35);
+		lblNewLabel_4.setBounds(376, 78, 127, 35);
 		panel.add(lblNewLabel_4);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(new Color(204, 255, 153));
-		comboBox.setBounds(559, 104, 179, 35);
+		comboBox.setBounds(565, 78, 179, 35);
 		comboBox.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_TYPES.toArray(new String[ItemOptions.FLOWER_TYPES.size()])));
 		panel.add(comboBox);
 		
 		JLabel lblNewLabel_5 = new JLabel("ғʟᴏᴡᴇʀ ᴄᴏʟᴏʀ:");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_5.setBounds(370, 163, 127, 35);
+		lblNewLabel_5.setBounds(376, 137, 127, 35);
 		panel.add(lblNewLabel_5);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBackground(new Color(204, 204, 255));
 		comboBox_1.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_COLORS.toArray(new String[ItemOptions.FLOWER_COLORS.size()])));
-		comboBox_1.setBounds(559, 163, 179, 35);
+		comboBox_1.setBounds(565, 137, 179, 35);
 		panel.add(comboBox_1);
 		
 		JLabel lblNewLabel_6 = new JLabel("ғʟᴏᴡᴇʀ ǫᴜᴀɴᴛɪᴛʏ:");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_6.setBounds(508, 282, 160, 35);
+		lblNewLabel_6.setBounds(511, 300, 160, 35);
 		panel.add(lblNewLabel_6);
 		
-		JLabel Counter = new JLabel("   0\r\n");
+		JLabel Counter = new JLabel("0\r\n");
 		Counter.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Counter.setBounds(548, 328, 44, 35);
+		Counter.setBounds(562, 346, 39, 35);
 		panel.add(Counter);
-		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBackground(new Color(255, 255, 204));
+		comboBox_2.setModel(new DefaultComboBoxModel(ItemOptions.BOUQUET_WRAP_COLOR.toArray(new String[ItemOptions.BOUQUET_WRAP_COLOR.size()])));
+
+		comboBox_2.setBounds(565, 190, 179, 35);
+		panel.add(comboBox_2);
 		JButton Dec = new JButton("-");
+		Dec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(count>0)
+				{
+					count --;
+					Counter.setText(count + "");
+				}
+				
+
+			}
+		});
 		Dec.setForeground(Color.WHITE);
 		Dec.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		Dec.setBackground(new Color(153, 204, 255));
-		Dec.setBounds(473, 328, 62, 35);
+		Dec.setBounds(462, 346, 62, 35);
 		panel.add(Dec);
 		
 		JButton Incre = new JButton(" +");
+		Incre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				count++;
+				Counter.setText(count + "");
+			}
+		});
 		Incre.setForeground(Color.WHITE);
 		Incre.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		Incre.setBackground(new Color(153, 204, 255));
-		Incre.setBounds(619, 328, 62, 35);
+		Incre.setBounds(622, 346, 62, 35);
 		panel.add(Incre);
 		
 		JLabel lblNewLabel_7 = new JLabel("ᴘʀɪᴄᴇ:");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_7.setBounds(423, 392, 77, 35);
+		lblNewLabel_7.setBounds(431, 406, 77, 35);
 		panel.add(lblNewLabel_7);
 		
 		JLabel Price = new JLabel("");
-		Price.setBounds(526, 392, 113, 35);
+		Price.setBounds(540, 406, 113, 35);
 		panel.add(Price);
 		
 		JButton AddB = new JButton("ᴀᴅᴅ ᴛᴏ ʙᴏᴜǫᴜᴇᴛ");
 		AddB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String FlowerType=comboBox.getSelectedItem().toString();
+				String Color=comboBox_1.getSelectedItem().toString();
+				String wrappingPaper=comboBox_2.getSelectedItem().toString();
+				String Card= textField.getText();
+				int quantity=count;
+				
+				double price=ItemSystem.createBouquet(quantity, FlowerType, Color, Card, wrappingPaper);
+				
+				
 				
 				
 			}
@@ -204,14 +241,20 @@ public class CreateBouquet extends JFrame {
 		
 		JLabel lblNewLabel_10 = new JLabel("ʙᴏᴜǫᴜᴇᴛ ᴡʀᴀᴘ ᴄᴏʟᴏʀ:");
 		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_10.setBounds(370, 223, 173, 28);
+		lblNewLabel_10.setBounds(376, 197, 173, 28);
 		panel.add(lblNewLabel_10);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBackground(new Color(255, 255, 204));
-		comboBox_2.setModel(new DefaultComboBoxModel(ItemOptions.BOUQUET_WRAP_COLOR.toArray(new String[ItemOptions.BOUQUET_WRAP_COLOR.size()])));
-
-		comboBox_2.setBounds(559, 216, 179, 35);
-		panel.add(comboBox_2);
+		JLabel lblNewLabel_11 = new JLabel("ᴄᴀʀᴅ ɴᴀᴍᴇ:");
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_11.setBounds(379, 250, 127, 28);
+		panel.add(lblNewLabel_11);
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(255, 255, 255));
+		textField.setBounds(564, 250, 180, 27);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+	
 	}
 }
