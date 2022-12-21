@@ -74,19 +74,19 @@ public class AddFlowerframe extends JFrame {
         lblNewLabel_2.setBackground(Color.white);
 		contentPane.add(lblNewLabel_2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.addActionListener(new ActionListener() {
+		JComboBox typecb = new JComboBox();
+		typecb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = comboBox.getSelectedItem().toString();
+				String key = typecb.getSelectedItem().toString();
 				ImageIcon img = new ImageIcon("src\\GUI\\imanicons\\"+ItemOptions.FLOWER_IMAGES.get(key));
 				flowerpic.setIcon(img);	
 			}
 		});
-		comboBox.setBackground(new Color(255, 255, 255));
-		comboBox.setFont(comboBox.getFont().deriveFont(12f));
-		comboBox.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_TYPES.toArray(new String[ItemOptions.FLOWER_TYPES.size()])));
-		comboBox.setBounds(152, 95, 160, 22);
-		contentPane.add(comboBox);
+		typecb.setBackground(new Color(255, 255, 255));
+		typecb.setFont(typecb.getFont().deriveFont(12f));
+		typecb.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_TYPES.toArray(new String[ItemOptions.FLOWER_TYPES.size()])));
+		typecb.setBounds(152, 95, 160, 22);
+		contentPane.add(typecb);
 		
 		JLabel lblNewLabel_3 = new JLabel("Flower Colour:");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -96,11 +96,11 @@ public class AddFlowerframe extends JFrame {
         lblNewLabel_3.setBackground(Color.white);
 		contentPane.add(lblNewLabel_3);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBackground(new Color(255, 255, 255));
-		comboBox_1.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_COLORS.toArray(new String[ItemOptions.FLOWER_COLORS.size()])));
-		comboBox_1.setBounds(152, 151, 160, 22);
-		contentPane.add(comboBox_1);
+		JComboBox colorcb = new JComboBox();
+		colorcb.setBackground(new Color(255, 255, 255));
+		colorcb.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_COLORS.toArray(new String[ItemOptions.FLOWER_COLORS.size()])));
+		colorcb.setBounds(152, 151, 160, 22);
+		contentPane.add(colorcb);
 		
 		
 		
@@ -172,6 +172,26 @@ public class AddFlowerframe extends JFrame {
 		contentPane.add(tprice);
 		
 		JButton addbtn = new JButton("Add to Cart");
+		addbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String type=(String) typecb.getSelectedItem();
+				String color=(String) colorcb.getSelectedItem();
+				int num=Integer.parseInt(counter.getText());
+				boolean rest= ItemSystem.addFlowers(num, type, color);
+				
+				if(rest)
+				{
+					display.setText("Your item has been successfully added to the cart!");
+					
+				}
+				else {
+					display.setText("The maximum qaunitity is 20, please select the qauntity again!");
+					counter.setText("0");
+				}
+					
+			
+			}
+		});
 		addbtn.setBounds(363, 292, 134, 23);
 		addbtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		addbtn.setOpaque(true);
