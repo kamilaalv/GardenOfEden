@@ -1,5 +1,6 @@
 package Main;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import HasaClass.Bouquet;
@@ -8,7 +9,7 @@ import ManagementClasses.DbControls;
 
 public class GardenOfEdenMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		
 	   // ItemSystem.addItems();
 		/**
@@ -50,7 +51,7 @@ public class GardenOfEdenMain {
         
         **/
 		
-		System.out.println(DbControls.displayInventory());
+		DbControls.displayInventory();
 
 
 	}
