@@ -29,6 +29,7 @@ public class CreateBouquet extends JFrame {
 	private JPanel contentPane;
     private static int count=0;
     private JTextField textField;
+    private double totalPrice=0f;
 	/**
 	 * Launch the application.
 	 */
@@ -88,12 +89,18 @@ public class CreateBouquet extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_2.setBounds(38, 595, 230, 35);
 		panel.add(lblNewLabel_2);
+		JLabel TotPrice = new JLabel("");
+		TotPrice.setFont(new Font("Tahoma", Font.BOLD, 18));
+		TotPrice.setBounds(540, 560, 138, 28);
+		panel.add(TotPrice);
 		
 		JButton btnNewButton = new JButton("ᴀᴅᴅ ʙᴏᴜǫᴜᴇᴛ ᴛᴏ ᴛʜᴇ ᴄᴀʀᴛ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				TotPrice.setText("$ " + totalPrice + "");
 				textArea.setText(ItemSystem.DisplayBouquet());
+				
 			}
 		});
 		btnNewButton.setForeground(Color.WHITE);
@@ -103,6 +110,15 @@ public class CreateBouquet extends JFrame {
 		panel.add(btnNewButton);
 		
 		JButton btnDiscard = new JButton("Discard");
+		btnDiscard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				totalPrice=0;
+				TotPrice.setText("$ " + totalPrice + "");
+				ItemSystem.DiscardBouquets();
+				textArea.setText(ItemSystem.DisplayBouquet());
+			}
+		});
 		btnDiscard.setForeground(Color.WHITE);
 		btnDiscard.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnDiscard.setBackground(new Color(15, 215, 135));
@@ -140,6 +156,11 @@ public class CreateBouquet extends JFrame {
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_6.setBounds(511, 300, 160, 35);
 		panel.add(lblNewLabel_6);
+		
+		
+		JLabel LimitReached = new JLabel("");
+		LimitReached.setBounds(369, 527, 435, 28);
+		panel.add(LimitReached);
 		
 		JLabel Counter = new JLabel("0\r\n");
 		Counter.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -210,7 +231,17 @@ public class CreateBouquet extends JFrame {
 					
 					double price=ItemSystem.createBouquet(quantity, FlowerType, Color, Card, wrappingPaper);
 					
-					Price.setText("$ " + price+"");
+					if(price==-1)
+					{
+						LimitReached.setText("The MAX quantity is 20 flowers per bouquet. The limit has been reached!");
+					}else
+					{
+						LimitReached.setText("");
+						totalPrice+=price;
+						Price.setText("$ " + price+"");
+						
+					}
+			
 
 				}
 				
@@ -235,18 +266,14 @@ public class CreateBouquet extends JFrame {
 		CouldntAddtoCart.setBounds(28, 742, 240, 35);
 		panel.add(CouldntAddtoCart);
 		
-		JLabel LimitReached = new JLabel("");
-		LimitReached.setBounds(423, 527, 355, 28);
-		panel.add(LimitReached);
+	
 		
 		JLabel lblNewLabel_8 = new JLabel("ᴛᴏᴛᴀʟ ᴘʀɪᴄᴇ:");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_8.setBounds(423, 560, 112, 28);
 		panel.add(lblNewLabel_8);
 		
-		JLabel TotPrice = new JLabel("");
-		TotPrice.setBounds(570, 560, 138, 28);
-		panel.add(TotPrice);
+		
 		
 		JLabel lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setIcon(new ImageIcon(CreateBouquet.class.getResource("/GUI/Bilalimages/Bouquet2.png")));

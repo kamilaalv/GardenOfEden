@@ -200,6 +200,11 @@ public class ItemSystem {
 		return PriceoftheCart;
 	}
 	
+	public static void DiscardBouquets()
+	{
+		bouquets.removeAll(bouquets); 
+	}
+	
 	public static double calculateDiscountOnDate()
 	{
 		//Valentines day
