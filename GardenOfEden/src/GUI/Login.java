@@ -21,6 +21,7 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	CustomerFrame CF= new CustomerFrame(this);
+	ManagerLogin log = new ManagerLogin(this);
 
 	/**
 	 * Launch the application.
@@ -86,6 +87,13 @@ public class Login extends JFrame {
 		panel.add(btnNewButton);
 		
 		JButton btnLsM = new JButton("Lᴏɢɪɴ ᴀs Mᴀɴᴀɢᴇʀ");
+		btnLsM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				log.setVisible(true);
+				
+			}
+		});
 		btnLsM.setForeground(Color.WHITE);
 		btnLsM.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnLsM.setBackground(new Color(15, 215, 135));
