@@ -4,7 +4,7 @@ import InheritanceClasses.*;
 public class Bouquet {
 	
 	private ArrayList<Flower> flowerQuantity= new ArrayList<>();
-	private int maxQuantity;
+	private final int  MAX_QUANTITY=20;
 	private int BouquetID;
 	private String card;
 	private String wrappingPaper;
@@ -17,7 +17,6 @@ public class Bouquet {
 	
 	
 	public Bouquet() {
-		maxQuantity=0;
 		card=null;
 		wrappingPaper=null;
 		BouquetPrice=0;
@@ -28,7 +27,7 @@ public class Bouquet {
 	
 	public Bouquet(ArrayList<Flower> flowerQuantity, String card, String wrappingPaper) {
 		super();
-		this.flowerQuantity = flowerQuantity;
+		this.flowerQuantity.addAll(flowerQuantity);
 		this.card = card;
 		this.wrappingPaper = wrappingPaper;
 		GenerateID();
@@ -48,11 +47,13 @@ public class Bouquet {
 	}
 
 	public void setFlowerQuantity(ArrayList<Flower> flowerQuantity) {
+		
+		
 		this.flowerQuantity = flowerQuantity;
 	}
 
 	public int getMaxQuantity() {
-		return maxQuantity;
+		return MAX_QUANTITY;
 	}
 	
 	public int getBouquetID() {
@@ -64,9 +65,7 @@ public class Bouquet {
 		BouquetID = bouquetID;
 	}
 
-	public void setMaxQuantity(int maxQuantity) {
-		this.maxQuantity = maxQuantity;
-	}
+
 
 	public String getCard() {
 		return card;
@@ -107,7 +106,9 @@ public class Bouquet {
 		//price for 1 wrapping paper:3
 		
 		
-		setBouquetPrice(TotalPrice + 3);
+	     setBouquetPrice(TotalPrice + 3);
+
+		
 		return getBouquetPrice();
 		
 	}
@@ -135,6 +136,7 @@ public class Bouquet {
 		for(Flower f: flowerQuantity)
 		{
 			quantity+= f.getFlowerQuantity();
+			System.out.println(quantity);
 		}
 		
 		return quantity;
@@ -142,7 +144,9 @@ public class Bouquet {
 	
 	public String toString()
 	{
-		return "\nQuantity of Flowers:" + CalculateFlowerQuantity() +
+		int quantity= CalculateFlowerQuantity();
+		System.out.println(quantity);
+		return "\nQuantity of Flowers:" + quantity +
 				"\nCard: " + this.card +
 				"\nWrapping Paper: " + this.wrappingPaper +
 	             "\nBouquet Price: " + this.BouquetPrice;

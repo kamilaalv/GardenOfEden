@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import HasaClass.*;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Scanner;
 import InheritanceClasses.*;
 public class ItemSystem {
@@ -46,6 +47,19 @@ public class ItemSystem {
 	
 	}
 	
+	public static String DisplayBouquet()
+	{
+		String output="";
+		Iterator<Bouquet> it = bouquets.iterator();
+		while(it.hasNext())
+		{
+			Bouquet b= it.next();
+			output+=b.toString() + "\n";
+		}
+		
+		return output;
+	}
+	
 	public static double addFlowers(/*int ItemId, String itemName,*/int Quantity, String FlowerType, String color)
 	{ 
 		for(int i=0; i<items.size(); i++) {
@@ -81,11 +95,13 @@ public class ItemSystem {
 
 		//this place is for creating bouquet (addItems cannot implement Bouquet)->Has-A
 	
+		double price=-1;
 		Flower f= new Flower(FlowerType, color, Quantity);
 		Bouquet b = new Bouquet();
 		if(Quantity> f.getMaxQuantity())
 		{
-			return -1;
+			System.out.println("meow");
+			return price;
 		}else
 		{
 			flowers.add(f);
@@ -98,17 +114,18 @@ public class ItemSystem {
 			
 			if(numOfFlowers>= b.getMaxQuantity())
 			{
-				return -1;
+				
+				return price;
 			}
 
 		
 			b = new Bouquet(flowers, card, wrappingPaper);
+			price=b.calculateBouquetPrice();
 			bouquets.add(b);
 		}
 		
 		flowers.removeAll(flowers);
 	
-		double price=b.calculateBouquetPrice();
 		
 		return price;
 		

@@ -90,6 +90,12 @@ public class CreateBouquet extends JFrame {
 		panel.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("ᴀᴅᴅ ʙᴏᴜǫᴜᴇᴛ ᴛᴏ ᴛʜᴇ ᴄᴀʀᴛ");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				textArea.setText(ItemSystem.DisplayBouquet());
+			}
+		});
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBackground(new Color(238, 169, 6));
@@ -184,6 +190,7 @@ public class CreateBouquet extends JFrame {
 		panel.add(lblNewLabel_7);
 		
 		JLabel Price = new JLabel("");
+		Price.setFont(new Font("Tahoma", Font.BOLD, 15));
 		Price.setBounds(540, 406, 113, 35);
 		panel.add(Price);
 		
@@ -191,14 +198,21 @@ public class CreateBouquet extends JFrame {
 		AddB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String FlowerType=comboBox.getSelectedItem().toString();
-				String Color=comboBox_1.getSelectedItem().toString();
-				String wrappingPaper=comboBox_2.getSelectedItem().toString();
-				String Card= textField.getText();
+				
 				int quantity=count;
-				
-				double price=ItemSystem.createBouquet(quantity, FlowerType, Color, Card, wrappingPaper);
-				
+				if(quantity!=0)
+				{
+					String FlowerType=comboBox.getSelectedItem().toString();
+					String Color=comboBox_1.getSelectedItem().toString();
+					String wrappingPaper=comboBox_2.getSelectedItem().toString();
+					String Card= textField.getText();
+					
+					
+					double price=ItemSystem.createBouquet(quantity, FlowerType, Color, Card, wrappingPaper);
+					
+					Price.setText("$ " + price+"");
+
+				}
 				
 				
 				
