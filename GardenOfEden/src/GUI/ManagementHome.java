@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ManagementClasses.DbControls;
+import ManagementClasses.ShopManagement;
+
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -13,14 +17,18 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ManagementHome extends JFrame {
 
 	private JPanel contentPane;
 	private ManagerLogin ml = null;
+	private JTable tFlowers;
+	private JTable tJew;
 
-	/*
-	public static void main(String[] args) {
+	
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,32 +45,43 @@ public class ManagementHome extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagementHome(ManagerLogin log) {
-		ml = log;
+		//ml = log;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 822, 562);
+		setBounds(100, 100, 822, 493);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Money:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(668, 11, 90, 27);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblMoney = new JLabel("Money:");
+		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMoney.setBounds(668, 11, 130, 27);
+		contentPane.add(lblMoney);
+		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Date:");
-		lblNewLabel_1_1.setBackground(new Color(255, 128, 128));
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(516, 10, 90, 27);
-		contentPane.add(lblNewLabel_1_1);
 		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton.setBounds(534, 130, 152, 44);
-		contentPane.add(btnNewButton);
+		JLabel lblDate = new JLabel("Date:");
+		lblDate.setBackground(new Color(255, 128, 128));
+		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDate.setBounds(516, 10, 105, 27);
+		contentPane.add(lblDate);
+		lblDate.setText("Date: " + ShopManagement.dateF);
+		
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnAdd.setBounds(534, 130, 152, 44);
+		contentPane.add(btnAdd);
 		
 		JButton btnDelete = new JButton("DELETE");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDelete.setBounds(534, 210, 152, 44);
 		contentPane.add(btnDelete);
@@ -73,22 +92,38 @@ public class ManagementHome extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnViewStatistics = new JButton("VIEW STATISTICS");
+		btnViewStatistics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnViewStatistics.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnViewStatistics.setBounds(502, 364, 227, 44);
 		contentPane.add(btnViewStatistics);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Jewelry Inventory");
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_3.setBounds(10, 321, 152, 27);
+		lblNewLabel_1_3.setBounds(10, 259, 152, 27);
 		contentPane.add(lblNewLabel_1_3);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(28, 358, 351, 155);
-		contentPane.add(scrollPane_1);
+		JScrollPane scrollPaneJew = new JScrollPane();
+		scrollPaneJew.setBounds(28, 296, 351, 89);
+		contentPane.add(scrollPaneJew);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 38, 407, 273);
-		contentPane.add(scrollPane);
+		String[][]dataJ = DbControls.displayJewTable();
+		String columnJ[] = {"Flower Jewelry Type", "Quantity"};
+		tJew = new JTable(dataJ, columnJ);
+		tJew.setEnabled(false);
+		scrollPaneJew.setViewportView(tJew);
+		
+		JScrollPane scrollPaneFlower = new JScrollPane();
+		scrollPaneFlower.setBounds(28, 38, 351, 183);
+		contentPane.add(scrollPaneFlower);
+		
+		String[][]dataF = DbControls.displayFlowersTable();
+		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
+		tFlowers = new JTable(dataF, columnF);
+		tFlowers.setEnabled(false);
+		scrollPaneFlower.setViewportView(tFlowers);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Flower Inventory");
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));

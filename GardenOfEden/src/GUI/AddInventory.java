@@ -5,6 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableModel;
+
+import ManagementClasses.DbControls;
+import ManagementClasses.ItemOptions;
+import ManagementClasses.ShopManagement;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextArea;
@@ -12,13 +18,21 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddInventory extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
-	private JTable table_1;
+	private JTable tFlowers;
+	private JTable tJew;
+	private JLabel lblFlQ;
+	private JLabel lblJewQ;
+	private JComboBox comboBoxJew;
+	private JComboBox comboBoxFlowers;
+	private JLabel errorMsg;
 
 	/**
 	 * Launch the application.
@@ -53,120 +67,149 @@ public class AddInventory extends JFrame {
 		lblNewLabel_1.setBounds(21, 9, 152, 27);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Date:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBackground(new Color(255, 128, 128));
-		lblNewLabel_1_1.setBounds(449, 10, 90, 27);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel lblDate = new JLabel("Date:");
+		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDate.setBackground(new Color(255, 128, 128));
+		lblDate.setBounds(449, 10, 120, 27);
+		contentPane.add(lblDate);
+		lblDate.setText("Date: " + ShopManagement.dateF);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Money:");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1_2.setBounds(579, 10, 90, 27);
-		contentPane.add(lblNewLabel_1_2);
+		JLabel lblMoney = new JLabel("Money:");
+		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMoney.setBounds(579, 10, 144, 27);
+		contentPane.add(lblMoney);
+		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 47, 407, 273);
-		contentPane.add(scrollPane);
+		JScrollPane scrollPaneFlower = new JScrollPane();
+		scrollPaneFlower.setBounds(28, 47, 407, 260);
+		contentPane.add(scrollPaneFlower);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		String[][]dataF = DbControls.displayFlowersTable();
+		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
+		tFlowers = new JTable(dataF, columnF);
+		tFlowers.setEnabled(false);
+		scrollPaneFlower.setViewportView(tFlowers);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Jewelry Inventory");
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_3.setBounds(10, 330, 152, 27);
 		contentPane.add(lblNewLabel_1_3);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(28, 358, 351, 155);
-		contentPane.add(scrollPane_1);
+		JScrollPane scrollPaneJew = new JScrollPane();
+		scrollPaneJew.setBounds(28, 358, 351, 89);
+		contentPane.add(scrollPaneJew);
 		
-		table_1 = new JTable();
-		scrollPane_1.setViewportView(table_1);
+		String[][]dataJ = DbControls.displayJewTable();
+		String columnJ[] = {"Flower Jewelry Type", "Quantity"};
+		tJew = new JTable(dataJ, columnJ);
+		tJew.setEnabled(false);
+		scrollPaneJew.setViewportView(tJew);
 		
 		JLabel lblNewLabel = new JLabel("Flower Type:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(471, 82, 102, 32);
 		contentPane.add(lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(583, 82, 168, 32);
-		contentPane.add(comboBox);
+		comboBoxFlowers = new JComboBox();
+		comboBoxFlowers.setBounds(583, 82, 168, 32);
+		comboBoxFlowers.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_TYPES.toArray(new String[ItemOptions.FLOWER_TYPES.size()])));
+		contentPane.add(comboBoxFlowers);
 		
 		JLabel lblFlowerQuantity = new JLabel("Flower Quantity:");
 		lblFlowerQuantity.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblFlowerQuantity.setBounds(554, 146, 128, 32);
 		contentPane.add(lblFlowerQuantity);
 		
-		JButton btnNewButton = new JButton("+");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setBounds(503, 209, 56, 32);
-		contentPane.add(btnNewButton);
+		JButton btnPlusF = new JButton("+");
+		btnPlusF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblFlQ.setText(Integer.toString(Integer.parseInt(lblFlQ.getText())+1));
+			}
+		});
+		btnPlusF.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnPlusF.setBounds(503, 209, 56, 32);
+		contentPane.add(btnPlusF);
 		
-		JButton btnNewButton_1 = new JButton("-");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_1.setBounds(680, 209, 56, 32);
-		contentPane.add(btnNewButton_1);
+		JButton btnMinusF = new JButton("-");
+		btnMinusF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Integer.parseInt(lblFlQ.getText())-1>= 20)
+					lblFlQ.setText(Integer.toString(Integer.parseInt(lblFlQ.getText())-1));
+			}
+		});
+		btnMinusF.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnMinusF.setBounds(680, 209, 56, 32);
+		contentPane.add(btnMinusF);
 		
-		JLabel lblNewLabel_2 = new JLabel("0");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(608, 209, 11, 32);
-		contentPane.add(lblNewLabel_2);
+		lblFlQ = new JLabel("20");
+		lblFlQ.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblFlQ.setBounds(604, 209, 40, 32);
+		contentPane.add(lblFlQ);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("0");
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_2_1.setBounds(608, 457, 11, 32);
-		contentPane.add(lblNewLabel_2_1);
+		lblJewQ = new JLabel("5");
+		lblJewQ.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblJewQ.setBounds(604, 457, 31, 32);
+		contentPane.add(lblJewQ);
 		
-		JButton btnNewButton_2 = new JButton("+");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_2.setBounds(503, 457, 56, 32);
-		contentPane.add(btnNewButton_2);
+		JButton btnPlusJew = new JButton("+");
+		btnPlusJew.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnPlusJew.setBounds(503, 457, 56, 32);
+		contentPane.add(btnPlusJew);
 		
 		JLabel lblJewelryQuantity = new JLabel("Jewelry Quantity:");
 		lblJewelryQuantity.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblJewelryQuantity.setBounds(554, 394, 128, 32);
 		contentPane.add(lblJewelryQuantity);
 		
-		JButton btnNewButton_1_1 = new JButton("-");
-		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_1_1.setBounds(680, 457, 56, 32);
-		contentPane.add(btnNewButton_1_1);
+		JButton btnMinusJew = new JButton("-");
+		btnMinusJew.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnMinusJew.setBounds(680, 457, 56, 32);
+		contentPane.add(btnMinusJew);
 		
 		JLabel lblJewelryType = new JLabel("Jewelry Type:");
 		lblJewelryType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblJewelryType.setBounds(471, 330, 102, 32);
 		contentPane.add(lblJewelryType);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(583, 330, 168, 32);
-		contentPane.add(comboBox_1);
+		comboBoxJew = new JComboBox();
+		comboBoxJew.setBounds(583, 330, 168, 32);
+		contentPane.add(comboBoxJew);
 		
-		JButton btnNewButton_3 = new JButton("BUY");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_3.setBounds(568, 536, 114, 44);
-		contentPane.add(btnNewButton_3);
+		JButton btnBuyJew = new JButton("BUY");
+		btnBuyJew.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnBuyJew.setBounds(568, 536, 114, 44);
+		contentPane.add(btnBuyJew);
 		
-		JLabel lblNewLabel_3 = new JLabel("Price:");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_3.setBounds(449, 567, 45, 13);
-		contentPane.add(lblNewLabel_3);
+		JLabel lblPriceJew = new JLabel("Price:");
+		lblPriceJew.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPriceJew.setBounds(449, 567, 45, 13);
+		contentPane.add(lblPriceJew);
 		
-		JLabel ErrorMsg = new JLabel("");
-		ErrorMsg.setBounds(10, 534, 358, 54);
-		contentPane.add(ErrorMsg);
+		errorMsg = new JLabel("");
+		errorMsg.setBounds(10, 534, 358, 54);
+		contentPane.add(errorMsg);
 		
-		JButton btnNewButton_4 = new JButton("Home");
-		btnNewButton_4.setBounds(733, 15, 82, 21);
-		contentPane.add(btnNewButton_4);
+		JButton btnHome = new JButton("Home");
+		btnHome.setBounds(733, 15, 82, 21);
+		contentPane.add(btnHome);
 		
-		JButton btnNewButton_3_1 = new JButton("BUY");
-		btnNewButton_3_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_3_1.setBounds(568, 263, 114, 44);
-		contentPane.add(btnNewButton_3_1);
+		JButton btnBuyFl = new JButton("BUY");
+		btnBuyFl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int q = Integer.parseInt(lblFlQ.getText());
+				String type = comboBoxFlowers.getSelectedItem().toString();
+				errorMsg.setText(DbControls.buyFlower(type, q));
+				lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+				
+			}
+		});
+		btnBuyFl.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnBuyFl.setBounds(568, 263, 114, 44);
+		contentPane.add(btnBuyFl);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Price:");
-		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_3_1.setBounds(449, 294, 45, 13);
-		contentPane.add(lblNewLabel_3_1);
+		JLabel lblPriceFl = new JLabel("Price:");
+		lblPriceFl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPriceFl.setBounds(449, 294, 45, 13);
+		contentPane.add(lblPriceFl);
 	}
 }

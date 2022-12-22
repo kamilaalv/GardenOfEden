@@ -18,10 +18,9 @@ public class ItemSystem {
 	
 	
 	public static boolean addFlowerJewelry(int Quantity, String FlowerJewelryType, boolean RealFake) {
-		//uncomment this after installing mysql
-		if(!DbControls.sellJew(FlowerJewelryType, Quantity)) 
-			return false;
 		
+		if(DbControls.getQuantityJew(FlowerJewelryType)<Quantity) 
+			return false;
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
 			FlowerJewelry f= new FlowerJewelry(FlowerJewelryType, RealFake);
@@ -46,9 +45,10 @@ public class ItemSystem {
 	}
 	
 	public static double addFlowers(int Quantity, String FlowerType, String color)
-	{ 	//checks if we have enough flowers in inventory
-		if(!DbControls.sellFlower(FlowerType, Quantity))
+	{ 
+		if(DbControls.getQuantityFlower(FlowerType)<Quantity)
 			return 0 ;
+		
 		for(int i=0; i<items.size(); i++) {
 			if(items.get(i) instanceof Flower) {
 				if(((Flower)items.get(i)).getFlowerType().equalsIgnoreCase(FlowerType))	{ //if flower type already is in cart
@@ -82,11 +82,14 @@ public class ItemSystem {
 		double price=-1;
 		Flower f= new Flower(FlowerType, color, Quantity);
 		Bouquet b = new Bouquet();
-		if(Quantity> f.getMaxQuantity())
+		if(DbControls.getQuantityFlower(FlowerType)< Quantity)
+			return price;
+		else if(Quantity> f.getMaxQuantity())
 		{
 			System.out.println("meow");
 			return price;
-		}else
+		}
+		else
 		{
 			flowers.add(f);
 			

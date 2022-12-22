@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ManagementClasses.ShopManagement;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -44,20 +47,23 @@ public class ManagementStatistics extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Date:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBackground(new Color(255, 128, 128));
-		lblNewLabel_1_1.setBounds(368, 0, 90, 27);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel lblDate = new JLabel("Date:");
+		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDate.setBackground(new Color(255, 128, 128));
+		lblDate.setBounds(368, 0, 132, 27);
+		contentPane.add(lblDate);
+		lblDate.setText("Date: " + ShopManagement.dateF);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Money:");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1_2.setBounds(525, 1, 90, 27);
-		contentPane.add(lblNewLabel_1_2);
+		JLabel lblMoney = new JLabel("Money:");
+		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMoney.setBounds(525, 1, 117, 27);
+		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 		
-		JButton btnNewButton_4 = new JButton("Home");
-		btnNewButton_4.setBounds(652, 5, 82, 21);
-		contentPane.add(btnNewButton_4);
+		contentPane.add(lblMoney);
+		
+		JButton btnHome = new JButton("Home");
+		btnHome.setBounds(652, 5, 82, 21);
+		contentPane.add(btnHome);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(158, 56, 385, 344);

@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ManagementClasses.DbControls;
+import ManagementClasses.ShopManagement;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JScrollPane;
@@ -19,8 +23,8 @@ import javax.swing.JTextField;
 public class DeleteInventory extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
-	private JTextField textField;
+	private JTable tFlowers;
+	private JTextField textFieldID;
 
 	/**
 	 * Launch the application.
@@ -59,53 +63,58 @@ public class DeleteInventory extends JFrame {
 		scrollPane.setBounds(7, 58, 407, 273);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		String[][]dataF = DbControls.displayFlowersTable();
+		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
+		tFlowers = new JTable(dataF, columnF);
+		tFlowers.setEnabled(false);
+		scrollPane.setViewportView(tFlowers);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Date:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBackground(new Color(255, 128, 128));
-		lblNewLabel_1_1.setBounds(464, 20, 90, 27);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel lblDate = new JLabel("Date:");
+		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDate.setBackground(new Color(255, 128, 128));
+		lblDate.setBounds(464, 20, 116, 27);
+		lblDate.setText("Date: " + ShopManagement.dateF);
+		contentPane.add(lblDate);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Money:");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1_2.setBounds(621, 21, 90, 27);
-		contentPane.add(lblNewLabel_1_2);
+		JLabel lblMoney = new JLabel("Money:");
+		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMoney.setBounds(621, 21, 127, 27);
+		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		contentPane.add(lblMoney);
 		
-		JButton btnNewButton_4 = new JButton("Home");
-		btnNewButton_4.setBounds(748, 25, 82, 21);
-		contentPane.add(btnNewButton_4);
+		JButton btnHome = new JButton("Home");
+		btnHome.setBounds(748, 25, 82, 21);
+		contentPane.add(btnHome);
 		
 		JLabel lblNewLabel = new JLabel("Delete Flower with ID:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(463, 90, 221, 21);
+		lblNewLabel.setBounds(463, 90, 142, 21);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Delete");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnDeleteID = new JButton("Delete");
+		btnDeleteID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(538, 133, 146, 21);
-		contentPane.add(btnNewButton);
+		btnDeleteID.setBounds(538, 133, 146, 21);
+		contentPane.add(btnDeleteID);
 		
 		JLabel lblDeleteAllExpired = new JLabel("Delete All Expired Flowers ");
 		lblDeleteAllExpired.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDeleteAllExpired.setBounds(463, 198, 221, 21);
 		contentPane.add(lblDeleteAllExpired);
 		
-		JButton btnNewButton_1 = new JButton("Delete");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnDeleteExpired = new JButton("Delete");
+		btnDeleteExpired.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(538, 235, 146, 21);
-		contentPane.add(btnNewButton_1);
+		btnDeleteExpired.setBounds(538, 235, 146, 21);
+		contentPane.add(btnDeleteExpired);
 		
-		textField = new JTextField();
-		textField.setBounds(615, 93, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textFieldID = new JTextField();
+		textFieldID.setBounds(615, 93, 96, 19);
+		contentPane.add(textFieldID);
+		textFieldID.setColumns(10);
 	}
 }
