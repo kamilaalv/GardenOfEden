@@ -71,37 +71,6 @@ public class DbControls {
 		
 	}
 	
-	//returns total quantity by type for flowers
-	public static int getQuantityFlower(String type) {
-		try {
-			int q = 0;
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
-			Statement myStmt = myConn.createStatement();
-			ResultSet myRs = myStmt.executeQuery("select Quantity from eden.inventory where Name = '" + type + "'");
-			while(myRs.next()) {
-				q += Integer.parseInt(myRs.getString("Quantity"));
-			}
-			myConn.close();
-			return q;
-		} catch (SQLException e) {
-			return 0;
-		}
-		
-	}
-	
-	public static int getQuantityJew(String type) {
-		try {
-			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
-			Statement myStmt = myConn.createStatement();
-			ResultSet myRs = myStmt.executeQuery("select Quantity from eden.jewelry_inventory where Name = '" + type + "'");
-			myConn.close();
-			return Integer.parseInt(myRs.getString("Quantity"));
-		} catch (SQLException e) {
-			return 0;
-		}
-		
-	}
-	
 	public static Timestamp addDays(Timestamp date, int days) {
 		Calendar cal = Calendar.getInstance();
 	    cal.setTime(date);
@@ -110,8 +79,7 @@ public class DbControls {
 	    return newDate;
 	}
 	
-	
-	public static String deleteExpiredByID(int id) {
+	public static String deleteByID(int id) {
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			myConn.setAutoCommit(false);
@@ -173,9 +141,110 @@ public class DbControls {
 		return true;
 
 	}
+	
+	//returns total quantity by type for flowers
+	public static int getQuantityFlower(String type) {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery("select sum(Quantity)as total from eden.inventory where Name = '" + type + "'");
+			while(myRs.next()) {
+				return Integer.parseInt(myRs.getString("total"));
+			}
+			myConn.close();
+		
+		} catch (SQLException e) {
+			return 0;
+		}
+		return 0;	
+	}
+	
+	public static boolean sellFlower(String ftype, int buyQ) {
+		if (getQuantityFlower(ftype)<buyQ)
+			return false;
+		try {
+			ShopManagement.money += ItemOptions.FLOWER_PRICES.get(ftype)* buyQ;
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery("select ItemId, Quantity from eden.inventory where Name = '" + ftype +"' order by DateBought");
+			while(myRs.next()) {
+				int id = Integer.parseInt(myRs.getString("ItemId"));
+				int q = Integer.parseInt(myRs.getString("Quantity"));
+				if(q - buyQ > 0) {
+					Statement stmt = myConn.createStatement();
+					String u = "update eden.inventory set Quantity = Quantity - " + buyQ + " where ItemId = " + id;
+					stmt.executeUpdate(u);
+					return true;
+				}
+				else {
+					deleteByID(id);
+					if(buyQ - q == 0)
+						return true;
+				}	
+			}
+			myConn.commit();
+			myConn.close();
+		
+		} catch (SQLException e) {
+			try {
+				myConn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			return false;
+		}
+		return false;
+		
+	}
 
-	public static String addFlower(String type, int q) {
-		if(ItemManagement.money-ItemOptions.FLOWER_PRICES.get(type)/2.0<0) {
+	public static int getQuantityJew(String type) {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery("select Quantity from eden.jewelry_inventory where Name = '" + type + "'");
+			myConn.close();
+			return Integer.parseInt(myRs.getString("Quantity"));
+		} catch (SQLException e) {
+			return 0;
+		}
+		
+	}
+	
+	public static boolean sellJew (String type, int buyQ) {
+		int q = getQuantityJew(type);
+		if(q<buyQ)
+			return false;
+		try {
+			ShopManagement.money += ItemOptions.JEWELRY_PRICE.get(type)* buyQ;
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement stmt = myConn.createStatement();
+			String query;
+			if(q - buyQ > 0)
+				query = "update eden.jewelry_inventory set Quantity = Quantity - " + buyQ + " where JName = '" + type + "'";
+			else 
+				query = "delete from eden.jewelry_inventory where JName = '" + type + "'";
+			
+			stmt.executeUpdate(query);
+			myConn.commit();
+			myConn.close();
+			return true;
+		
+		} catch (SQLException e) {
+			try {
+				myConn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			return false;
+		}
+	}
+	
+	
+	
+	
+
+	public static String buyFlower(String type, int q) {
+		if(ShopManagement.money-ItemOptions.FLOWER_PRICES.get(type)/2.0<0) {
 			return "You do not have enough money";
 		}
 		try {
@@ -197,7 +266,7 @@ public class DbControls {
 		     myConn.commit();
 			 myConn.close();
 			 
-			 ItemManagement.money -= ItemOptions.FLOWER_PRICES.get(type)/2.0;
+			 ShopManagement.money -= ItemOptions.FLOWER_PRICES.get(type)/2.0;
 			 return "Bought Succsesfully";
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,8 +282,8 @@ public class DbControls {
 		
 	}
 	
-	public static String addJewelry(String type, int q) {
-		if(ItemManagement.money-ItemOptions.JEWELRY_PRICE.get(type)/2.0<0) {
+	public static String buyJewelry(String type, int q) {
+		if(ShopManagement.money-ItemOptions.JEWELRY_PRICE.get(type)/2.0<0) {
 			return "You do not have enough money";
 		}
 		try {
@@ -234,7 +303,7 @@ public class DbControls {
 		     myConn.commit();
 			 myConn.close();
 			
-			 ItemManagement.money -= ItemOptions.JEWELRY_PRICE.get(type)/2.0;
+			 ShopManagement.money -= ItemOptions.JEWELRY_PRICE.get(type)/2.0;
 			 return "Bought Succsesfully";
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -251,7 +320,8 @@ public class DbControls {
 	
 	//for testing
 	public static void main(String[] args) throws SQLException{
-		
+
+	
 		
 	}
 	//everything works

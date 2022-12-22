@@ -17,29 +17,14 @@ public class ItemSystem {
 
 	
 	
-	public static boolean addFlowerJewelry(/*int ItemId, String ItemName,*/ int Quantity, String FlowerJewelryType, boolean RealFake) {
-		
-		
-		/*for(int i=0; i<items.size(); i++)
-		{
-			if(items.get(i) instanceof FlowerJewelry)
-			if(ItemId==((FlowerJewelry)items.get(i)).getItemId())
-			{
-				return false;
-			}
-		}*/  //no need for this part
-		
-		//method will return false if user wants to order more than the quantity in inventory. (db part, Ill add it later)
-		
+	public static boolean addFlowerJewelry(int Quantity, String FlowerJewelryType, boolean RealFake) {
 		//uncomment this after installing mysql
-		/*if(Quantity > DbControls.getQuantityJew(FlowerJewelryType)) {
-			//display message in gui quantity exceded
+		if(!DbControls.sellJew(FlowerJewelryType, Quantity)) 
 			return false;
-		}*/
 		
 		for(int j=0; j<Quantity; j++)  //can order in bulk
 		{
-			FlowerJewelry f= new FlowerJewelry(/*ItemName,*/ FlowerJewelryType, RealFake);
+			FlowerJewelry f= new FlowerJewelry(FlowerJewelryType, RealFake);
 			items.add(f);
 
 		}
@@ -60,32 +45,31 @@ public class ItemSystem {
 		return output;
 	}
 	
-	public static double addFlowers(/*int ItemId, String itemName,*/int Quantity, String FlowerType, String color)
-	{ 
+	public static double addFlowers(int Quantity, String FlowerType, String color)
+	{ 	//checks if we have enough flowers in inventory
+		if(!DbControls.sellFlower(FlowerType, Quantity))
+			return 0 ;
 		for(int i=0; i<items.size(); i++) {
 			if(items.get(i) instanceof Flower) {
-				//if(items.get(i).getItemId() == ItemId) {
 				if(((Flower)items.get(i)).getFlowerType().equalsIgnoreCase(FlowerType))	{ //if flower type already is in cart
-	                if(Quantity + ((Flower)items.get(i)).getFlowerQuantity()> ((Flower) items.get(i)).getMaxQuantity())
-	                {
-	                    return -1;
-	                }else 
-	                {
-	                	((Flower)items.get(i)).setFlowerQuantity(Quantity + ((Flower)items.get(i)).getFlowerQuantity()); // why it doesnt work??
-						return items.get(i).getItemPrice();
-	                }
+					if(Quantity + ((Flower)items.get(i)).getFlowerQuantity()> ((Flower) items.get(i)).getMaxQuantity())
+		            {
+						return -1;
+		                }else 
+		            {
+		            	((Flower)items.get(i)).setFlowerQuantity(Quantity + ((Flower)items.get(i)).getFlowerQuantity()); // why it doesnt work??
+		            	return items.get(i).getItemPrice();
+		            }
 				}	
 			}
 		}
-		 Flower f = new Flower(/*itemName,*/ FlowerType, color, Quantity);
-		 if(Quantity> f.getMaxQuantity())
-		 {
-			 return -1;
-		 }
-		 
-	
+		Flower f = new Flower(FlowerType, color, Quantity);
+		if(Quantity> f.getMaxQuantity())
+		{
+			return -1;
+		}
 		double price= f.calculateDiscount(f.getItemPrice());
-		 System.out.println(f.getItemPrice());
+		System.out.println(f.getItemPrice());
 		items.add(f);
 		return price;
 	}

@@ -17,10 +17,9 @@ import javax.swing.JTable;
 public class ManagementHome extends JFrame {
 
 	private JPanel contentPane;
+	private ManagerLogin ml = null;
 
-	/**
-	 * Launch the application.
-	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -32,12 +31,13 @@ public class ManagementHome extends JFrame {
 				}
 			}
 		});
-	}
+	} */
 
 	/**
 	 * Create the frame.
 	 */
-	public ManagementHome() {
+	public ManagementHome(ManagerLogin log) {
+		ml = log;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 822, 562);
 		contentPane = new JPanel();
