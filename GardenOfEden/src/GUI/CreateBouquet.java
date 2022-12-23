@@ -30,10 +30,11 @@ public class CreateBouquet extends JFrame {
     private static int count=0;
     private JTextField textField;
     private double totalPrice=0f;
+    private CustomerFrame f=null;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+   /**	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -44,12 +45,13 @@ public class CreateBouquet extends JFrame {
 				}
 			}
 		});
-	}
+}	**/
 
 	/**
 	 * Create the frame.
 	 */
-	public CreateBouquet() {
+	public CreateBouquet(CustomerFrame ff) {
+		f=ff;
 		setResizable(false);
 		setTitle("Bouquet");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -256,6 +258,13 @@ public class CreateBouquet extends JFrame {
 		panel.add(AddB);
 		
 		JButton GoBack = new JButton("ɢᴏ ʙᴀᴄᴋ");
+		GoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				f.setVisible(true);
+				
+			}
+		});
 		GoBack.setForeground(Color.WHITE);
 		GoBack.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		GoBack.setBackground(new Color(255, 102, 51));

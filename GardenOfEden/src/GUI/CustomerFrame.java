@@ -29,6 +29,8 @@ public class CustomerFrame extends JFrame {
 	private JButton cartbtn;
 	private Login L=null;
 	AddFlowerframe af= new AddFlowerframe(this);
+	CreateBouquet bouquet = new CreateBouquet(this);
+	
 
 	/**
 	 * Launch the application.
@@ -98,6 +100,10 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		jewelrybtn = new JButton("Flower Jewelry");
+		jewelrybtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		jewelrybtn.setForeground(new Color(255, 255, 255));
 		jewelrybtn.setBackground(new Color(15, 215, 135));
 		jewelrybtn.setBounds(269, 186, 152, 35);
@@ -110,6 +116,12 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		bouquetbtn = new JButton("Flower Bouquet");
+		bouquetbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bouquet.setVisible(true);
+				setVisible(false);
+			}
+		});
 		bouquetbtn.setForeground(new Color(255, 255, 255));
 		bouquetbtn.setBackground(new Color(238, 169, 6));
 		bouquetbtn.setBounds(269, 253, 152, 36);

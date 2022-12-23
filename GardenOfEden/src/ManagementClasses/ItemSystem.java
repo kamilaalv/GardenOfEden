@@ -82,11 +82,13 @@ public class ItemSystem {
 		double price=-1;
 		Flower f= new Flower(FlowerType, color, Quantity);
 		Bouquet b = new Bouquet();
-		if(DbControls.getQuantityFlower(FlowerType)< Quantity)
-			return price;
-		else if(Quantity> f.getMaxQuantity())
+		//if(DbControls.getQuantityFlower(FlowerType)< Quantity)
+			//return price;
+		//else 
+			
+			if(Quantity> f.getMaxQuantity())
 		{
-			System.out.println("meow");
+			
 			return price;
 		}
 		else

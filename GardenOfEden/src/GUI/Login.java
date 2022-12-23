@@ -77,6 +77,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				CF.setVisible(true);
+			    setVisible(false);
 				
 			}
 		});

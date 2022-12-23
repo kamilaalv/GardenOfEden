@@ -112,8 +112,8 @@ public class Flower extends Item{
 	
 	public String toString()
 	{
-		return super.toString() + "\nFlower Type:" + this.flowerType +
-				"\nColor: " + this.color + "\nQuantity: " + quantity;
+		return super.toString() + "\nFlower Type:" + this.flowerType + " x" + quantity +
+				"\nColor: " + this.color ; 
 	}
 
 	@Override

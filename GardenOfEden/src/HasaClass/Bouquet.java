@@ -144,9 +144,14 @@ public class Bouquet {
 	
 	public String toString()
 	{
-		int quantity= CalculateFlowerQuantity();
-		System.out.println(quantity);
-		return "\nQuantity of Flowers:" + quantity +
+		
+	
+		String output="";
+		for(int i=0; i<flowerQuantity.size(); i++)
+		{
+			output+= flowerQuantity.get(i).toString();
+		}
+		return output + 
 				"\nCard: " + this.card +
 				"\nWrapping Paper: " + this.wrappingPaper +
 	             "\nBouquet Price: " + this.BouquetPrice;

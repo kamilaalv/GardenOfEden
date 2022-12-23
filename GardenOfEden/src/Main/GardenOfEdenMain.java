@@ -50,6 +50,9 @@ public class GardenOfEdenMain {
 		 * b.calculateBouquetPrice();
 		 * System.out.println(b.toString());
 		 */
+		
+		Flower f= new Flower("Rose", "Red", 20);
+		System.out.println(f.toString());
 	}
 
 }

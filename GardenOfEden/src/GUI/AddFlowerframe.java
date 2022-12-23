@@ -209,6 +209,7 @@ public class AddFlowerframe extends JFrame {
 		returnbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cf.setVisible(true);
+				setVisible(false);
 			}
 		});
 		returnbtn.setBounds(517, 292, 134, 23);
