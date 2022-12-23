@@ -58,7 +58,7 @@ public class ManagementHome extends JFrame {
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(668, 11, 130, 27);
 		contentPane.add(lblMoney);
-		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+	//	lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 		
 		
 		JLabel lblDate = new JLabel("Date:");
@@ -66,7 +66,7 @@ public class ManagementHome extends JFrame {
 		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblDate.setBounds(516, 10, 105, 27);
 		contentPane.add(lblDate);
-		lblDate.setText("Date: " + ShopManagement.dateF);
+		//lblDate.setText("Date: " + ShopManagement.dateF);
 		
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.addActionListener(new ActionListener() {

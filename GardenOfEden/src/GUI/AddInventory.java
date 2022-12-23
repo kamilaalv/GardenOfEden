@@ -72,13 +72,13 @@ public class AddInventory extends JFrame {
 		lblDate.setBackground(new Color(255, 128, 128));
 		lblDate.setBounds(449, 10, 120, 27);
 		contentPane.add(lblDate);
-		lblDate.setText("Date: " + ShopManagement.dateF);
+		//lblDate.setText("Date: " + ShopManagement.dateF);
 		
 		JLabel lblMoney = new JLabel("Money:");
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(579, 10, 144, 27);
 		contentPane.add(lblMoney);
-		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		//lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 		
 		JScrollPane scrollPaneFlower = new JScrollPane();
 		scrollPaneFlower.setBounds(28, 47, 407, 260);
@@ -198,8 +198,8 @@ public class AddInventory extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int q = Integer.parseInt(lblFlQ.getText());
 				String type = comboBoxFlowers.getSelectedItem().toString();
-				errorMsg.setText(DbControls.buyFlower(type, q));
-				lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+				//errorMsg.setText(DbControls.buyFlower(type, q));
+				//lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 				
 			}
 		});
