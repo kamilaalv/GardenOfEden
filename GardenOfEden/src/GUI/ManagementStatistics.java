@@ -52,12 +52,12 @@ public class ManagementStatistics extends JFrame {
 		lblDate.setBackground(new Color(255, 128, 128));
 		lblDate.setBounds(368, 0, 132, 27);
 		contentPane.add(lblDate);
-	//	lblDate.setText("Date: " + ShopManagement.dateF);
+		lblDate.setText("Date: " + ShopManagement.dateF);
 		
 		JLabel lblMoney = new JLabel("Money:");
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(525, 1, 117, 27);
-	//	lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 		
 		contentPane.add(lblMoney);
 		

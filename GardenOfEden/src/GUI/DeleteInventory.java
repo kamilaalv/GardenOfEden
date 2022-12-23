@@ -73,13 +73,13 @@ public class DeleteInventory extends JFrame {
 		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblDate.setBackground(new Color(255, 128, 128));
 		lblDate.setBounds(464, 20, 116, 27);
-	//	lblDate.setText("Date: " + ShopManagement.dateF);
+		lblDate.setText("Date: " + ShopManagement.dateF);
 		contentPane.add(lblDate);
 		
 		JLabel lblMoney = new JLabel("Money:");
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(621, 21, 127, 27);
-		//lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
 		contentPane.add(lblMoney);
 		
 		JButton btnHome = new JButton("Home");
