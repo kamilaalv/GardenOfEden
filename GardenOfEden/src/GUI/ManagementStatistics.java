@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import ManagementClasses.DbControls;
 import ManagementClasses.ShopManagement;
 
 import javax.swing.JLabel;
@@ -57,7 +58,7 @@ public class ManagementStatistics extends JFrame {
 		JLabel lblMoney = new JLabel("Money:");
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(525, 1, 117, 27);
-		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
 		
 		contentPane.add(lblMoney);
 		

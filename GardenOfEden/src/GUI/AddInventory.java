@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import ManagementClasses.DbControls;
@@ -21,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 public class AddInventory extends JFrame {
@@ -33,6 +35,8 @@ public class AddInventory extends JFrame {
 	private JComboBox comboBoxJew;
 	private JComboBox comboBoxFlowers;
 	private JLabel errorMsg;
+	private DefaultTableModel modelF;
+	private DefaultTableModel modelJ ;
 
 	/**
 	 * Launch the application.
@@ -78,16 +82,23 @@ public class AddInventory extends JFrame {
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(579, 10, 144, 27);
 		contentPane.add(lblMoney);
-		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		DbControls.getMoney();
+		lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
 		
 		JScrollPane scrollPaneFlower = new JScrollPane();
 		scrollPaneFlower.setBounds(28, 47, 407, 260);
 		contentPane.add(scrollPaneFlower);
 		
-		String[][]dataF = DbControls.displayFlowersTable();
+		String[][]dataF = DbControls.getFlowersData();
 		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
-		tFlowers = new JTable(dataF, columnF);
+		tFlowers = new JTable();
+		modelF = (DefaultTableModel) tFlowers.getModel();
+		modelF.setColumnIdentifiers(columnF);
 		tFlowers.setEnabled(false);
+		for(int i = 0; i < dataF.length; i++) {
+			modelF.addRow((Object[])dataF[i]);
+		}
+		tFlowers.setModel(modelF);
 		scrollPaneFlower.setViewportView(tFlowers);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Jewelry Inventory");
@@ -99,9 +110,16 @@ public class AddInventory extends JFrame {
 		scrollPaneJew.setBounds(28, 358, 351, 89);
 		contentPane.add(scrollPaneJew);
 		
-		String[][]dataJ = DbControls.displayJewTable();
+		String[][]dataJ = DbControls.getJewData();
 		String columnJ[] = {"Flower Jewelry Type", "Quantity"};
-		tJew = new JTable(dataJ, columnJ);
+		tJew = new JTable();
+		modelJ = (DefaultTableModel) tJew.getModel();
+		modelJ.setColumnIdentifiers(columnJ);
+		tFlowers.setEnabled(false);
+		for(int i = 0; i < dataJ.length; i++) {
+			modelJ.addRow((Object[])dataJ[i]);
+		}
+		tJew.setModel(modelJ);
 		tJew.setEnabled(false);
 		scrollPaneJew.setViewportView(tJew);
 		
@@ -152,6 +170,11 @@ public class AddInventory extends JFrame {
 		contentPane.add(lblJewQ);
 		
 		JButton btnPlusJew = new JButton("+");
+		btnPlusJew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblJewQ.setText(Integer.toString(Integer.parseInt(lblJewQ.getText())+1));
+			}
+		});
 		btnPlusJew.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnPlusJew.setBounds(503, 457, 56, 32);
 		contentPane.add(btnPlusJew);
@@ -162,6 +185,12 @@ public class AddInventory extends JFrame {
 		contentPane.add(lblJewelryQuantity);
 		
 		JButton btnMinusJew = new JButton("-");
+		btnMinusJew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Integer.parseInt(lblJewQ.getText())-1>= 5)
+					lblJewQ.setText(Integer.toString(Integer.parseInt(lblJewQ.getText())-1));
+			}
+		});
 		btnMinusJew.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnMinusJew.setBounds(680, 457, 56, 32);
 		contentPane.add(btnMinusJew);
@@ -173,9 +202,29 @@ public class AddInventory extends JFrame {
 		
 		comboBoxJew = new JComboBox();
 		comboBoxJew.setBounds(583, 330, 168, 32);
+		comboBoxJew.setModel(new DefaultComboBoxModel(ItemOptions.FLOWER_JEWELRY_TYPES.toArray(new String[ItemOptions.FLOWER_JEWELRY_TYPES.size()])));
 		contentPane.add(comboBoxJew);
 		
 		JButton btnBuyJew = new JButton("BUY");
+		btnBuyJew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int q = Integer.parseInt(lblJewQ.getText());
+				String type = comboBoxJew.getSelectedItem().toString();
+				errorMsg.setText(DbControls.buyJewelry(type, q));
+				lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
+				int newQ = DbControls.getQuantityJew(type);
+				int row;
+				if(type == "Earings")
+					row = 0;
+				else if(type == "Bracelet")
+					row = 1;
+				else if(type == "Necklace")
+					row = 2;
+				else
+					row = 3;
+				modelJ.setValueAt((Object)newQ,row,1);
+			}
+		});
 		btnBuyJew.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnBuyJew.setBounds(568, 536, 114, 44);
 		contentPane.add(btnBuyJew);
@@ -199,7 +248,9 @@ public class AddInventory extends JFrame {
 				int q = Integer.parseInt(lblFlQ.getText());
 				String type = comboBoxFlowers.getSelectedItem().toString();
 				errorMsg.setText(DbControls.buyFlower(type, q));
-				lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+				lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
+				modelF.addRow(DbControls.getLastFlower());
+			
 				
 			}
 		});

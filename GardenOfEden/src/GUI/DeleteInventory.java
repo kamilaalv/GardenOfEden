@@ -79,7 +79,7 @@ public class DeleteInventory extends JFrame {
 		JLabel lblMoney = new JLabel("Money:");
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(621, 21, 127, 27);
-		lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
 		contentPane.add(lblMoney);
 		
 		JButton btnHome = new JButton("Home");

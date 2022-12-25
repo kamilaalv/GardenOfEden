@@ -12,8 +12,8 @@ public class DbControls {
 	private static Connection myConn; //myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 	private static final SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	
-	public static String[][] displayFlowersTable(){
+	//first three methods are for JTable
+	public static String[][] getFlowersData(){
 			try {
 				
 				myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
@@ -36,10 +36,9 @@ public class DbControls {
 				return null;
 				//e.printStackTrace();
 			}
-			
 	}
 	
-	public static String[][] displayJewTable(){
+	public static String[][] getJewData(){
 		try {
 			
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
@@ -62,6 +61,28 @@ public class DbControls {
 		}
 		
 }
+	
+	//for updating JTable
+	public static Object[] getLastFlower() {
+		try {
+			
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement myStmt = myConn.createStatement();
+			String[] arr = new String[4];
+			ResultSet rs = myStmt.executeQuery("SELECT * FROM eden.inventory WHERE ItemId=(SELECT max(ItemId) FROM  eden.inventory)");
+			while(rs.next()) {
+				arr[0] = rs.getString("ItemId");
+				arr[1] = rs.getString("Name");
+				arr[2] = rs.getString("Quantity");
+				arr[3] = rs.getString("DateBought");
+			}
+			myConn.close();
+			return (Object[])arr;
+		} catch (SQLException e) {
+			return null;
+			//e.printStackTrace();
+		}
+	}
 	
 	public static boolean setAllDatesBoughtToNow() {
 		try {
@@ -95,7 +116,7 @@ public class DbControls {
 			ResultSet myRs = myStmt.executeQuery("select ItemId, DateBought from eden.inventory where Name = '" + type + "'");
 			while(myRs.next()) {
 				Timestamp t = Timestamp.valueOf(myRs.getString("DateBought"));
-				int id = Integer.parseInt(myRs.getString("ItemId"));
+				int id = myRs.getInt("ItemId");
 				dates.put(id, t);
 			}
 			myConn.close();
@@ -177,13 +198,14 @@ public class DbControls {
 
 	}
 	
-	public static boolean syncMoney() {
+	public static boolean setMoney(double newMoney) {
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			myConn.setAutoCommit(false);
-			Statement stmt = myConn.createStatement();
-			String query = "update eden.users set money="+ShopManagement.getMoney();
-			stmt.executeUpdate(query); 
+			String query = "update eden.users set money=?";
+			PreparedStatement preparedStmt = myConn.prepareStatement(query);
+			preparedStmt.setDouble(1, newMoney);
+			preparedStmt.execute();
 			myConn.commit();
 			myConn.close();
 		}catch(Exception exc) {
@@ -197,13 +219,31 @@ public class DbControls {
 		return true;
 	}
 	
+	public static double getMoney() {
+		double m = 0;
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			myConn.setAutoCommit(false);
+			Statement stmt = myConn.createStatement();
+			ResultSet rs = stmt.executeQuery("select money from eden.users");
+			
+			while(rs.next())
+				 m  = rs.getDouble("money");
+			myConn.close();
+			return m;
+			
+		}catch(Exception exc) {
+			return -1;
+		}
+	}
+	
 	public static int getQuantityFlower(String type) {
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			Statement myStmt = myConn.createStatement();
 			ResultSet myRs = myStmt.executeQuery("select sum(Quantity)as total from eden.inventory where Name = '" + type + "'");
 			while(myRs.next()) {
-				return Integer.parseInt(myRs.getString("total"));
+				return myRs.getInt("total");
 			}
 			myConn.close();
 		
@@ -217,15 +257,14 @@ public class DbControls {
 		if (getQuantityFlower(ftype)<buyQ)
 			return false;
 		try {
-			ShopManagement.setMoney(ShopManagement.getMoney() + ItemOptions.FLOWER_PRICES.get(ftype)* buyQ);
-			syncMoney();
+			setMoney(getMoney() + ItemOptions.FLOWER_PRICES.get(ftype)* buyQ);
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			myConn.setAutoCommit(false);
 			Statement myStmt = myConn.createStatement();
-			ResultSet myRs = myStmt.executeQuery("select ItemId, Quantity from eden.inventory where Name = '" + ftype +"' order by DateBought");
+			ResultSet myRs = myStmt.executeQuery("select ItemId, Quantity from eden.inventory where Name = '" + ftype +"' order by DateBought asc");
 			while(myRs.next()) {
-				int id = Integer.parseInt(myRs.getString("ItemId"));
-				int q = Integer.parseInt(myRs.getString("Quantity"));
+				int id = myRs.getInt("ItemId");
+				int q = myRs.getInt("Quantity");
 				if(q - buyQ > 0) {
 					Statement stmt = myConn.createStatement();
 					String u = "update eden.inventory set Quantity = Quantity - " + buyQ + " where ItemId = " + id;
@@ -237,8 +276,7 @@ public class DbControls {
 				else {
 					deleteByID(id);
 					if(buyQ - q == 0) {
-						syncMoney();
-						myConn.commit();
+						//myConn.commit(); //do we need to commit here
 						myConn.close();
 						return true;
 					}
@@ -263,9 +301,12 @@ public class DbControls {
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			Statement myStmt = myConn.createStatement();
-			ResultSet myRs = myStmt.executeQuery("select Quantity from eden.jewelry_inventory where Name = '" + type + "'");
+			ResultSet myRs = myStmt.executeQuery("select Quantity from eden.jewelry_inventory where JName = '" + type + "'");
+			int q = 0;
+			while(myRs.next())
+				q =  myRs.getInt("Quantity");
 			myConn.close();
-			return Integer.parseInt(myRs.getString("Quantity"));
+			return q;
 		} catch (SQLException e) {
 			return 0;
 		}
@@ -277,8 +318,7 @@ public class DbControls {
 		if(q<buyQ)
 			return false;
 		try {
-			ShopManagement.setMoney(ShopManagement.getMoney()+ItemOptions.JEWELRY_PRICE.get(type)* buyQ);
-			syncMoney();
+			setMoney(getMoney()+ItemOptions.JEWELRY_PRICE.get(type)* buyQ);
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			myConn.setAutoCommit(false);
 			Statement stmt = myConn.createStatement();
@@ -304,7 +344,7 @@ public class DbControls {
 	}
 	
 	public static String buyFlower(String type, int q) {
-		if(ShopManagement.getMoney()-ItemOptions.FLOWER_PRICES.get(type)*q/2.0<0) {
+		if(getMoney()-ItemOptions.FLOWER_PRICES.get(type)*q/2.0<0) {
 			return "You do not have enough money";
 		}
 		try {
@@ -326,8 +366,7 @@ public class DbControls {
 		     myConn.commit();
 			 myConn.close();
 			 
-			 ShopManagement.setMoney(ShopManagement.getMoney() - ItemOptions.FLOWER_PRICES.get(type)*q/2.0);
-			 syncMoney();
+			 setMoney(getMoney() - ItemOptions.FLOWER_PRICES.get(type)*q/2.0);
 			 return "Bought Succsesfully";
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -344,7 +383,7 @@ public class DbControls {
 	}
 	
 	public static String buyJewelry(String type, int q) {
-		if(ShopManagement.getMoney()-ItemOptions.JEWELRY_PRICE.get(type)*q/2.0<0) {
+		if(getMoney()-ItemOptions.JEWELRY_PRICE.get(type)*q/2.0<0) {
 			return "You do not have enough money";
 		}
 		try {
@@ -364,8 +403,7 @@ public class DbControls {
 		     myConn.commit();
 			 myConn.close();
 			
-			 ShopManagement.setMoney(ShopManagement.getMoney() - ItemOptions.JEWELRY_PRICE.get(type)*q/2.0);
-			 syncMoney();
+			 setMoney(getMoney() - ItemOptions.JEWELRY_PRICE.get(type)*q/2.0);
 			 return "Bought Succsesfully";
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -379,11 +417,11 @@ public class DbControls {
 		}
 		
 	}
-	
+
 	//for testing
 	public static void main(String[] args) throws SQLException{
-		
 	
+	//System.out.println(ItemOptions.JEWELRY_PRICE.get("Necklace")*7/2);	
 		
 	}
 	//everything works

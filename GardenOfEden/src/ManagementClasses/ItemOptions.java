@@ -54,7 +54,7 @@ public class ItemOptions {
     public static final Map<String, Double> JEWELRY_PRICE = new HashMap<String, Double>() {{
         put("Earings", 10.0);
         put("Bracelet", 15.0);
-        put("Necklaces", 10.0);
+        put("Necklace", 10.0);
         put("Headwear", 25.0);
     }};
 
