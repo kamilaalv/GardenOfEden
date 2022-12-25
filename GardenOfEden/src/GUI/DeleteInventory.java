@@ -63,7 +63,7 @@ public class DeleteInventory extends JFrame {
 		scrollPane.setBounds(7, 58, 407, 273);
 		contentPane.add(scrollPane);
 		
-		String[][]dataF = DbControls.displayFlowersTable();
+		String[][]dataF = DbControls.getFlowersData();
 		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
 		tFlowers = new JTable(dataF, columnF);
 		tFlowers.setEnabled(false);

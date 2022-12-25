@@ -26,7 +26,9 @@ public class ManagementHome extends JFrame {
 	private ManagerLogin ml = null;
 	private JTable tFlowers;
 	private JTable tJew;
-
+	
+	AddInventory add = new AddInventory(this);
+	
 	
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,7 +47,7 @@ public class ManagementHome extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagementHome(ManagerLogin log) {
-		//ml = log;
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 822, 493);
 		contentPane = new JPanel();
@@ -58,7 +60,7 @@ public class ManagementHome extends JFrame {
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(668, 11, 130, 27);
 		contentPane.add(lblMoney);
-	//	lblMoney.setText("Money: " + String.format("%.2f", ShopManagement.getMoney()) + "$");
+		lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
 		
 		
 		JLabel lblDate = new JLabel("Date:");
@@ -66,11 +68,13 @@ public class ManagementHome extends JFrame {
 		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblDate.setBounds(516, 10, 105, 27);
 		contentPane.add(lblDate);
-		//lblDate.setText("Date: " + ShopManagement.dateF);
+		lblDate.setText("Date: " + ShopManagement.dateF);
 		
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				add.setVisible(true);
+				dispose();
 			}
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -109,7 +113,7 @@ public class ManagementHome extends JFrame {
 		scrollPaneJew.setBounds(28, 296, 351, 89);
 		contentPane.add(scrollPaneJew);
 		
-		String[][]dataJ = DbControls.displayJewTable();
+		String[][]dataJ = DbControls.getJewData();
 		String columnJ[] = {"Flower Jewelry Type", "Quantity"};
 		tJew = new JTable(dataJ, columnJ);
 		tJew.setEnabled(false);
@@ -119,7 +123,7 @@ public class ManagementHome extends JFrame {
 		scrollPaneFlower.setBounds(28, 38, 351, 183);
 		contentPane.add(scrollPaneFlower);
 		
-		String[][]dataF = DbControls.displayFlowersTable();
+		String[][]dataF = DbControls.getFlowersData();
 		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
 		tFlowers = new JTable(dataF, columnF);
 		tFlowers.setEnabled(false);

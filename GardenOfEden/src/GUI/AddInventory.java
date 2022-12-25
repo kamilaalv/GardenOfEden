@@ -41,7 +41,7 @@ public class AddInventory extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -52,12 +52,12 @@ public class AddInventory extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public AddInventory() {
+	public AddInventory(ManagementHome home) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 839, 667);
 		contentPane = new JPanel();
@@ -239,6 +239,12 @@ public class AddInventory extends JFrame {
 		contentPane.add(errorMsg);
 		
 		JButton btnHome = new JButton("Home");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				home.setVisible(true);
+				dispose();
+			}
+		});
 		btnHome.setBounds(733, 15, 82, 21);
 		contentPane.add(btnHome);
 		

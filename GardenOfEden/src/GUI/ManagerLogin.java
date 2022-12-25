@@ -21,8 +21,6 @@ public class ManagerLogin extends JFrame {
 	private JTextField textFieldID;
 	private JTextField textFieldP;
 	private JLabel errorLbl;
-	private Login l=null;
-	
 	ManagementHome home = new ManagementHome(this);
 	/**
 	 * Launch the application.
@@ -44,7 +42,6 @@ public class ManagerLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagerLogin(Login log) {
-		l=log;
 		setResizable(false);
 		setTitle("ManagerFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,7 +102,7 @@ public class ManagerLogin extends JFrame {
 				String pass = textFieldP.getText();
 				if(ID.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("password")) {
 					home.setVisible(true);
-					setVisible(false);
+					dispose();
 				}
 				else {
 					errorLbl.setText("Wrong ID or Password. Please, attempt again");
