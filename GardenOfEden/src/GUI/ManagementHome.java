@@ -28,6 +28,7 @@ public class ManagementHome extends JFrame {
 	private JTable tJew;
 	
 	AddInventory add = new AddInventory(this);
+	DeleteInventory del= new DeleteInventory(this);
 	
 	
 	/*public static void main(String[] args) {
@@ -84,6 +85,8 @@ public class ManagementHome extends JFrame {
 		JButton btnDelete = new JButton("DELETE");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				del.setVisible(true);
+				dispose();
 			}
 		});
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 12));

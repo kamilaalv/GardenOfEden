@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class DbControls {
 	
@@ -135,36 +136,58 @@ public class DbControls {
 	    return newDate;
 	}
 	
+	public static boolean idExists(int id) {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement stmt = myConn.createStatement();
+			PreparedStatement p = myConn.prepareStatement("select count(ItemId) as num from eden.inventory where ItemId = ?");
+			p.setInt(1, id);
+			ResultSet rs = p.executeQuery();
+			while(rs.next()) {
+				if(rs.getInt("num") == 0) {
+					myConn.close();
+					return false;
+				}
+				else {
+					myConn.close();
+					return true;
+				}	
+			}
+		}catch(Exception exc) {
+			
+		}
+		return false;
+	}
 	public static String deleteByID(int id) {
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			myConn.setAutoCommit(false);
-			Statement stmt = myConn.createStatement();	
-			String queryDelete = "delete from eden.inventory where ItemId = '" + id + "'"; //everything works till here
-			try {
-				stmt.executeUpdate(queryDelete);
-			}catch (SQLException e) {
-				return "Id does not exist. Please write to correct id";
-			}
+			Statement stmt = myConn.createStatement();
+			String query = "delete from eden.inventory where ItemId =" + id;
+			stmt.executeUpdate(query);
 			myConn.commit();
-			myConn.close();	    
-		}catch(Exception exc) {
+			myConn.close();
+			return "Deleted succesfully";
+		} catch (SQLException e) {
 			try {
 				myConn.rollback();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			return "Cannot connect to db";
+			e.printStackTrace();
+			return "Cannot connect to the db";
 		}
-		return "Deleted Succesfully";
+		
 	}
 	
-	public static boolean deleteExpiredAll() {
+	public static ArrayList<Integer> deleteExpiredAll() {
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			myConn.setAutoCommit(false);
 			Statement stmt = myConn.createStatement();
 			String flowerName;
+			ArrayList<Integer> out = new ArrayList<Integer>();
 			for(String type : ItemOptions.FLOWER_TYPES) {
 				flowerName = (type == "Baby's Breath") ? "Baby\\'s Breath" : type;
 				Timestamp today = new Timestamp(System.currentTimeMillis()); //today has to be taken from gui
@@ -173,8 +196,8 @@ public class DbControls {
 				
 				for(Integer id: datesBought.keySet()){
 					  if(today.compareTo(addDays(datesBought.get(id), days)) > 0 ) { 
+						  out.add(id);
 						  String queryDelete = "delete from eden.inventory where ItemId = '" + id + "'"; //everything works till here
-						  //havent tested only this try catch block
 						  try {
 							stmt.executeUpdate(queryDelete);
 							myConn.commit();
@@ -186,15 +209,15 @@ public class DbControls {
 				}
 			}
 			myConn.close();
+			return out;
 		}catch(Exception exc) {
 			try {
 				myConn.rollback();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			return false;
+			return null;
 		}
-		return true;
 
 	}
 	
@@ -223,7 +246,6 @@ public class DbControls {
 		double m = 0;
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
-			myConn.setAutoCommit(false);
 			Statement stmt = myConn.createStatement();
 			ResultSet rs = stmt.executeQuery("select money from eden.users");
 			
@@ -420,8 +442,7 @@ public class DbControls {
 
 	//for testing
 	public static void main(String[] args) throws SQLException{
-	
-	//System.out.println(ItemOptions.JEWELRY_PRICE.get("Necklace")*7/2);	
+		
 		
 	}
 	//everything works

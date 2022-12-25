@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import ManagementClasses.DbControls;
 import ManagementClasses.ShopManagement;
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -25,11 +27,13 @@ public class DeleteInventory extends JFrame {
 	private JPanel contentPane;
 	private JTable tFlowers;
 	private JTextField textFieldID;
+	private JLabel ErrorMsg; 
+	private DefaultTableModel modelF;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,12 +44,12 @@ public class DeleteInventory extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public DeleteInventory() {
+	public DeleteInventory(ManagementHome home) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 854, 406);
 		contentPane = new JPanel();
@@ -65,8 +69,15 @@ public class DeleteInventory extends JFrame {
 		
 		String[][]dataF = DbControls.getFlowersData();
 		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
-		tFlowers = new JTable(dataF, columnF);
+		tFlowers = new JTable();
 		tFlowers.setEnabled(false);
+	    modelF = (DefaultTableModel) tFlowers.getModel();
+		modelF.setColumnIdentifiers(columnF);
+		tFlowers.setEnabled(false);
+		for(int i = 0; i < dataF.length; i++) {
+			modelF.addRow((Object[])dataF[i]);
+		}
+		tFlowers.setModel(modelF);
 		scrollPane.setViewportView(tFlowers);
 		
 		JLabel lblDate = new JLabel("Date:");
@@ -83,6 +94,12 @@ public class DeleteInventory extends JFrame {
 		contentPane.add(lblMoney);
 		
 		JButton btnHome = new JButton("Home");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				home.setVisible(true);
+				dispose();
+			}
+		});
 		btnHome.setBounds(748, 25, 82, 21);
 		contentPane.add(btnHome);
 		
@@ -94,6 +111,19 @@ public class DeleteInventory extends JFrame {
 		JButton btnDeleteID = new JButton("Delete");
 		btnDeleteID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				int id = Integer.parseInt(textFieldID.getText());
+				if(DbControls.idExists(id)) {
+					ErrorMsg.setText(DbControls.deleteByID(id));
+					for(int i = 0; i< modelF.getRowCount(); i++)
+					{
+						if(Integer.parseInt(tFlowers.getModel().getValueAt(i, 0).toString()) == id)
+							modelF.removeRow(i);
+					}
+				}
+					
+				else
+					ErrorMsg.setText("Given Id does not exist");
 			}
 		});
 		btnDeleteID.setBounds(538, 133, 146, 21);
@@ -107,6 +137,16 @@ public class DeleteInventory extends JFrame {
 		JButton btnDeleteExpired = new JButton("Delete");
 		btnDeleteExpired.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ArrayList<Integer> arr = DbControls.deleteExpiredAll();
+				for(int i = 0; i< modelF.getRowCount(); i++)
+				{
+					for(Integer id : arr) {
+						if(Integer.parseInt(tFlowers.getModel().getValueAt(i, 0).toString()) == id)
+							modelF.removeRow(i);
+							
+					}
+					
+				}
 			}
 		});
 		btnDeleteExpired.setBounds(538, 235, 146, 21);
@@ -116,5 +156,10 @@ public class DeleteInventory extends JFrame {
 		textFieldID.setBounds(615, 93, 96, 19);
 		contentPane.add(textFieldID);
 		textFieldID.setColumns(10);
+		
+		ErrorMsg = new JLabel("");
+		ErrorMsg.setFont(new Font("Tahoma", Font.BOLD, 12));
+		ErrorMsg.setBounds(464, 281, 247, 27);
+		contentPane.add(ErrorMsg);
 	}
 }
