@@ -133,6 +133,7 @@ public class CartFrame extends JFrame {
 				
 				CustomerFrame CUS= new CustomerFrame(L);
 				CUS.setVisible(true);
+				setVisible(false);
 				
 			}
 		});
