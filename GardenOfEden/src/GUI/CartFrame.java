@@ -27,7 +27,7 @@ public class CartFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField getIdField;
 	private static JTextArea textAreaCart ;
-	
+	private Login L=null;
 	
 
 	/**
@@ -130,6 +130,9 @@ public class CartFrame extends JFrame {
 		JButton returnToCustomer = new JButton("Yes");
 		returnToCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				CustomerFrame CUS= new CustomerFrame(L);
+				CUS.setVisible(true);
 				
 			}
 		});
