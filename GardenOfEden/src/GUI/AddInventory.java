@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class AddInventory extends JFrame {
 
@@ -61,14 +62,16 @@ public class AddInventory extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 839, 667);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Flower Inventory");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(21, 9, 152, 27);
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(21, 9, 177, 27);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblDate = new JLabel("Date:");
@@ -102,8 +105,9 @@ public class AddInventory extends JFrame {
 		scrollPaneFlower.setViewportView(tFlowers);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Jewelry Inventory");
-		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_3.setBounds(10, 330, 152, 27);
+		lblNewLabel_1_3.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1_3.setBounds(10, 330, 188, 27);
 		contentPane.add(lblNewLabel_1_3);
 		
 		JScrollPane scrollPaneJew = new JScrollPane();
@@ -268,5 +272,10 @@ public class AddInventory extends JFrame {
 		lblPriceFl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPriceFl.setBounds(449, 294, 45, 13);
 		contentPane.add(lblPriceFl);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(AddInventory.class.getResource("/GUI/kamilaIcons/df6e8d2fe3957652c6f1541f664785c0.jpg")));
+		lblNewLabel_2.setBounds(0, 0, 823, 628);
+		contentPane.add(lblNewLabel_2);
 	}
 }
