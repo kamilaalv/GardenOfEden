@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
@@ -46,6 +47,7 @@ public class CartFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public CartFrame(CustomerFrame cust) {
 		setResizable(false);
 		setTitle("CartFrame");
@@ -61,14 +63,14 @@ public class CartFrame extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 65, 253, 376);
 		contentPane.add(scrollPane);
-		String str = ItemSystem.cartToString();
+		
 		textAreaCart = new JTextArea();
-		textAreaCart.setText(str);
-
 		scrollPane.setViewportView(textAreaCart);
 		String str = ItemSystem.cartToString();
-		System.out.println("str "+ str);
+		
 		textAreaCart.setText(str);
+
+		
 		
 		JLabel lblNewLabel = new JLabel("Items in Cart");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));

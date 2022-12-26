@@ -442,8 +442,8 @@ public class DbControls {
 
 	//for testing
 	public static void main(String[] args) throws SQLException{
-		
-		
+		String[][] arr = getFlowersData();
+		System.out.println(arr[0].toString());
 	}
 	//everything works
 }
