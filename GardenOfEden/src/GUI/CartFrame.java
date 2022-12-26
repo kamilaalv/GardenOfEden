@@ -19,12 +19,13 @@ import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
 public class CartFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField getIdField;
-	private JTextArea textAreaCart;
+	private JTextArea textAreaCart ;
 
 	/**
 	 * Launch the application.
@@ -60,10 +61,12 @@ public class CartFrame extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 65, 253, 376);
 		contentPane.add(scrollPane);
-		String str = ItemSystem.cartToString();
-		textAreaCart = new JTextArea(str);
-
+		
+		textAreaCart = new JTextArea();
 		scrollPane.setViewportView(textAreaCart);
+		String str = ItemSystem.cartToString();
+		System.out.println("str "+ str);
+		textAreaCart.setText(str);
 		
 		JLabel lblNewLabel = new JLabel("Items in Cart");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
