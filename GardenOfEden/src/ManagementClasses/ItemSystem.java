@@ -69,7 +69,7 @@ public class ItemSystem {
 			return -1;
 		}
 		double price= f.calculateDiscount(f.getItemPrice());
-		System.out.println(f.getItemPrice());
+		//System.out.println(f.getItemPrice());
 		items.add(f);
 		return price;
 	}
@@ -232,6 +232,7 @@ public class ItemSystem {
 					str+= ((Flower)item).toString();
 				else
 					str+= ((FlowerJewelry)item).toString();
+				
 			}
 		}
 		return str;

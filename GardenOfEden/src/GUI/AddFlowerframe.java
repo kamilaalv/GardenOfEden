@@ -192,7 +192,6 @@ public class AddFlowerframe extends JFrame {
 					tprice.setText(price+"");
 					
 				}
-				System.out.println(ItemSystem.cartToString());
 				
 			}
 		});

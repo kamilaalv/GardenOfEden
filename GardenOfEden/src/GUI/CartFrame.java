@@ -17,11 +17,14 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CartFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField getIdField;
+	private JTextArea textAreaCart;
 
 	/**
 	 * Launch the application.
@@ -53,6 +56,15 @@ public class CartFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(30, 65, 253, 376);
+		contentPane.add(scrollPane);
+		String str = ItemSystem.cartToString();
+		textAreaCart = new JTextArea();
+		textAreaCart.setText(str);
+
+		scrollPane.setViewportView(textAreaCart);
 		
 		JLabel lblNewLabel = new JLabel("Items in Cart");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -103,6 +115,11 @@ public class CartFrame extends JFrame {
 		contentPane.add(lblNewLabel_3_2);
 		
 		JButton returnToCustomer = new JButton("Yes");
+		returnToCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textAreaCart.setText(ItemSystem.cartToString());
+			}
+		});
 		returnToCustomer.setBackground(new Color(255, 255, 255));
 		returnToCustomer.setFont(new Font("Arial", Font.BOLD, 12));
 		returnToCustomer.setBounds(405, 268, 198, 35);
@@ -123,15 +140,7 @@ public class CartFrame extends JFrame {
 		Buy.setFont(new Font("Arial", Font.BOLD, 12));
 		Buy.setBounds(405, 373, 198, 35);
 		contentPane.add(Buy);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 65, 253, 376);
-		contentPane.add(scrollPane);
-		
-		JTextArea textAreaCart = new JTextArea();
-		scrollPane.setViewportView(textAreaCart);
-		System.out.println(ItemSystem.cartToString());
-		textAreaCart.setText(ItemSystem.cartToString());
+	
 		
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(CartFrame.class.getResource("/GUI/kamilaIcons/bg0.jpg")));
