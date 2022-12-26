@@ -194,7 +194,7 @@ public class AddFlowerframe extends JFrame {
 				}
 				
 				String str = ItemSystem.cartToString();
-				CartFrame.getTextAreaCart().append("\n" + str);
+				CartFrame.getTextAreaCart().setText(str);
 				
 				
 				

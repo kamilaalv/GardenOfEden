@@ -24,7 +24,6 @@ import javax.swing.ImageIcon;
 public class ManagementHome extends JFrame {
 
 	private JPanel contentPane;
-	private ManagerLogin ml = null;
 	private JTable tFlowers;
 	private JTable tJew;
 	

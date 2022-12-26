@@ -51,11 +51,6 @@ public class CartFrame extends JFrame {
 	}
 
 
-
-
-
-
-
 	/**
 	 * Create the frame.
 	 */
@@ -79,14 +74,7 @@ public class CartFrame extends JFrame {
 		textAreaCart = new JTextArea();
 
 		scrollPane.setViewportView(textAreaCart);
-		String str = ItemSystem.cartToString();
 		
-		textAreaCart.setText(str);
-
-		
-
-		
-
 		scrollPane.setViewportView(textAreaCart);
 		
 	
@@ -142,7 +130,7 @@ public class CartFrame extends JFrame {
 		JButton returnToCustomer = new JButton("Yes");
 		returnToCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textAreaCart.setText(ItemSystem.cartToString());
+				
 			}
 		});
 		returnToCustomer.setBackground(new Color(255, 255, 255));
