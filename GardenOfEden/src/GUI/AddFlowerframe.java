@@ -193,6 +193,11 @@ public class AddFlowerframe extends JFrame {
 					
 				}
 				
+				String str = ItemSystem.cartToString();
+				CartFrame.getTextAreaCart().setText(str);
+				
+				
+				
 			}
 		});
 		addbtn.setBounds(363, 292, 134, 23);

@@ -1,5 +1,7 @@
 package Main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,7 +12,7 @@ import ManagementClasses.ItemSystem;
 
 public class GardenOfEdenMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 
 		// ItemSystem.addItems();
 		/**
@@ -54,7 +56,9 @@ public class GardenOfEdenMain {
 		
 		//Flower f= new Flower("Rose", "Red", 20);
 		//System.out.println(f.toString());
-		System.out.println(ItemSystem.DisplayBouquet());
+		Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+
+		System.out.println(myConn);
 	}
 
 }
