@@ -77,6 +77,14 @@ public class CartFrame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		textAreaCart = new JTextArea();
+
+		scrollPane.setViewportView(textAreaCart);
+		String str = ItemSystem.cartToString();
+		
+		textAreaCart.setText(str);
+
+		
+
 		
 
 		scrollPane.setViewportView(textAreaCart);
