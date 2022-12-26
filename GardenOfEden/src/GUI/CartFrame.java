@@ -77,20 +77,20 @@ public class CartFrame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		textAreaCart = new JTextArea();
-<<<<<<< HEAD
+
 		scrollPane.setViewportView(textAreaCart);
 		String str = ItemSystem.cartToString();
 		
 		textAreaCart.setText(str);
 
 		
-=======
+
 		
 
 		scrollPane.setViewportView(textAreaCart);
 		
 	
->>>>>>> a337d2d6b7b4a93ac89e97e653a237e963308000
+
 		
 		JLabel lblNewLabel = new JLabel("Items in Cart");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
