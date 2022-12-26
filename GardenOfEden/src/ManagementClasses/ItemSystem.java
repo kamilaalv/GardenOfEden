@@ -252,17 +252,16 @@ public class ItemSystem {
 		return flowers;
 	}
 	
-	public static String BouquetsToString()
+	public static String GetLastItem()
 	{
 		String str="";
 		
-		Iterator<Bouquet> it= bouquets.iterator();
-		while(it.hasNext())
-		{
-			str+=it.next().toString() + "\n";
-		}
-		
-		return str;
+			for(int i=0; i<bouquets.size(); i++)
+			{
+				str=bouquets.get(i).toString() + "\n";
+			}
+			
+			return str;
 	}
 	
 }
