@@ -33,7 +33,7 @@ public class AddFlowerframe extends JFrame {
 	private JLabel display;
     Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
     CustomerFrame cf;
-    
+    public static String str="";
     /**
 	 * Launch the application.
 	 */
@@ -193,8 +193,8 @@ public class AddFlowerframe extends JFrame {
 					
 				}
 				
-				String str = ItemSystem.cartToString();
-				CartFrame.getTextAreaCart().setText(str);
+				str += ItemSystem.cartToString() + "\n";
+				
 				
 				
 				

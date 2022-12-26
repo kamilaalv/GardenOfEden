@@ -150,8 +150,11 @@ public class CustomerFrame extends JFrame {
 		cartbtn = new JButton("Shopping Cart");
 		cartbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				CartFrame.getTextAreaCart().setText(AddFlowerframe.str);
 				cart.setVisible(true);
 				setVisible(false);
+				
 			}
 		});
 		cartbtn.setBounds(519, 377, 168, 34);
