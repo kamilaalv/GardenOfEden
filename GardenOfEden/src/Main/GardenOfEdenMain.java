@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import HasaClass.Bouquet;
 import InheritanceClasses.Flower;
 import ManagementClasses.DbControls;
+import ManagementClasses.ItemSystem;
 
 public class GardenOfEdenMain {
 
@@ -51,8 +52,9 @@ public class GardenOfEdenMain {
 		 * System.out.println(b.toString());
 		 */
 		
-		Flower f= new Flower("Rose", "Red", 20);
-		System.out.println(f.toString());
+		//Flower f= new Flower("Rose", "Red", 20);
+		//System.out.println(f.toString());
+		System.out.println(ItemSystem.DisplayBouquet());
 	}
 
 }

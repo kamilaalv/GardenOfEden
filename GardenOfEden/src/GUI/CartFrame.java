@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+
+import ManagementClasses.ItemSystem;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -23,7 +26,7 @@ public class CartFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -34,12 +37,12 @@ public class CartFrame extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public CartFrame() {
+	public CartFrame(CustomerFrame cust) {
 		setResizable(false);
 		setTitle("CartFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,8 +128,10 @@ public class CartFrame extends JFrame {
 		scrollPane.setBounds(30, 65, 253, 376);
 		contentPane.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		JTextArea textAreaCart = new JTextArea();
+		scrollPane.setViewportView(textAreaCart);
+		System.out.println(ItemSystem.cartToString());
+		textAreaCart.setText(ItemSystem.cartToString());
 		
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(CartFrame.class.getResource("/GUI/kamilaIcons/bg0.jpg")));

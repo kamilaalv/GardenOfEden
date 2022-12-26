@@ -30,6 +30,7 @@ public class CustomerFrame extends JFrame {
 	private Login L=null;
 	AddFlowerframe af= new AddFlowerframe(this);
 	CreateBouquet bouquet = new CreateBouquet(this);
+	CartFrame cart = new CartFrame(this);
 	
 
 	/**
@@ -144,6 +145,12 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(lblNewLabel_7);
 		
 		cartbtn = new JButton("Shopping Cart");
+		cartbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cart.setVisible(true);
+				setVisible(false);
+			}
+		});
 		cartbtn.setBounds(519, 377, 168, 34);
 		cartbtn.setFont(new Font("Arial", Font.PLAIN, 16));
 		contentPane.add(cartbtn);

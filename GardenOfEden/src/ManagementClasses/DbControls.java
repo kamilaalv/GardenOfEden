@@ -158,6 +158,7 @@ public class DbControls {
 		}
 		return false;
 	}
+	
 	public static String deleteByID(int id) {
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
@@ -276,7 +277,7 @@ public class DbControls {
 	}
 	
 	public static boolean sellFlower(String ftype, int buyQ) {
-		if (getQuantityFlower(ftype)<buyQ)
+		if (getQuantityFlower(ftype)<buyQ) //these lines might be unnecessary
 			return false;
 		try {
 			setMoney(getMoney() + ItemOptions.FLOWER_PRICES.get(ftype)* buyQ);
@@ -335,10 +336,9 @@ public class DbControls {
 		
 	}
 	
+	//first ItemSystem.addFlowerJewelry() must be called. thats is why i am not checking whether buyQ > q
 	public static boolean sellJew (String type, int buyQ) {
 		int q = getQuantityJew(type);
-		if(q<buyQ)
-			return false;
 		try {
 			setMoney(getMoney()+ItemOptions.JEWELRY_PRICE.get(type)* buyQ);
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");

@@ -8,15 +8,13 @@ import java.util.Scanner;
 import InheritanceClasses.*;
 public class ItemSystem {
 	
-	private static ArrayList<Item> items= new ArrayList<Item>();
+	private static ArrayList<Item> items= new ArrayList<Item>(); //flowers and flower jewelry in cart
 	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
 	private static ArrayList<Flower> flowers= new ArrayList(); //please dont remove it. Otherwise Bouquet method is not working at all
 	
 	
 	//this implementation is based with the GUI interface in mind, not the console one.
 
-	
-	
 	public static boolean addFlowerJewelry(int Quantity, String FlowerJewelryType, boolean RealFake) {
 		
 		if(DbControls.getQuantityJew(FlowerJewelryType)<Quantity) 
@@ -44,10 +42,12 @@ public class ItemSystem {
 		return output;
 	}
 	
+	// -2 We do not have enough Flowers in Db. -1 User exceeded max
 	public static double addFlowers(int Quantity, String FlowerType, String color)
 	{ 
+		
 		if(DbControls.getQuantityFlower(FlowerType)<Quantity)
-			return 0 ;
+			return -2 ;
 		
 		for(int i=0; i<items.size(); i++) {
 			if(items.get(i) instanceof Flower) {
@@ -222,6 +222,31 @@ public class ItemSystem {
 
 		
 		return 0;
+	}
+	
+	public static String cartToString() {
+		String str = "";
+		if(!items.isEmpty()) {
+			for(Item item: items) {
+				if(item instanceof Flower)
+					str+= ((Flower)item).toString();
+				else
+					str+= ((FlowerJewelry)item).toString();
+			}
+		}
+		return str;
+	}
+
+	public static ArrayList<Item> getItems() {
+		return items;
+	}
+
+	public static ArrayList<Bouquet> getBouquets() {
+		return bouquets;
+	}
+
+	public static ArrayList<Flower> getFlowers() {
+		return flowers;
 	}
 	
 }

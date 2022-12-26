@@ -177,26 +177,23 @@ public class AddFlowerframe extends JFrame {
 				String type=(String) typecb.getSelectedItem();
 				String color=(String) colorcb.getSelectedItem();
 				int num=Integer.parseInt(counter.getText());
-
-
-
 				double price= ItemSystem.addFlowers(num, type, color);
-
-
-
-				
-				if(price>0)
+				if(price==-1) {
+					display.setText("The maximum quanitity per flower type is 20 , please select the quantity again!");
+					counter.setText("0");
+				}
+				else if(price==-2){
+					display.setText("We do not have enough flowers of selected type in stock :( ");
+					counter.setText("0");
+				}
+				else
 				{
 					display.setText("Your item has been successfully added to the cart!");
 					tprice.setText(price+"");
 					
 				}
-				else {
-					display.setText("The maximum qaunitity is 20, please select the qauntity again!");
-					counter.setText("0");
-				}
-					
-			
+				System.out.println(ItemSystem.cartToString());
+				
 			}
 		});
 		addbtn.setBounds(363, 292, 134, 23);
