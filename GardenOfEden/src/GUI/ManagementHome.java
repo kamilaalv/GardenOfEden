@@ -19,6 +19,7 @@ import java.awt.Color;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class ManagementHome extends JFrame {
 
@@ -108,8 +109,9 @@ public class ManagementHome extends JFrame {
 		contentPane.add(btnViewStatistics);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Jewelry Inventory");
-		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_3.setBounds(10, 259, 152, 27);
+		lblNewLabel_1_3.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1_3.setBounds(10, 259, 183, 27);
 		contentPane.add(lblNewLabel_1_3);
 		
 		JScrollPane scrollPaneJew = new JScrollPane();
@@ -133,8 +135,14 @@ public class ManagementHome extends JFrame {
 		scrollPaneFlower.setViewportView(tFlowers);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Flower Inventory");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_2.setBounds(21, 0, 152, 27);
+		lblNewLabel_1_2.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1_2.setBounds(21, 0, 183, 27);
 		contentPane.add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ManagementHome.class.getResource("/GUI/kamilaIcons/df6e8d2fe3957652c6f1541f664785c0.jpg")));
+		lblNewLabel.setBounds(0, -12, 806, 482);
+		contentPane.add(lblNewLabel);
 	}
 }

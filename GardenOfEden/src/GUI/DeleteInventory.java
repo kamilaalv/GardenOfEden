@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class DeleteInventory extends JFrame {
 
@@ -59,8 +60,9 @@ public class DeleteInventory extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Flower Inventory");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(7, 19, 152, 27);
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(7, 19, 183, 27);
 		contentPane.add(lblNewLabel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -161,5 +163,10 @@ public class DeleteInventory extends JFrame {
 		ErrorMsg.setFont(new Font("Tahoma", Font.BOLD, 12));
 		ErrorMsg.setBounds(464, 281, 247, 27);
 		contentPane.add(ErrorMsg);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(DeleteInventory.class.getResource("/GUI/kamilaIcons/df6e8d2fe3957652c6f1541f664785c0.jpg")));
+		lblNewLabel_2.setBounds(0, 0, 838, 367);
+		contentPane.add(lblNewLabel_2);
 	}
 }

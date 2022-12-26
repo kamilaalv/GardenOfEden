@@ -15,6 +15,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 
 public class ManagementStatistics extends JFrame {
 
@@ -72,6 +73,11 @@ public class ManagementStatistics extends JFrame {
 		
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ManagementStatistics.class.getResource("/GUI/kamilaIcons/df6e8d2fe3957652c6f1541f664785c0.jpg")));
+		lblNewLabel.setBounds(0, 0, 732, 397);
+		contentPane.add(lblNewLabel);
 	}
 
 }
