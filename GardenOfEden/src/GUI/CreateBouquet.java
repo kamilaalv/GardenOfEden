@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import HasaClass.Bouquet;
+import InheritanceClasses.Flower;
 import ManagementClasses.ItemOptions;
 import ManagementClasses.ItemSystem;
 
@@ -21,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -28,7 +31,11 @@ public class CreateBouquet extends JFrame {
 
 	private JPanel contentPane;
     private static int count=0;
+    private static Bouquet bouquet  = new Bouquet();
     private JTextField textField;
+    private JComboBox comboBox_2;
+    private JTextArea textArea;
+    private JLabel CouldntAddtoCart;
     private double totalPrice=0f;
     private CustomerFrame f=null;
 	/**
@@ -65,7 +72,7 @@ public class CreateBouquet extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(10, 11, 833, 788);
+		panel.setBounds(12, -17, 833, 792);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -83,7 +90,7 @@ public class CreateBouquet extends JFrame {
 		scrollPane.setBounds(28, 315, 246, 281);
 		panel.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBackground(new Color(255, 255, 224));
 		scrollPane.setViewportView(textArea);
 		
@@ -93,15 +100,33 @@ public class CreateBouquet extends JFrame {
 		panel.add(lblNewLabel_2);
 		JLabel TotPrice = new JLabel("");
 		TotPrice.setFont(new Font("Tahoma", Font.BOLD, 18));
-		TotPrice.setBounds(540, 560, 138, 28);
+		TotPrice.setBounds(535, 546, 138, 28);
 		panel.add(TotPrice);
 		
 		JButton btnNewButton = new JButton("ᴀᴅᴅ ʙᴏᴜǫᴜᴇᴛ ᴛᴏ ᴛʜᴇ ᴄᴀʀᴛ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String wrappingPaper=comboBox_2.getSelectedItem().toString();
+				String Card= textField.getText();
+				bouquet.setCard(Card);
+				bouquet.setWrappingPaper(wrappingPaper);
+				TotPrice.setText("$ " + bouquet.calculateBouquetPrice() + "");
+				String str = bouquet.toString();
+				textArea.setText(str);
+				if(ItemSystem.addBouquet(bouquet)) {
+					CouldntAddtoCart.setText("Bouquet is added to cart!");
+					CartFrame.getTextAreaCart().append("\n"+ str);
+				}
 				
-				TotPrice.setText("$ " + totalPrice + "");
-				textArea.setText(ItemSystem.DisplayBouquet());
+				else
+					CouldntAddtoCart.setText("Bouquet is not added to cart(. Flowers you selected are out of stock");
+				
+				
+				
+				//creating new bouquet object since this one is done
+				bouquet = new Bouquet();
+				
+				//UserMsg.setText()
 				
 			}
 		});
@@ -156,23 +181,23 @@ public class CreateBouquet extends JFrame {
 		
 		JLabel lblNewLabel_6 = new JLabel("ғʟᴏᴡᴇʀ ǫᴜᴀɴᴛɪᴛʏ:");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_6.setBounds(511, 300, 160, 35);
+		lblNewLabel_6.setBounds(535, 194, 160, 35);
 		panel.add(lblNewLabel_6);
 		
 		
 		JLabel LimitReached = new JLabel("");
-		LimitReached.setBounds(369, 527, 435, 28);
+		LimitReached.setBounds(359, 355, 435, 28);
 		panel.add(LimitReached);
 		
 		JLabel Counter = new JLabel("0\r\n");
 		Counter.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Counter.setBounds(562, 346, 39, 35);
+		Counter.setBounds(586, 240, 39, 35);
 		panel.add(Counter);
-		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2 = new JComboBox();
 		comboBox_2.setBackground(new Color(255, 255, 204));
 		comboBox_2.setModel(new DefaultComboBoxModel(ItemOptions.BOUQUET_WRAP_COLOR.toArray(new String[ItemOptions.BOUQUET_WRAP_COLOR.size()])));
 
-		comboBox_2.setBounds(565, 190, 179, 35);
+		comboBox_2.setBounds(566, 413, 179, 35);
 		panel.add(comboBox_2);
 		JButton Dec = new JButton("-");
 		Dec.addActionListener(new ActionListener() {
@@ -190,7 +215,7 @@ public class CreateBouquet extends JFrame {
 		Dec.setForeground(Color.WHITE);
 		Dec.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		Dec.setBackground(new Color(153, 204, 255));
-		Dec.setBounds(462, 346, 62, 35);
+		Dec.setBounds(486, 240, 62, 35);
 		panel.add(Dec);
 		
 		JButton Incre = new JButton(" +");
@@ -204,54 +229,58 @@ public class CreateBouquet extends JFrame {
 		Incre.setForeground(Color.WHITE);
 		Incre.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		Incre.setBackground(new Color(153, 204, 255));
-		Incre.setBounds(622, 346, 62, 35);
+		Incre.setBounds(646, 240, 62, 35);
 		panel.add(Incre);
 		
 		JLabel lblNewLabel_7 = new JLabel("ᴘʀɪᴄᴇ:");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_7.setBounds(431, 406, 77, 35);
+		lblNewLabel_7.setBounds(394, 302, 77, 35);
 		panel.add(lblNewLabel_7);
 		
 		JLabel Price = new JLabel("");
 		Price.setFont(new Font("Tahoma", Font.BOLD, 15));
-		Price.setBounds(540, 406, 113, 35);
+		Price.setBounds(473, 302, 113, 35);
 		panel.add(Price);
 		
 		JButton AddB = new JButton("ᴀᴅᴅ ᴛᴏ ʙᴏᴜǫᴜᴇᴛ");
 		AddB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
 				int quantity=count;
 				if(quantity!=0)
 				{
 					String FlowerType=comboBox.getSelectedItem().toString();
 					String Color=comboBox_1.getSelectedItem().toString();
-					String wrappingPaper=comboBox_2.getSelectedItem().toString();
-					String Card= textField.getText();
+					//check total quantity of flowers
+					if(bouquet.CalculateFlowerQuantity()+quantity > bouquet.getMaxQuantity()) {
+						LimitReached.setText("The MAX quantity is "+bouquet.getMaxQuantity() + " flowers per bouquet. The limit has been reached!");
+					}
 					
-					
-					double price=ItemSystem.createBouquet(quantity, FlowerType, Color, Card, wrappingPaper);
-					
-					if(price==-1)
-					{
-						LimitReached.setText("The MAX quantity is 20 flowers per bouquet. The limit has been reached!");
-					}else
-					{
+					else {
+						boolean flowerExists = false;
+						double price = ItemOptions.FLOWER_PRICES.get(FlowerType)*quantity;
+						ArrayList<Flower> flowers = bouquet.getFlowerQuantity();
+						for(Flower f: flowers) {
+							if(f.getFlowerType().equalsIgnoreCase(FlowerType)) {
+								flowerExists = true;
+								f.setFlowerQuantity(f.getFlowerQuantity()+quantity);
+								f.setItemPrice(f.getItemPrice()+price);
+							}
+						}
+						if(!flowerExists)
+							flowers.add(new Flower(FlowerType, Color, quantity));
+						
+						
+						bouquet.setFlowerQuantity(flowers);
+						bouquet.setBouquetPrice(bouquet.getBouquetPrice()+price);
+						
 						LimitReached.setText("");
-						totalPrice+=price;
 						Price.setText("$ " + price+"");
 						
+						
 					}
-			
-
 				}
 				
-				String str=ItemSystem.BouquetsToString();
-				CartFrame.getTextAreaCart().append("\n"+ str);
-
 				
-			
 				
 				
 			}
@@ -259,12 +288,13 @@ public class CreateBouquet extends JFrame {
 		AddB.setForeground(Color.WHITE);
 		AddB.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		AddB.setBackground(new Color(255, 102, 51));
-		AddB.setBounds(425, 460, 166, 45);
+		AddB.setBounds(628, 300, 166, 45);
 		panel.add(AddB);
 		
 		JButton GoBack = new JButton("ɢᴏ ʙᴀᴄᴋ");
 		GoBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { 
+				textArea.setText("");
 				setVisible(false);
 				f.setVisible(true);
 				
@@ -273,40 +303,40 @@ public class CreateBouquet extends JFrame {
 		GoBack.setForeground(Color.WHITE);
 		GoBack.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		GoBack.setBackground(new Color(255, 102, 51));
-		GoBack.setBounds(612, 460, 166, 45);
+		GoBack.setBounds(499, 585, 166, 45);
 		panel.add(GoBack);
 		
-		JLabel CouldntAddtoCart = new JLabel("");
-		CouldntAddtoCart.setBounds(28, 742, 240, 35);
+		CouldntAddtoCart = new JLabel("");
+		CouldntAddtoCart.setBounds(28, 742, 443, 35);
 		panel.add(CouldntAddtoCart);
 		
 	
 		
 		JLabel lblNewLabel_8 = new JLabel("ᴛᴏᴛᴀʟ ᴘʀɪᴄᴇ:");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_8.setBounds(423, 560, 112, 28);
+		lblNewLabel_8.setBounds(413, 522, 112, 28);
 		panel.add(lblNewLabel_8);
 		
 		
 		
 		JLabel lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setIcon(new ImageIcon(CreateBouquet.class.getResource("/GUI/Bilalimages/Bouquet2.png")));
-		lblNewLabel_9.setBounds(394, 595, 400, 182);
+		lblNewLabel_9.setBounds(394, 652, 400, 182);
 		panel.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_10 = new JLabel("ʙᴏᴜǫᴜᴇᴛ ᴡʀᴀᴘ ᴄᴏʟᴏʀ:");
 		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_10.setBounds(376, 197, 173, 28);
+		lblNewLabel_10.setBounds(377, 413, 173, 28);
 		panel.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_11 = new JLabel("ᴄᴀʀᴅ ɴᴀᴍᴇ:");
 		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_11.setBounds(379, 250, 127, 28);
+		lblNewLabel_11.setBounds(376, 473, 127, 28);
 		panel.add(lblNewLabel_11);
 		
 		textField = new JTextField();
 		textField.setBackground(new Color(255, 255, 255));
-		textField.setBounds(564, 250, 180, 27);
+		textField.setBounds(565, 477, 180, 27);
 		panel.add(textField);
 		textField.setColumns(10);
 		

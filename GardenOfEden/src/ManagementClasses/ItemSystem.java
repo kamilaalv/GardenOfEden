@@ -120,6 +120,16 @@ public class ItemSystem {
 		
 
 	}
+	
+	public static boolean addBouquet(Bouquet b) {
+		
+		for(Flower f: b.getFlowerQuantity()) {
+			if(DbControls.getQuantityFlower(f.getFlowerType())<f.getFlowerQuantity())
+				return false;
+		}
+		bouquets.add(b);
+		return true;
+	}
 
 	public static Item removeItem(int id) {
 		for (int i=0; i<items.size(); i++) {

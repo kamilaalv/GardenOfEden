@@ -4,7 +4,7 @@ import InheritanceClasses.*;
 public class Bouquet {
 	
 	private ArrayList<Flower> flowerQuantity= new ArrayList<>();
-	private final int  MAX_QUANTITY=20;
+	private final int  MAX_QUANTITY=30;
 	private int BouquetID;
 	private String card;
 	private String wrappingPaper;
@@ -23,7 +23,6 @@ public class Bouquet {
 		BouquetsCreated++; //increments it
 		GenerateID();
 	}
-	
 	
 	public Bouquet(ArrayList<Flower> flowerQuantity, String card, String wrappingPaper) {
 		super();
@@ -65,8 +64,6 @@ public class Bouquet {
 		BouquetID = bouquetID;
 	}
 
-
-
 	public String getCard() {
 		return card;
 	}
@@ -89,6 +86,7 @@ public class Bouquet {
 	{
 		return BouquetsCreated;
 	}
+	
 	public double calculateBouquetPrice() {
 		
 		double TotalPrice = 0;
@@ -136,7 +134,7 @@ public class Bouquet {
 		for(Flower f: flowerQuantity)
 		{
 			quantity+= f.getFlowerQuantity();
-			System.out.println(quantity);
+			//System.out.println(quantity);
 		}
 		
 		return quantity;
@@ -146,15 +144,16 @@ public class Bouquet {
 	{
 		
 	
-		String output="";
+		String output="Id: "+ BouquetID;
 		for(int i=0; i<flowerQuantity.size(); i++)
 		{
-			output+= flowerQuantity.get(i).toString();
+			output+="\nFlower Type:" + flowerQuantity.get(i).getFlowerType() + " x" + flowerQuantity.get(i).getFlowerQuantity();
+			output+= "\nColor: " + flowerQuantity.get(i).getColor();
 		}
 		return output + 
 				"\nCard: " + this.card +
 				"\nWrapping Paper: " + this.wrappingPaper +
-	             "\nBouquet Price: " + this.BouquetPrice;
+	             "\nBouquet Price: " + this.BouquetPrice + "\n" + "\n";
 	             
 	}
 

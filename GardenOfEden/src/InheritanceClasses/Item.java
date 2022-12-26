@@ -61,7 +61,6 @@ public abstract class Item implements ItemInterface{
 	public String toString()
 	{
 		return "\nItem ID: " + this.itemId +
-				//"\nItem Name: " + this.itemName +
 				"\nItem Price: " + this.itemPrice;
 	}
 	

@@ -111,8 +111,10 @@ public class FlowerJewelry extends Item {
 
 	public String toString()
 	{
-		return super.toString() + "\nFlower Jewelry Type:" + this.flowerJewelryType +
-				"\nReal/Fake: " + this.Real;
+		return  "Id: " + super.getItemId() + 
+				"\nFlower Jewelry Type:" + this.flowerJewelryType +
+				"\nReal/Fake: " + this.Real + 
+				"\nPrice: " + super.getItemPrice() +"\n" + "\n";
 	}
 
 
