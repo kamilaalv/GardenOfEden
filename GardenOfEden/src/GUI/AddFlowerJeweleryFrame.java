@@ -27,7 +27,7 @@ public class AddFlowerJeweleryFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -38,12 +38,12 @@ public class AddFlowerJeweleryFrame extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public AddFlowerJeweleryFrame() {
+	public AddFlowerJeweleryFrame(CustomerFrame cust) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 450);
 		contentPane = new JPanel();
@@ -145,7 +145,8 @@ public class AddFlowerJeweleryFrame extends JFrame {
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// set visibility true of the customer frame and dispose this frame
+				cust.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnGoBack.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));

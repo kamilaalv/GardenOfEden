@@ -32,8 +32,10 @@ public class CustomerFrame extends JFrame {
 	private JButton cartbtn;
 	private Login L=null;
 	AddFlowerframe af= new AddFlowerframe(this);
+	AddFlowerJeweleryFrame aj = new AddFlowerJeweleryFrame(this);
 	CreateBouquet bouquet = new CreateBouquet(this);
 	CartFrame cart = new CartFrame(this);
+	
 	
 
 	/**
@@ -106,6 +108,8 @@ public class CustomerFrame extends JFrame {
 		jewelrybtn = new JButton("Flower Jewelry");
 		jewelrybtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				aj.setVisible(true);
+				setVisible(false);
 			}
 		});
 		jewelrybtn.setForeground(new Color(255, 255, 255));
@@ -151,7 +155,8 @@ public class CustomerFrame extends JFrame {
 		cartbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				CartFrame.getTextAreaCart().setText(AddFlowerframe.str);
+				//CartFrame.getTextAreaCart().setText(AddFlowerframe.str);
+				CartFrame.getTextAreaCart().setText(ItemSystem.cartToString());
 				cart.setVisible(true);
 				setVisible(false);
 				

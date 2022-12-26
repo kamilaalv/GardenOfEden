@@ -237,12 +237,22 @@ public class ItemSystem {
 	public static String cartToString() {
 		String str = "";
 		if(!items.isEmpty()) {
+			str+="Items\n";
+			str+="-----------------\n";
 			for(Item item: items) {
 				if(item instanceof Flower)
 					str+= ((Flower)item).toString();
 				else
 					str+= ((FlowerJewelry)item).toString();
 				
+			}
+		}
+		
+		if(!bouquets.isEmpty()) {
+			str+="Bouquets\n";
+			str+="-----------------\n";
+			for(Bouquet b: bouquets) {
+				str+= b.toString();
 			}
 		}
 		return str;

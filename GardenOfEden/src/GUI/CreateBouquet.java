@@ -261,7 +261,7 @@ public class CreateBouquet extends JFrame {
 						double price = ItemOptions.FLOWER_PRICES.get(FlowerType) * quantity;
 						ArrayList<Flower> flowers = bouquet.getFlowerQuantity();
 						for (Flower f : flowers) {
-							if (f.getFlowerType().equalsIgnoreCase(FlowerType)) {
+							if (f.getFlowerType().equalsIgnoreCase(FlowerType) && f.getColor().equalsIgnoreCase(Color)) {
 								flowerExists = true;
 								f.setFlowerQuantity(f.getFlowerQuantity() + quantity);
 								f.setItemPrice(f.getItemPrice() + price);
