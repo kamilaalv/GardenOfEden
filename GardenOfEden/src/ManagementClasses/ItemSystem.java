@@ -82,9 +82,9 @@ public class ItemSystem {
 		double price=-1;
 		Flower f= new Flower(FlowerType, color, Quantity);
 		Bouquet b = new Bouquet();
-		//if(DbControls.getQuantityFlower(FlowerType)< Quantity)
-			//return price;
-		//else 
+		if(DbControls.getQuantityFlower(FlowerType)< Quantity)
+			return price;
+		else 
 			
 			if(Quantity> f.getMaxQuantity())
 		{
@@ -237,6 +237,8 @@ public class ItemSystem {
 		}
 		return str;
 	}
+	
+   
 
 	public static ArrayList<Item> getItems() {
 		return items;
@@ -248,6 +250,19 @@ public class ItemSystem {
 
 	public static ArrayList<Flower> getFlowers() {
 		return flowers;
+	}
+	
+	public static String BouquetsToString()
+	{
+		String str="";
+		
+		Iterator<Bouquet> it= bouquets.iterator();
+		while(it.hasNext())
+		{
+			str+=it.next().toString() + "\n";
+		}
+		
+		return str;
 	}
 	
 }

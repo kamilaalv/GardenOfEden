@@ -247,6 +247,11 @@ public class CreateBouquet extends JFrame {
 
 				}
 				
+				String str=ItemSystem.BouquetsToString();
+				CartFrame.getTextAreaCart().append("\n"+ str);
+
+				
+			
 				
 				
 			}
