@@ -279,7 +279,7 @@ public class CreateBouquet extends JFrame {
 					}
 				}
 
-				AddFlowerframe.str += ItemSystem.GetLastItem();
+				//AddFlowerframe.str += ItemSystem.GetLastItem();
 
 			}
 		});

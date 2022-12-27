@@ -10,9 +10,17 @@ public class ItemSystem {
 	
 	private static ArrayList<Item> items= new ArrayList<Item>(); //flowers and flower jewelry in cart
 	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
-	private static ArrayList<Flower> flowers= new ArrayList(); //please dont remove it. Otherwise Bouquet method is not working at all
+	private static ArrayList<Flower> flowers= new ArrayList(); //not using this anymore
 	
 	
+	public static ArrayList<Item> getItems() {
+		return items;
+	}
+
+	public static ArrayList<Bouquet> getBouquets() {
+		return bouquets;
+	}
+
 	//this implementation is based with the GUI interface in mind, not the console one.
 
 	public static boolean addFlowerJewelry(int Quantity, String FlowerJewelryType, boolean RealFake) {
@@ -74,7 +82,7 @@ public class ItemSystem {
 		return price;
 	}
 	
-	//int flowerQuantity, String flowerType, String color (before i changed it to ArrayList<Flower> flowerQuantity)
+	//not using this anymore since we cannot use signle method to create bouquet. maybe we can but i implemented without using it
 	public static double createBouquet(int Quantity, String FlowerType, String color, String card, String wrappingPaper) {
 
 		//this place is for creating bouquet (addItems cannot implement Bouquet)->Has-A
@@ -121,6 +129,7 @@ public class ItemSystem {
 
 	}
 	
+	//method checks only inventory, max quantity is checked is gui
 	public static boolean addBouquet(Bouquet b) {
 		
 		for(Flower f: b.getFlowerQuantity()) {
@@ -153,10 +162,7 @@ public class ItemSystem {
 		return null;
 	}
 
-	// remove and search methods for bouquets doesnt work
-	// because there is no unique identifier like an id for bouquets
-	// maybe we can use index of the arraylist for these functions
-	// since we are gonna list them in the gui, using their indexes
+	
 	public static Bouquet removeBouquet(int ID) {  
 		for (int i=0; i<bouquets.size(); i++) {
 			if(bouquets.get(i).getBouquetID() == ID) {
@@ -199,6 +205,7 @@ public class ItemSystem {
 		return PriceoftheCart;
 	}
 	
+	//we are not using this anymore either
 	public static void DiscardBouquets()
 	{
 		bouquets.removeAll(bouquets); 
@@ -257,21 +264,9 @@ public class ItemSystem {
 		}
 		return str;
 	}
-	
-   
 
-	public static ArrayList<Item> getItems() {
-		return items;
-	}
 
-	public static ArrayList<Bouquet> getBouquets() {
-		return bouquets;
-	}
-
-	public static ArrayList<Flower> getFlowers() {
-		return flowers;
-	}
-	
+	//do we use this method?
 	public static String GetLastItem()
 	{
 		String str="";
