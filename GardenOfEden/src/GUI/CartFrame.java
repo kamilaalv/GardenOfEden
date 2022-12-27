@@ -35,7 +35,19 @@ public class CartFrame extends JFrame {
 	private static JTextArea textAreaCart ;
 	private JLabel ErrorMsg_1;
 	private Login L=null;
+	private SearchDeleteFrame SDF= null;
+	private  CartFrame CFTemp=this;
+	public static int ITEMSEARCHID;
 	
+	public static int getITEMSEARCHID() {
+		return ITEMSEARCHID;
+	}
+
+
+	public static void setITEMSEARCHID(int iTEMSEARCHID) {
+		ITEMSEARCHID = iTEMSEARCHID;
+	}
+
 
 	/**
 	 * Launch the application.
@@ -202,7 +214,7 @@ public class CartFrame extends JFrame {
 		});
 		Buy.setBackground(new Color(255, 255, 255));
 		Buy.setFont(new Font("Arial", Font.BOLD, 12));
-		Buy.setBounds(405, 373, 198, 35);
+		Buy.setBounds(405, 377, 198, 35);
 		contentPane.add(Buy);
 	
 		JButton btnGoToDelete = new JButton("→");
@@ -211,6 +223,10 @@ public class CartFrame extends JFrame {
 				int id = Integer.parseInt(getIdField.getText());
 				if(ItemSystem.searchItem(id)!=null || ItemSystem.searchBouquet(id)!=null){
 					//open delete
+						CartFrame.setITEMSEARCHID(id);
+						SDF= new SearchDeleteFrame(CFTemp);
+					 SDF.setVisible(true);
+					 setVisible(false);
 				}
 				else
 					ErrorMsg.setText("Id "+id +" does not exist. Please enter correct id");

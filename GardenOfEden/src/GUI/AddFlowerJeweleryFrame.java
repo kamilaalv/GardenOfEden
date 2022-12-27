@@ -23,27 +23,21 @@ import java.awt.Color;
 public class AddFlowerJeweleryFrame extends JFrame {
 
 	private JPanel contentPane;
+	CustomerFrame cframe;
 
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddFlowerJeweleryFrame frame = new AddFlowerJeweleryFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public AddFlowerJeweleryFrame(CustomerFrame cust) {
+	public AddFlowerJeweleryFrame(CustomerFrame frame) {
+		cframe =frame;
+		
+		setResizable(false);
+		setTitle("AddFlowerJewelryFrame");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 450);
 		contentPane = new JPanel();
@@ -145,7 +139,8 @@ public class AddFlowerJeweleryFrame extends JFrame {
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cust.setVisible(true);
+				// set visibility true of the customer frame and dispose this frame
+				cframe.setVisible(true);
 				setVisible(false);
 			}
 		});
@@ -156,7 +151,7 @@ public class AddFlowerJeweleryFrame extends JFrame {
 		
 		
 		JLabel lblJewelpic = new JLabel("New label");
-		lblJewelpic.setIcon(new ImageIcon(AddFlowerframe.class.getResource("/GUI/ahmetImages/jewelry.jpeg")));
+		lblJewelpic.setIcon(new ImageIcon(AddFlowerframe.class.getResource("/GUI/ahmetImages/jewelry.jpg")));
 		lblJewelpic.setBounds(36, 92, 197, 200);
 		lblJewelpic.setOpaque(true);
 		contentPane.add(lblJewelpic);
@@ -164,7 +159,7 @@ public class AddFlowerJeweleryFrame extends JFrame {
 		JLabel lblbground = new JLabel("");
 		lblbground.setBackground(Color.WHITE);
 		lblbground.setBounds(0, 0, 534, 411);
-		lblbground.setIcon(new ImageIcon(AddFlowerframe.class.getResource("/GUI/ahmetImages/jewelrybackground1.jpeg")));
+		lblbground.setIcon(new ImageIcon(AddFlowerframe.class.getResource("/GUI/ahmetImages/jewelrybackground1.jpg")));
 		lblbground.setOpaque(true);
 		contentPane.add(lblbground);
 		
