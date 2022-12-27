@@ -13,7 +13,8 @@ public class ShopManagement {
     private static Timestamp date = new Timestamp(System.currentTimeMillis());
     private static SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
     public static String dateF = f.format(getDate()); //formatted date for display
-	public static Timestamp getDate() {
+	
+    public static Timestamp getDate() {
 		return date;
 	}
 

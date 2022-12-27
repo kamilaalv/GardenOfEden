@@ -71,13 +71,12 @@ public class ManagementStatistics extends JFrame {
 		scrollPane.setBounds(158, 56, 385, 344);
 		contentPane.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		JPanel chart = new JPanel();
+		scrollPane.setViewportView(chart);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(ManagementStatistics.class.getResource("/GUI/kamilaIcons/df6e8d2fe3957652c6f1541f664785c0.jpg")));
 		lblNewLabel.setBounds(0, 0, 732, 397);
 		contentPane.add(lblNewLabel);
 	}
-
 }
