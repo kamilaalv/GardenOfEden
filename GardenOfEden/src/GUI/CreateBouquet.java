@@ -109,25 +109,35 @@ public class CreateBouquet extends JFrame {
 		JButton btnNewButton = new JButton("ᴀᴅᴅ ʙᴏᴜǫᴜᴇᴛ ᴛᴏ ᴛʜᴇ ᴄᴀʀᴛ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String wrappingPaper = comboBox_2.getSelectedItem().toString();
-				String Card = textField.getText();
-				bouquet.setCard(Card);
-				bouquet.setWrappingPaper(wrappingPaper);
-				TotPrice.setText("$ " + bouquet.calculateBouquetPrice() + "");
-				String str = bouquet.toString();
-				textArea.setText(str);
-				if (ItemSystem.addBouquet(bouquet)) {
-					CouldntAddtoCart.setText("Bouquet is added to cart!");
-					CartFrame.getTextAreaCart().append("\n" + str);
+				
+				if(count!=0)
+				{
+					String wrappingPaper = comboBox_2.getSelectedItem().toString();
+					String Card = textField.getText();
+					bouquet.setCard(Card);
+					bouquet.setWrappingPaper(wrappingPaper);
+					TotPrice.setText("$ " + bouquet.calculateBouquetPrice() + "");
+					String str = bouquet.toString();
+					textArea.setText(str);
+					if (ItemSystem.addBouquet(bouquet)) {
+						CouldntAddtoCart.setText("Bouquet is added to cart!");
+						CartFrame.getTextAreaCart().append("\n" + str);
+					}
+
+					else
+						CouldntAddtoCart.setText("Bouquet is not added to cart(. Flowers you selected are out of stock");
+
+					// creating new bouquet object since this one is done
+					bouquet = new Bouquet();
+
+					// UserMsg.setText()
+					
+				}else
+				{
+					CouldntAddtoCart.setText("Bouquet is empty!!");
+
 				}
-
-				else
-					CouldntAddtoCart.setText("Bouquet is not added to cart(. Flowers you selected are out of stock");
-
-				// creating new bouquet object since this one is done
-				bouquet = new Bouquet();
-
-				// UserMsg.setText()
+			
 
 			}
 		});
@@ -145,6 +155,7 @@ public class CreateBouquet extends JFrame {
 				TotPrice.setText("$ " + totalPrice + "");
 				ItemSystem.DiscardBouquets();
 				textArea.setText(ItemSystem.DisplayBouquet());
+				CouldntAddtoCart.setText("The cart is empty now :(");
 			}
 		});
 		btnDiscard.setForeground(Color.WHITE);
@@ -251,6 +262,7 @@ public class CreateBouquet extends JFrame {
 					String FlowerType = comboBox.getSelectedItem().toString();
 					String Color = comboBox_1.getSelectedItem().toString();
 					// check total quantity of flowers
+					
 					if (bouquet.CalculateFlowerQuantity() + quantity > bouquet.getMaxQuantity()) {
 						LimitReached.setText("The MAX quantity is " + bouquet.getMaxQuantity()
 								+ " flowers per bouquet. The limit has been reached!");

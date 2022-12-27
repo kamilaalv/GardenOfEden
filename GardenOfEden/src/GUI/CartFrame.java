@@ -211,7 +211,12 @@ public class CartFrame extends JFrame {
 			}
 			if(purchValid)
 			{
-				System.out.println("Go to thank you frame");
+				//when purchase is successfully, empty everything
+				ItemSystem.getBouquets().removeAll(ItemSystem.getBouquets());
+				ItemSystem.getItems().removeAll(ItemSystem.getItems());
+				textAreaCart.setText(ItemSystem.cartToString());
+				ErrorMsg_1.setText("Thanks for shopping from Garden of Eden ;)");
+				
 			}
 		}
 		});
