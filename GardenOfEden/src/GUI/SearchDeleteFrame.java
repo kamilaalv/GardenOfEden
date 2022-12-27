@@ -127,6 +127,7 @@ public class SearchDeleteFrame extends JFrame {
 		returnbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblError.setText("");
+				cframe.getTextAreaCart().setText(ItemSystem.cartToString());
 				cframe.setVisible(true);
 				setVisible(false);
 			}

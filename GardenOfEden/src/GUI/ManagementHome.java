@@ -26,6 +26,7 @@ public class ManagementHome extends JFrame {
 	private JPanel contentPane;
 	private JTable tFlowers;
 	private JTable tJew;
+	private static JLabel lblMoney;
 	
 	AddInventory add = new AddInventory(this);
 	DeleteInventory del= new DeleteInventory(this);
@@ -57,7 +58,7 @@ public class ManagementHome extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblMoney = new JLabel("Money:");
+		lblMoney = new JLabel("Money:");
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(668, 11, 130, 27);
 		contentPane.add(lblMoney);
@@ -85,6 +86,7 @@ public class ManagementHome extends JFrame {
 		JButton btnDelete = new JButton("DELETE");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				del.getLblMoney().setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
 				del.setVisible(true);
 				dispose();
 			}
@@ -101,6 +103,8 @@ public class ManagementHome extends JFrame {
 		JButton btnViewStatistics = new JButton("VIEW STATISTICS");
 		btnViewStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 			}
 		});
 		btnViewStatistics.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -143,5 +147,10 @@ public class ManagementHome extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(ManagementHome.class.getResource("/GUI/kamilaIcons/df6e8d2fe3957652c6f1541f664785c0.jpg")));
 		lblNewLabel.setBounds(0, -12, 806, 482);
 		contentPane.add(lblNewLabel);
+	}
+
+
+	public static JLabel getLblMoney() {
+		return lblMoney;
 	}
 }

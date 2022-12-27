@@ -177,7 +177,7 @@ public class ItemSystem {
 
 	public static Bouquet searchBouquet(int ID) { //item IDs are indexes
 		for (int i=0; i<bouquets.size(); i++) {
-			if(items.get(i).getItemId() == ID) {
+			if(bouquets.get(i).getBouquetID() == ID) {
 				return bouquets.get(i);
 			}
 		}

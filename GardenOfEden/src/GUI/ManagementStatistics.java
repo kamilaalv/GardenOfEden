@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ManagementStatistics extends JFrame {
 
@@ -24,18 +26,7 @@ public class ManagementStatistics extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManagementStatistics frame = new ManagementStatistics();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -64,6 +55,7 @@ public class ManagementStatistics extends JFrame {
 		contentPane.add(lblMoney);
 		
 		JButton btnHome = new JButton("Home");
+	
 		btnHome.setBounds(652, 5, 82, 21);
 		contentPane.add(btnHome);
 		

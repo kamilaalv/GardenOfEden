@@ -30,6 +30,7 @@ public class DeleteInventory extends JFrame {
 	private JTextField textFieldID;
 	private JLabel ErrorMsg; 
 	private DefaultTableModel modelF;
+	private static 	JLabel lblMoney;
 
 	/**
 	 * Launch the application.
@@ -89,7 +90,7 @@ public class DeleteInventory extends JFrame {
 		lblDate.setText("Date: " + ShopManagement.dateF);
 		contentPane.add(lblDate);
 		
-		JLabel lblMoney = new JLabel("Money:");
+		 lblMoney = new JLabel("Money:");
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMoney.setBounds(621, 21, 127, 27);
 		lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
@@ -98,6 +99,7 @@ public class DeleteInventory extends JFrame {
 		JButton btnHome = new JButton("Home");
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				home.setVisible(true);
 				dispose();
 			}
@@ -168,5 +170,9 @@ public class DeleteInventory extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon(DeleteInventory.class.getResource("/GUI/kamilaIcons/df6e8d2fe3957652c6f1541f664785c0.jpg")));
 		lblNewLabel_2.setBounds(0, 0, 838, 367);
 		contentPane.add(lblNewLabel_2);
+	}
+
+	public static JLabel getLblMoney() {
+		return lblMoney;
 	}
 }

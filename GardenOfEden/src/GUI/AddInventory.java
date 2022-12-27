@@ -245,6 +245,7 @@ public class AddInventory extends JFrame {
 		JButton btnHome = new JButton("Home");
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				home.getLblMoney().setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
 				home.setVisible(true);
 				dispose();
 			}

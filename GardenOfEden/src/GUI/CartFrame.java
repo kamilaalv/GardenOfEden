@@ -175,14 +175,17 @@ public class CartFrame extends JFrame {
 		Buy.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			boolean purchValid = true;
+		
 			ArrayList<Item> items = ItemSystem.getItems();
 			ArrayList<Bouquet> bouquets = ItemSystem.getBouquets();
 			if(!items.isEmpty()) {
 				for(Item item: items) {
+					System.out.println(item);
 					if(item instanceof Flower) {
 						Flower f = (Flower)item;
 						if(!DbControls.sellFlower(f.getFlowerType(), f.getFlowerQuantity()))
 								purchValid = false;
+					
 					}
 					else {
 						FlowerJewelry fj = (FlowerJewelry)item;
@@ -201,7 +204,7 @@ public class CartFrame extends JFrame {
 					DbControls.setMoney(DbControls.getMoney()+3);
 				}
 			}
-			else {
+			else if(items.isEmpty() && bouquets.isEmpty()) {
 				purchValid=false;
 				System.out.println("flase");
 				ErrorMsg_1.setText("Cart is empty!");
@@ -223,8 +226,8 @@ public class CartFrame extends JFrame {
 				int id = Integer.parseInt(getIdField.getText());
 				if(ItemSystem.searchItem(id)!=null || ItemSystem.searchBouquet(id)!=null){
 					//open delete
-						CartFrame.setITEMSEARCHID(id);
-						SDF= new SearchDeleteFrame(CFTemp);
+					CartFrame.setITEMSEARCHID(id);
+					SDF= new SearchDeleteFrame(CFTemp);
 					 SDF.setVisible(true);
 					 setVisible(false);
 				}
