@@ -26,7 +26,7 @@ Garden of Eden was built using Java and MySQL
      ``` ALTER USER 'root'@'localhost' IDENTIFIED BY '9862' ```
 
     ### Creating the schema
-    Copy everything inside ``` dbCreationInsertion.sql ```\
+    Copy everything inside [dbCreationInsertion.sql](GardenOfEden/src/dbCreationInsertion.sql)\
     Paste in Workbench. Select everything and execute
     
 ## Authors
