@@ -549,12 +549,6 @@ public class DbControls {
 			
 		}
 	}
-	//for testing
-	public static void main(String[] args) throws SQLException{
 	
-		//ShopManagement.test();
-		recordStats();
-	}
-	//everything works
 }
 
