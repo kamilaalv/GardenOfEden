@@ -10,7 +10,6 @@ public class ItemSystem {
 	
 	private static ArrayList<Item> items= new ArrayList<Item>(); //flowers and flower jewelry in cart
 	private static ArrayList<Bouquet> bouquets = new ArrayList<>();
-	private static ArrayList<Flower> flowers= new ArrayList(); //not using this anymore
 	
 	
 	public static ArrayList<Item> getItems() {
@@ -81,53 +80,7 @@ public class ItemSystem {
 		items.add(f);
 		return price;
 	}
-	
-	//not using this anymore since we cannot use signle method to create bouquet. maybe we can but i implemented without using it
-	public static double createBouquet(int Quantity, String FlowerType, String color, String card, String wrappingPaper) {
 
-		//this place is for creating bouquet (addItems cannot implement Bouquet)->Has-A
-	
-		double price=-1;
-		Flower f= new Flower(FlowerType, color, Quantity);
-		Bouquet b = new Bouquet();
-		if(DbControls.getQuantityFlower(FlowerType)< Quantity)
-			return price;
-		else 
-			
-			if(Quantity> f.getMaxQuantity())
-		{
-			
-			return price;
-		}
-		else
-		{
-			flowers.add(f);
-			
-			int numOfFlowers = 0;
-
-			for(int i=0; i<flowers.size(); i++) {
-				numOfFlowers += flowers.get(i).getFlowerQuantity();
-			}
-			
-			if(numOfFlowers>= b.getMaxQuantity())
-			{
-				
-				return price;
-			}
-
-		
-			b = new Bouquet(flowers, card, wrappingPaper);
-			price=b.calculateBouquetPrice();
-			bouquets.add(b);
-		}
-		
-		flowers.removeAll(flowers);
-	
-		
-		return price;
-		
-
-	}
 	
 	//method checks only inventory, max quantity is checked is gui
 	public static boolean addBouquet(Bouquet b) {
@@ -205,7 +158,7 @@ public class ItemSystem {
 		return PriceoftheCart;
 	}
 	
-	//we are not using this anymore either
+	
 	public static void DiscardBouquets()
 	{
 		bouquets.removeAll(bouquets); 
