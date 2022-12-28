@@ -29,13 +29,7 @@ public class FlowerJewelry extends Item {
 
 	}
 	
-	/*public FlowerJewelry(String itemName, String flowerjewelryType, boolean Real) {
-		super(itemName, ItemOptions.JEWELRY_PRICE.get(flowerjewelryType));
-		this.flowerJewelryType = flowerjewelryType;
-		this.Real = Real;
-		FlowerJewelrysAdded++;
-		GenerateID();
-	}*/
+	
 
 	public String getFlowerJewelryType() {
 		return flowerJewelryType;
