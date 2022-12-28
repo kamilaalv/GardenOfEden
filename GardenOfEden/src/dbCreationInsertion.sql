@@ -16,8 +16,7 @@ INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('105', 'Li
 INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('106', 'Peony', '70');
 INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('107', 'Daisy', '40');
 INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('108', 'Lily', '40');
-/*INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('109', 'Baby\'s Breath', '150'); */
-/*--there is no error in mysql, i put it in comment for now. uncomment it before running the script */
+INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('109', 'Baby\'s Breath', '150'); 
 INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('110', 'Freesia', '40');
 INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('111', 'Chrysanthemum', '40');
 INSERT INTO `eden`.`inventory` (`ItemId`, `Name`, `Quantity`) VALUES ('112', 'Gladiolus', '50');
