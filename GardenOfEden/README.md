@@ -23,7 +23,7 @@ Garden of Eden was built using Java and MySQL
     All of the tables are local. To be able to run the project you have to create the schema on your pc.
 
     ### Links to install MySQL and Workbench
-    https://dev.mysql.com/downloads/windows/installer/5.7.html
+    https://dev.mysql.com/downloads/windows/installer/5.7.html\
     https://dev.mysql.com/downloads/workbench/
 
     ### Setting up account
