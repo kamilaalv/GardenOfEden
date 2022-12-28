@@ -53,6 +53,8 @@ Garden of Eden was built using Java and MySQL
 ## Additional
 Info to access management part: Login: ```admin``` Password: ```password```
 
+## UML
+[here](Garden%20of%20EdenUML.pdf)
 
 
 
