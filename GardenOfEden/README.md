@@ -1,6 +1,6 @@
 
 # Garden of Eden
-Garden of Eden is a sophisticated flower shop app with some management features.
+:blossom: :rose: Garden of Eden is a flower shop app with some management features.
 Garden of Eden was built using Java and MySQL
 
  * Users can purchase flowers and flower jewelry
@@ -12,12 +12,6 @@ Garden of Eden was built using Java and MySQL
  * Keep track of statistics
 
  
-
-
-
-
-
-
 
     # Installation
     All of the tables are local. To be able to run the project you have to create the schema on your pc.
