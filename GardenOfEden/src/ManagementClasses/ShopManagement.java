@@ -48,23 +48,5 @@ public class ShopManagement {
 				
 	}
 	
-	public static void test() {
-		addToStat("Peony", 10);
-		addToStat("Rose", 10);
-		addToStat("Necklace", 5);
-		addToStat("Lily", 5);
-		
-	}
-	
-
-	
-	
-	
-	
-	
-    
-    
-    
-
    
 }
