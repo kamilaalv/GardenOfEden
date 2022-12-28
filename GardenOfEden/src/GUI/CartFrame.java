@@ -14,6 +14,7 @@ import InheritanceClasses.FlowerJewelry;
 import InheritanceClasses.Item;
 import ManagementClasses.DbControls;
 import ManagementClasses.ItemSystem;
+import ManagementClasses.ShopManagement;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -25,6 +26,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
@@ -175,22 +177,25 @@ public class CartFrame extends JFrame {
 		Buy.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			boolean purchValid = true;
-		
+			//for statistics
+			Map<String, Integer> stat = ShopManagement.getStat();
 			ArrayList<Item> items = ItemSystem.getItems();
 			ArrayList<Bouquet> bouquets = ItemSystem.getBouquets();
 			if(!items.isEmpty()) {
 				for(Item item: items) {
-					System.out.println(item);
 					if(item instanceof Flower) {
 						Flower f = (Flower)item;
 						if(!DbControls.sellFlower(f.getFlowerType(), f.getFlowerQuantity()))
 								purchValid = false;
-					
+						else
+							ShopManagement.addToStat(f.getFlowerType(), f.getFlowerQuantity());
 					}
 					else {
 						FlowerJewelry fj = (FlowerJewelry)item;
 						if(!DbControls.sellJew(fj.getFlowerJewelryType(), 1))
 							purchValid = false;
+						else
+							ShopManagement.addToStat(fj.getFlowerJewelryType(), 1);
 					}
 				}
 			}
@@ -199,6 +204,8 @@ public class CartFrame extends JFrame {
 					for(Flower f: bouquet.getFlowerQuantity()) {
 						if(!DbControls.sellFlower(f.getFlowerType(), f.getFlowerQuantity()))
 							purchValid = false;
+						else
+							ShopManagement.addToStat(f.getFlowerType(), f.getFlowerQuantity());
 					}
 					//adding wrapping paper price;
 					DbControls.setMoney(DbControls.getMoney()+3);
@@ -206,11 +213,11 @@ public class CartFrame extends JFrame {
 			}
 			else if(items.isEmpty() && bouquets.isEmpty()) {
 				purchValid=false;
-				System.out.println("flase");
 				ErrorMsg_1.setText("Cart is empty!");
 			}
 			if(purchValid)
 			{
+				
 				//when purchase is successfully, empty everything
 				ItemSystem.getBouquets().removeAll(ItemSystem.getBouquets());
 				ItemSystem.getItems().removeAll(ItemSystem.getItems());
@@ -228,16 +235,20 @@ public class CartFrame extends JFrame {
 		JButton btnGoToDelete = new JButton("→");
 		btnGoToDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int id = Integer.parseInt(getIdField.getText());
-				if(ItemSystem.searchItem(id)!=null || ItemSystem.searchBouquet(id)!=null){
-					//open delete
-					CartFrame.setITEMSEARCHID(id);
-					SDF= new SearchDeleteFrame(CFTemp);
-					 SDF.setVisible(true);
-					 setVisible(false);
+				if(getIdField.getText().equals(""))
+					ErrorMsg.setText("Id is Empty!");
+				else {
+					int id = Integer.parseInt(getIdField.getText());
+					if(ItemSystem.searchItem(id)!=null || ItemSystem.searchBouquet(id)!=null){
+						//open delete
+						CartFrame.setITEMSEARCHID(id);
+						SDF= new SearchDeleteFrame(CFTemp);
+						SDF.setVisible(true);
+						setVisible(false);
+					}
+					else
+						ErrorMsg.setText("Id "+id +" does not exist. Please enter correct id");
 				}
-				else
-					ErrorMsg.setText("Id "+id +" does not exist. Please enter correct id");
 				
 			}
 		});

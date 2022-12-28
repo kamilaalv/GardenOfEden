@@ -439,10 +439,101 @@ public class DbControls {
 		}
 		
 	}
+	
+	public static int getQuantityStat(String type) {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery("select ItemQ from eden.statistics where ItemType = '" + type + "'");
+			int q = 0;
+			while(myRs.next())
+				q =  myRs.getInt("Quantity");
+			myConn.close();
+			return q;
+		} catch (SQLException e) {
+			return 0;
+		}
+		
+	}
+	
+	
+	public static boolean recordStats() {
+		Map<String, Integer> stat = ShopManagement.getStat();
+	    try {
+	    	myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			myConn.setAutoCommit(false);
+			for(Map.Entry<String, Integer> st : stat.entrySet()) 
+			{
+				
+		    	Statement myStmt = myConn.createStatement();
+		    	boolean exists = true;
+		    	ResultSet myRs = myStmt.executeQuery("SELECT count(*) as c FROM eden.statistics where ItemType = '" + st.getKey() +"'");
+		    	while(myRs.next()) {
+		    		exists = Integer.parseInt(myRs.getString("c")) == 0 ? false : true;
+		    		System.out.println(exists);
+		    	}
+		    	if(exists) {
+		    		
+		    		String query = "update eden.statistics set ItemQ = ? where ItemType = ?";
+					PreparedStatement preparedStmt = myConn.prepareStatement(query);
+					System.out.println(getQuantityStat(st.getKey()));
+				    preparedStmt.setInt(1, getQuantityStat(st.getKey()) + st.getValue());
+				    preparedStmt.setString(2, st.getKey());
+				    preparedStmt.execute();
+				  
+		    	}
+		    	else {
+		    		 String query = "insert into eden.statistics (ItemType, ItemQ) values (?, ?)";
+					 PreparedStatement preparedStmt = myConn.prepareStatement(query);
+				     preparedStmt.setString(1, st.getKey());
+				     preparedStmt.setInt(2, st.getValue());
+				     preparedStmt.execute();
+		    	}
+		    	 myConn.commit();
+		    }
+			myConn.close();
+			return true;
+		} catch (SQLException e) {
+			try {
+				myConn.rollback();
+			} catch (SQLException e1) {
+				//e1.printStackTrace();
+				return false;
+			}
+			return false;
+			//e.printStackTrace();
+		}
+	    
+	}
 
+	public static String statsToString() {
+		try {
+			
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			Statement myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery("select count(*) as len from eden.statistics");
+			myRs.next();
+			int len = myRs.getInt("len");
+			if(len == 0)
+				return "No Statistics have been recorder yet (";
+			String res = "               Statistics for all time\n";
+			res +="Format: Item Type xQuantity Bought\n";
+			ResultSet rs = myStmt.executeQuery("select * from eden.statistics order by ItemQ");
+			while(rs.next()) {
+				res+= "\n            " + rs.getString("ItemType") + " x" + rs.getString("ItemQ");
+			}
+			myConn.close();
+			return res;
+		} catch (SQLException e) {
+			return "Db Error";
+			
+		}
+	}
 	//for testing
 	public static void main(String[] args) throws SQLException{
-		
+		ShopManagement.test();
+		System.out.println(ShopManagement.getStat());
+		recordStats();
 	}
 	//everything works
 }

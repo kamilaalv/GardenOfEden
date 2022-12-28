@@ -42,4 +42,9 @@ CREATE TABLE `eden`.`users` (
 
 INSERT INTO `eden`.`users` (`Uname`, `password`, `money`) VALUES ('admin', 'password', '1000');
 
+CREATE TABLE `eden`.`statistics` (
+  `ItemType` VARCHAR(45) NOT NULL,
+  `ItemQ` INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ItemType`));
+
 COMMIT;

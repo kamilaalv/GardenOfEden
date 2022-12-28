@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import ManagementClasses.DbControls;
 import ManagementClasses.ShopManagement;
@@ -24,12 +25,18 @@ import javax.swing.ImageIcon;
 public class ManagementHome extends JFrame {
 
 	private JPanel contentPane;
-	private JTable tFlowers;
-	private JTable tJew;
+	private static JTable tFlowers;
+	private static JTable tJew;
+	private static DefaultTableModel modelF;
+	private static DefaultTableModel modelJ ;
 	private static JLabel lblMoney;
 	
+	
+
+
 	AddInventory add = new AddInventory(this);
 	DeleteInventory del= new DeleteInventory(this);
+	ManagementStatistics ms = new ManagementStatistics(this);
 	
 	
 	/*public static void main(String[] args) {
@@ -103,8 +110,8 @@ public class ManagementHome extends JFrame {
 		JButton btnViewStatistics = new JButton("VIEW STATISTICS");
 		btnViewStatistics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				ms.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnViewStatistics.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -123,7 +130,14 @@ public class ManagementHome extends JFrame {
 		
 		String[][]dataJ = DbControls.getJewData();
 		String columnJ[] = {"Flower Jewelry Type", "Quantity"};
-		tJew = new JTable(dataJ, columnJ);
+		tJew = new JTable();
+		modelJ = (DefaultTableModel) tJew.getModel();
+		modelJ.setColumnIdentifiers(columnJ);
+		tJew.setEnabled(false);
+		for(int i = 0; i < dataJ.length; i++) {
+			modelJ.addRow((Object[])dataJ[i]);
+		}
+		tJew.setModel(modelJ);
 		tJew.setEnabled(false);
 		scrollPaneJew.setViewportView(tJew);
 		
@@ -133,8 +147,14 @@ public class ManagementHome extends JFrame {
 		
 		String[][]dataF = DbControls.getFlowersData();
 		String columnF[] = {"Id", "Flower Type", "Quantity", "Date Bought"};
-		tFlowers = new JTable(dataF, columnF);
+		tFlowers = new JTable();
+		modelF = (DefaultTableModel) tFlowers.getModel();
+		modelF.setColumnIdentifiers(columnF);
 		tFlowers.setEnabled(false);
+		for(int i = 0; i < dataF.length; i++) {
+			modelF.addRow((Object[])dataF[i]);
+		}
+		tFlowers.setModel(modelF);
 		scrollPaneFlower.setViewportView(tFlowers);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Flower Inventory");
@@ -149,6 +169,14 @@ public class ManagementHome extends JFrame {
 		contentPane.add(lblNewLabel);
 	}
 
+
+	public static DefaultTableModel getModelF() {
+		return modelF;
+	}
+
+	public static DefaultTableModel getModelJ() {
+		return modelJ;
+	}
 
 	public static JLabel getLblMoney() {
 		return lblMoney;

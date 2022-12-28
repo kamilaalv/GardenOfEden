@@ -119,7 +119,7 @@ public class AddInventory extends JFrame {
 		tJew = new JTable();
 		modelJ = (DefaultTableModel) tJew.getModel();
 		modelJ.setColumnIdentifiers(columnJ);
-		tFlowers.setEnabled(false);
+		tJew.setEnabled(false);
 		for(int i = 0; i < dataJ.length; i++) {
 			modelJ.addRow((Object[])dataJ[i]);
 		}
@@ -227,6 +227,7 @@ public class AddInventory extends JFrame {
 				else
 					row = 3;
 				modelJ.setValueAt((Object)newQ,row,1);
+				home.getModelJ().setValueAt((Object)newQ,row,1);
 			}
 		});
 		btnBuyJew.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -246,6 +247,7 @@ public class AddInventory extends JFrame {
 		btnHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				home.getLblMoney().setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
+				
 				home.setVisible(true);
 				dispose();
 			}
@@ -261,6 +263,7 @@ public class AddInventory extends JFrame {
 				errorMsg.setText(DbControls.buyFlower(type, q));
 				lblMoney.setText("Money: " + String.format("%.2f", DbControls.getMoney()) + "$");
 				modelF.addRow(DbControls.getLastFlower());
+				home.getModelF().addRow(DbControls.getLastFlower());
 			
 				
 			}

@@ -121,8 +121,11 @@ public class DeleteInventory extends JFrame {
 					ErrorMsg.setText(DbControls.deleteByID(id));
 					for(int i = 0; i< modelF.getRowCount(); i++)
 					{
-						if(Integer.parseInt(tFlowers.getModel().getValueAt(i, 0).toString()) == id)
+						if(Integer.parseInt(tFlowers.getModel().getValueAt(i, 0).toString()) == id) {
 							modelF.removeRow(i);
+							home.getModelF().removeRow(i);
+						}
+							
 					}
 				}
 					
@@ -145,8 +148,11 @@ public class DeleteInventory extends JFrame {
 				for(int i = 0; i< modelF.getRowCount(); i++)
 				{
 					for(Integer id : arr) {
-						if(Integer.parseInt(tFlowers.getModel().getValueAt(i, 0).toString()) == id)
+						if(Integer.parseInt(tFlowers.getModel().getValueAt(i, 0).toString()) == id) {
 							modelF.removeRow(i);
+							home.getModelF().removeRow(i);
+						}
+							
 							
 					}
 					

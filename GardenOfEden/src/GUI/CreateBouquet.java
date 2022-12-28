@@ -129,7 +129,7 @@ public class CreateBouquet extends JFrame {
 
 					// creating new bouquet object since this one is done
 					bouquet = new Bouquet();
-
+					
 					// UserMsg.setText()
 					
 				}else
@@ -199,6 +199,7 @@ public class CreateBouquet extends JFrame {
 		panel.add(lblNewLabel_6);
 
 		JLabel LimitReached = new JLabel("");
+		LimitReached.setForeground(new Color(255, 0, 0));
 		LimitReached.setBounds(359, 355, 435, 28);
 		panel.add(LimitReached);
 
@@ -289,6 +290,9 @@ public class CreateBouquet extends JFrame {
 						Price.setText("$ " + price + "");
 
 					}
+				}
+				else {
+					LimitReached.setText("Quantity can't be 0! Please, incerease the quantity");
 				}
 
 				//AddFlowerframe.str += ItemSystem.GetLastItem();

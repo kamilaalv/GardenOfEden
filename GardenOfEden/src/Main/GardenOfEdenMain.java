@@ -56,9 +56,7 @@ public class GardenOfEdenMain {
 		
 		//Flower f= new Flower("Rose", "Red", 20);
 		//System.out.println(f.toString());
-		Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
-
-		System.out.println(myConn);
+		
 	}
 
 }
