@@ -13,7 +13,7 @@ import ManagementClasses.ItemSystem;
 
 public class GardenOfEdenMain {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 
 		Login l= new Login();
 		l.setVisible(true);
