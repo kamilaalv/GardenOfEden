@@ -36,15 +36,7 @@ public class Flower extends Item{
 
 	}
 	
-	/*public Flower(String itemName, String flowerType, String color, int quantity) {
-		super(itemName, ItemOptions.FLOWER_PRICES.get(flowerType) * quantity);
-		this.flowerType = flowerType;
-		this.color = color;
-		this.quantity = quantity;
-		FlowersAdded++;
-		GenerateID();
-	}*/
-	
+
 	
 	public String getFlowerType() {
 		return flowerType;
