@@ -442,12 +442,12 @@ public class DbControls {
 	
 	public static int getQuantityStat(String type) {
 		try {
+			int q = 0;
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
 			Statement myStmt = myConn.createStatement();
 			ResultSet myRs = myStmt.executeQuery("select ItemQ from eden.statistics where ItemType = '" + type + "'");
-			int q = 0;
 			while(myRs.next())
-				q =  myRs.getInt("Quantity");
+				q =  myRs.getInt("ItemQ");
 			myConn.close();
 			return q;
 		} catch (SQLException e) {
@@ -456,52 +456,72 @@ public class DbControls {
 		
 	}
 	
+	public static boolean statUpdate(String key, int val) {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			String query = "update eden.statistics set ItemQ = ? where ItemType = ?";
+			PreparedStatement preparedStmt = myConn.prepareStatement(query);
+		    preparedStmt.setInt(1, getQuantityStat(key) + val);
+		    preparedStmt.setString(2, key);
+		    preparedStmt.execute();
+
+		    
+		    return true;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	public static boolean statInsert(String key, int val) {
+		try {
+			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
+			 String query = "insert into eden.statistics (ItemType, ItemQ) values (?, ?)";
+			 PreparedStatement preparedStmt = myConn.prepareStatement(query);
+		     preparedStmt.setString(1, key);
+		     preparedStmt.setInt(2, val);
+		     preparedStmt.execute();
+
+		     
+		    return true;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 	
 	public static boolean recordStats() {
 		Map<String, Integer> stat = ShopManagement.getStat();
 	    try {
 	    	myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/eden", "root", "9862");
-			myConn.setAutoCommit(false);
+	    	Statement myStmt = myConn.createStatement();
 			for(Map.Entry<String, Integer> st : stat.entrySet()) 
 			{
 				
-		    	Statement myStmt = myConn.createStatement();
 		    	boolean exists = true;
 		    	ResultSet myRs = myStmt.executeQuery("SELECT count(*) as c FROM eden.statistics where ItemType = '" + st.getKey() +"'");
+		    	
 		    	while(myRs.next()) {
 		    		exists = Integer.parseInt(myRs.getString("c")) == 0 ? false : true;
-		    		System.out.println(exists);
 		    	}
+		    	
 		    	if(exists) {
-		    		
-		    		String query = "update eden.statistics set ItemQ = ? where ItemType = ?";
-					PreparedStatement preparedStmt = myConn.prepareStatement(query);
-					System.out.println(getQuantityStat(st.getKey()));
-				    preparedStmt.setInt(1, getQuantityStat(st.getKey()) + st.getValue());
-				    preparedStmt.setString(2, st.getKey());
-				    preparedStmt.execute();
+		    		statUpdate(st.getKey(), st.getValue());
 				  
 		    	}
-		    	else {
-		    		 String query = "insert into eden.statistics (ItemType, ItemQ) values (?, ?)";
-					 PreparedStatement preparedStmt = myConn.prepareStatement(query);
-				     preparedStmt.setString(1, st.getKey());
-				     preparedStmt.setInt(2, st.getValue());
-				     preparedStmt.execute();
-		    	}
-		    	 myConn.commit();
+		    	else{
+		    		statInsert(st.getKey(), st.getValue());
+		    	}	
 		    }
 			myConn.close();
 			return true;
 		} catch (SQLException e) {
-			try {
-				myConn.rollback();
-			} catch (SQLException e1) {
-				//e1.printStackTrace();
-				return false;
-			}
+			e.printStackTrace();
 			return false;
-			//e.printStackTrace();
 		}
 	    
 	}
@@ -518,9 +538,9 @@ public class DbControls {
 				return "No Statistics have been recorder yet (";
 			String res = "               Statistics for all time\n";
 			res +="Format: Item Type xQuantity Bought\n";
-			ResultSet rs = myStmt.executeQuery("select * from eden.statistics order by ItemQ");
+			ResultSet rs = myStmt.executeQuery("select * from eden.statistics order by ItemQ desc");
 			while(rs.next()) {
-				res+= "\n            " + rs.getString("ItemType") + " x" + rs.getString("ItemQ");
+				res+= "\n                    " + rs.getString("ItemType") + " x" + rs.getString("ItemQ");
 			}
 			myConn.close();
 			return res;
@@ -531,8 +551,8 @@ public class DbControls {
 	}
 	//for testing
 	public static void main(String[] args) throws SQLException{
-		ShopManagement.test();
-		System.out.println(ShopManagement.getStat());
+	
+		//ShopManagement.test();
 		recordStats();
 	}
 	//everything works

@@ -217,7 +217,7 @@ public class CartFrame extends JFrame {
 			}
 			if(purchValid)
 			{
-				
+				DbControls.recordStats();
 				//when purchase is successfully, empty everything
 				ItemSystem.getBouquets().removeAll(ItemSystem.getBouquets());
 				ItemSystem.getItems().removeAll(ItemSystem.getItems());

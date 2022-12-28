@@ -21,10 +21,7 @@ public class ShopManagement {
     public static String dateF = f.format(getDate()); //formatted date for display
 	private static Map<String, Integer> stat = new HashMap<String, Integer>();
 	
-	public static void test() {
-		stat.put("Rose", 10);
-		stat.put("Nekclace", 3);
-	}
+	
 	
     public static Timestamp getDate() {
 		return date;
@@ -49,6 +46,14 @@ public class ShopManagement {
 			stat.put(type,q);
 		
 				
+	}
+	
+	public static void test() {
+		addToStat("Peony", 10);
+		addToStat("Rose", 10);
+		addToStat("Necklace", 5);
+		addToStat("Lily", 5);
+		
 	}
 	
 
